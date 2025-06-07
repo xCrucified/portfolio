@@ -22,8 +22,8 @@ export const Header: React.FC<Props> = ({ className }) => {
               <img
               src="/images/list.svg"
               alt="Logo"
-              className={`h-10 w-10 rounded-full transition-transform duration-300 ease-in-out ${
-                isHovered ? "scale-120" : ""
+              className={`h-10 w-10 ${
+                isHovered ? "scale-120 duration-200" : ""
               }`}
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
@@ -34,7 +34,7 @@ export const Header: React.FC<Props> = ({ className }) => {
         </div>
 
         <div className="flex self-center w-[100%] justify-center items-center absolute left-0 right-0 z-0">
-          <Link className="text-[30px] font-bold hover:scale-110 duration-300" href={"/"}>Portfolio</Link>
+          <Link className="text-[30px] font-bold hover:scale-110 duration-200" href={"/"}>Portfolio</Link>
         </div>
         
         <div className="flex space-x-6 text-lg">
