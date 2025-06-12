@@ -29,10 +29,9 @@ export const Header: React.FC<Props> = ({ className }) => {
               onMouseLeave={() => setIsHovered(false)}
             />
           }
-          
           </button>
         </div>
-
+        
         <div className="flex self-center w-[100%] justify-center items-center absolute left-0 right-0 z-0">
           <Link className="text-[30px] font-bold hover:scale-110 duration-200" href={"/"}>Portfolio</Link>
         </div>
