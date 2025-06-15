@@ -141,3 +141,12 @@
   font-weight: 400;
   font-style: normal;
 }
+
+.header-animation {
+  transform: scale(1.05);
+  transition: transform 0.3s ease-in-out;
+}
+
+.header-animation:hover {
+  transform: scale(1.1);
+}
