@@ -18,7 +18,7 @@ export const Header: React.FC<Props> = ({ className }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <div className="w-[100%] h-[64px] bg-[#2D2135] text-white">
+    <div className="w-[100%] h-[64px] bg-[#1a131f] text-white border-b-[2] border-[#382c3e]">
       <div
         className={cn(
           "flex w-[100%] justify-between content-center h-[100%]",
