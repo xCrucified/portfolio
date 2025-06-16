@@ -19,8 +19,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`bebas-neue-regular main-bg`}>
-        <Header className="" />
+      <body className={`nunito-sans`}>
+        <Header />
         {children}
       </body>
     </html>

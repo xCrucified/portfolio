@@ -1,17 +1,16 @@
 "use client";
 import { cn } from "@/lib/utils";
-import Link from "next/link";
 import React, { useState } from "react";
-import AllModalWindow from "./modals/modalAllBtn";
-import { Container } from "./container";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { Label } from "../ui/label";
 
 interface Props {
   className?: string;
 }
 const links = [
-  { href: "/", label: "about" },
-  { href: "/", label: "contact" },
-  { href: "/", label: "resume" },
+  { href: "/about", label: "about" },
+  { href: "/contact", label: "contact" },
+  { href: "/resume", label: "resume" },
 ];
 
 export const Header: React.FC<Props> = ({ className }) => {
@@ -19,28 +18,53 @@ export const Header: React.FC<Props> = ({ className }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <div className="w-[100%] h-[180px] outline">
-      <Container
+    <div className="w-[100%] h-[64px] bg-[#2D2135] text-white">
+      <div
         className={cn(
-          "flex w-[100%] h-[100%] justify-between items-center outline-3",
+          "flex w-[100%] justify-between content-center h-[100%]",
           className
         )}
       >
-        <Link
-          href={"/"}
-          className="font-bold text-5xl text-white header-animation"
-        >
-          Portfolio
-        </Link>
-
-        <div className="flex items-center gap-4 text-white font-bold text-lg">
-          {links.map((link, index) => (
-            <Link key={index} href={link.href} className="header-animation">
-              {link.label}
-            </Link>
-          ))}
+        <div className="flex items-center gap-2 justify-start ml-5 w-[30%]">
+          <Avatar className="h-[50px] w-[50px] object-cover">
+            <AvatarImage src="https://github.com/shadcn.png" />
+            <AvatarFallback>CN</AvatarFallback>
+          </Avatar>
+          <div className="flex flex-col ml-2 text-sm gap-1">
+            <Label className="opacity-85">Max Kononchuk</Label>
+            <Label className="text-[#EFEDFD] opacity-55">
+              Software developer
+            </Label>
+          </div>
         </div>
-      </Container>
+
+        <div className="flex w-[100px] outline m-4 rounded-sm bg-[#2C2032]">
+          <div className="flex justify-center items-center gap-2 bg-[#382c3e] opacity-90 rounded-sm w-full h-full">
+            <div className="w-[8px] h-[8px] bg-[#1FAC71] rounded-full opacity-75"></div>
+            <Label className="text-center font-light">available</Label>
+          </div>
+        </div>
+
+        <div className="flex items-center justify-end mr-5 w-[30%] opacity-90">
+          <img src="./images/clock-3.svg" alt="" className="mr-2"/>
+          {(() => {
+            const now = new Date();
+            const day = now
+              .toLocaleString("en-US", { weekday: "long" })
+              .slice(0, 3);
+            const month = now
+              .toLocaleString("en-US", { month: "long" })
+              .slice(0, 3); 
+            const time = now.toLocaleString("en-US", {
+              hour: "2-digit",
+              minute: "2-digit",
+              hour12: false,
+            });
+
+            return <Label className="text-lg font-light">{day}, {month}, {time}</Label>;
+          })()}
+        </div>
+      </div>
     </div>
   );
 };
