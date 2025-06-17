@@ -8,9 +8,11 @@ interface Props {
 
 export const Footer: React.FC<Props> = ({ className }) => {
   return (
-    <div className={"flex w-[100%] h-[320px] outline-4"}>
-     
-    </div>
+    <footer className="h-22 text-white flex items-center bottom-0 w-full absolute">
+      <div className="flex w-[23%] justify-center">
+        © {new Date().getFullYear()} Max Kononchuk. All rights reserved.
+      </div>
+    </footer>
   );
 };
 

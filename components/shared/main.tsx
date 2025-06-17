@@ -7,8 +7,8 @@ interface Props {
 
 export const Main: React.FC<Props> = ({ className }) => {
   return (
-    <div className={cn(className, "flex w-[100%] h-[100%] justify-center")}>
-      <div className='flex w-[1688px] h-[1142px] bg-green-600'>
+    <div className={cn(className, "flex w-[100%] justify-center")} >
+      <div className='flex w-[2088px] h-[1142px] bg-green-600'>
         
       </div>
     </div>
