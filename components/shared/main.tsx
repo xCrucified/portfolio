@@ -8,7 +8,7 @@ interface Props {
 const leftPanel = [
   { id: 'AboutMe', label: 'About Me', icon: '/assets/images/about.svg' },
   { id: 'Projects', label: 'Projects', icon: '/assets/images/projects.svg' },
-  { id: 'Services', label: 'Services', icon: '/assets/images/services.svg' },
+  { id: 'Services', label: 'Services', icon: '/images/servicesIcon.svg' },
   { id: 'Skills', label: 'Skills', icon: '/assets/images/tools.svg' },
   { id: 'Experience', label: 'Experience', icon: '/assets/images/book.svg' },
   { id: 'Testimonials', label: 'Testimonials', icon: '/assets/images/testimonials.svg' },
@@ -20,7 +20,6 @@ const leftPanel = [
 
 
 export const Main: React.FC<Props> = ({ className }) => {
-
   const tabs = {
     // "Login&Security": () => <LoginSecurity />,
     // "your-orders": () => <YourOrders />,
@@ -40,8 +39,18 @@ export const Main: React.FC<Props> = ({ className }) => {
       )}
     >
       <div className="flex w-[1920px] h-[83vh] outline-4 outline-green-500 justify-between">
-        <div className="flex flex-col gap-4 outline-4 outline-red-500 w-[10%] h-[100%] p-5">
-
+        <div className="flex flex-col gap-4 outline-4 outline-red-500 w-[10%] h-[100%] p-5 text-white">
+          {leftPanel.map((item) => (
+            <a
+              href={`#${item.id}`}
+              key={item.id}
+              className="flex items-center gap-2 p-2 hover:bg-gray-200 cursor-pointer"
+            >
+                <img src={item.icon} alt={item.label} className="w-6 h-6" />
+              <span className="text-sm">{item.label}</span>
+            </a>
+          )).slice(0, 5)
+          }
         </div>
         <div className="outline-4 outline-blue-950-500 w-[80%] h-[100%] p-5">
           <div className="w-[100%] h-[100%] bg-amber-300"></div>
