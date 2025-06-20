@@ -4,7 +4,7 @@ interface Props {
   className?: string;
 }
 
-export const ServicesModal: React.FC<Props> = ({ className }) => {
+export const ServicesModalWindow: React.FC<Props> = ({ className }) => {
   return (
     <div className={className}>
 
@@ -12,4 +12,4 @@ export const ServicesModal: React.FC<Props> = ({ className }) => {
   );
 };
 
-export default ServicesModal;
+export default ServicesModalWindow;

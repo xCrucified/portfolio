@@ -1,62 +1,83 @@
-import { cn } from "@/lib/utils";
-import React from "react";
+import { AboutMeModalWindow, AchievementsModalWindow, cn, ContactModalWindow, GalleryModalWindow, Label, ProjectsModalWindow, ResumeModalWindow, ServicesModalWindow, SkillsModalWindow, ToolsModalWindow } from "@/lib/imports";
 
 interface Props {
   className?: string;
 }
 
 const leftPanel = [
-  { id: 'AboutMe', label: 'About Me', icon: '/assets/images/about.svg' },
-  { id: 'Projects', label: 'Projects', icon: '/assets/images/projects.svg' },
-  { id: 'Services', label: 'Services', icon: '/images/servicesIcon.svg' },
-  { id: 'Skills', label: 'Skills', icon: '/assets/images/tools.svg' },
-  { id: 'Experience', label: 'Experience', icon: '/assets/images/book.svg' },
-  { id: 'Testimonials', label: 'Testimonials', icon: '/assets/images/testimonials.svg' },
-  { id: 'Gallery', label: 'Gallery', icon: '/assets/images/gallery.svg' },
-  { id: 'Blog', label: 'Blog', icon: '/assets/images/blog.svg' },
-  { id: 'Achievements', label: 'Achievements', icon: '/assets/images/award.svg' },
-  { id: 'Contact', label: 'Contact', icon: '/assets/images/contact.svg' },
-];
+  { id: "Projects", label: "Projects", icon: "/images/projects.svg" },
+  { id: "Services", label: "Services", icon: "/images/services.svg" },
+  { id: "Skills", label: "Skills", icon: "/images/skills.svg" },
+  { id: "Experience", label: "Experience", icon: "/images/experience.svg" },
+  { id: "Info", label: "About Me", icon: "/images/info.svg" },
 
+  { id: "Achievements", label: "Achievements", icon: "/images/award.svg" },
+  { id: "Contact", label: "Contact", icon: "/images/contact.svg" },
+  { id: "Gallery", label: "Gallery", icon: "/images/gallery.svg" },
+  { id: "Tools", label: "Tools I Use", icon: "/images/tools.svg" },
+  { id: "Resume", label: "Resume", icon: "/images/resume.svg" },
+];
 
 export const Main: React.FC<Props> = ({ className }) => {
   const tabs = {
-    // "Login&Security": () => <LoginSecurity />,
-    // "your-orders": () => <YourOrders />,
-    // "your-addresses": () => <YourAddresses />,
-    // "customer-service": () => <CustomerService/>,
-    // "exit": () => null,
-    // "your-payments": () => <YourPayments/>,
-    // "gift-cards": () => <GiftCards/>,
-    // "your-messages": () => <YourMessages/>,
+    Projects: () => <ProjectsModalWindow />,
+    Services: () => <ServicesModalWindow />,
+    Skills: () => <SkillsModalWindow />,
+    Experience: () => <SkillsModalWindow />,
+    AboutMe: () => <AboutMeModalWindow />,
+    Achievements: () => <AchievementsModalWindow />,
+    Contact: () => <ContactModalWindow />,
+    Gallery: () => <GalleryModalWindow />,
+    Tools: () => <ToolsModalWindow />,
+    Resume: () => <ResumeModalWindow />,
   } as const;
 
   return (
     <div
       className={cn(
         className,
-        "flex justify-center  w-[100%] h-[100%] p-[50px]"
+        "flex justify-center w-[100%] h-[100%] p-[50px] text-[#EFEDFD]"
       )}
     >
-      <div className="flex w-[1920px] h-[83vh] outline-4 outline-green-500 justify-between">
-        <div className="flex flex-col gap-4 outline-4 outline-red-500 w-[10%] h-[100%] p-5 text-white">
-          {leftPanel.map((item) => (
-            <a
-              href={`#${item.id}`}
-              key={item.id}
-              className="flex items-center gap-2 p-2 hover:bg-gray-200 cursor-pointer"
-            >
-                <img src={item.icon} alt={item.label} className="w-6 h-6" />
-              <span className="text-sm">{item.label}</span>
-            </a>
-          )).slice(0, 5)
-          }
+      <div className="flex w-[1920px] h-[83vh] justify-between">
+      <div className="flex flex-col gap-10 w-[5%] h-[100%] p-5 ">
+          {leftPanel
+            .map((item) => (
+              <a
+                href={`#${item.id}`}
+                key={item.id}
+                className="flex items-center gap-2 p-1 flex-col h-[5%] section font-light"
+              >
+                <img
+                  src={item.icon}
+                  alt={item.label}
+                  className="w-[100%] h-[100%] p-[6px]"
+                />
+                <Label className="text-xs opacity-85">{item.id.length > 7 ? item.label.slice(0, 7) + "..." : item.id}</Label>
+              </a>
+            ))
+            .slice(0, 5)}
         </div>
-        <div className="outline-4 outline-blue-950-500 w-[80%] h-[100%] p-5">
-          <div className="w-[100%] h-[100%] bg-amber-300"></div>
+        <div className="w-[90%] h-[100%] p-5">
+          <div className="w-[100%] h-[100%]"></div>
         </div>
-        <div className="outline-4 outline-blue-500 w-[10%] h-[100%] p-5">
-          <div className="w-[100%] h-[100%] bg-amber-300"></div>
+        <div className="flex flex-col gap-10 w-[5%] h-[100%] p-5">
+          {leftPanel
+            .map((item) => (
+              <a
+                href={`#${item.id}`}
+                key={item.id}
+                className="flex items-center gap-2 p-1 flex-col h-[5%] section"
+              >
+                <img
+                  src={item.icon}
+                  alt={item.label}
+                  className="w-[100%] h-[100%] p-[6px]"
+                />
+                <Label className="text-xs opacity-85">{item.id.length > 7 ? item.label.slice(0, 7) + "..." : item.id}</Label>
+              </a>
+            ))
+            .slice(5, 10)}
         </div>
       </div>
     </div>

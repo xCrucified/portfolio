@@ -1,6 +1,4 @@
-import { cn } from "@/lib/utils";
-import React from "react";
-import { Container } from "./container";
+import { cn, Label } from "@/lib/imports";
 
 interface Props {
   className?: string;
@@ -8,10 +6,10 @@ interface Props {
 
 export const Footer: React.FC<Props> = ({ className }) => {
   return (
-    <footer className="h-22 text-white flex items-center bottom-0 w-full absolute">
-      <div className="flex w-[23%] justify-center">
+    <footer className={cn("h-22 text-white flex items-center bottom-0 w-full absolute", className)}>
+      <Label className="flex w-[23%] justify-center">
         © {new Date().getFullYear()} Max Kononchuk. All rights reserved.
-      </div>
+      </Label>
     </footer>
   );
 };

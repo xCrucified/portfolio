@@ -131,3 +131,20 @@
   background-repeat: no-repeat;
   opacity: 0.95;
 }
+
+.section {
+  background-color: #1d1522;
+  outline: 1px solid #2c2a3b;
+  border-radius: 6px;
+}
+
+.section:hover {
+ transition: all;
+  transform: scale(1.01);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition-duration: 0.3s;
+  -webkit-box-shadow:0px 0px 91px 32px rgba(255,255,255,0.13);
+  -moz-box-shadow: 0px 0px 91px 32px rgba(255,255,255,0.13);
+  box-shadow: 0px 0px 91px 32px rgba(255,255,255,0.13);
+}
+

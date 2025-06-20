@@ -1,8 +1,7 @@
 "use client";
-import { cn } from "@/lib/utils";
-import React, { useState } from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { Label } from "../ui/label";
+
+import { Avatar, AvatarFallback, AvatarImage, cn, Label, useState } from "@/lib/imports";
+
 
 interface Props {
   className?: string;

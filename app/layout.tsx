@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Orbitron } from "next/font/google";
 import { cn } from "@/lib/utils";
+import CursorShadow from "@/components/shared/cursorShadows";
 
 const orbitronFont = Orbitron({
   subsets: ["latin"],
-  weight: ['400'],
+  weight: ["400"],
 });
 
 export const metadata: Metadata = {
@@ -25,7 +26,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={cn(orbitronFont.className, "bg-[#1a131f]")}>
-      <body className={`orbitron bg-main h-[100vh]`}>{children}</body>
+      <body className={`orbitron bg-main h-[100vh]`}>
+        <CursorShadow />
+        {children}
+      </body>
     </html>
   );
 }

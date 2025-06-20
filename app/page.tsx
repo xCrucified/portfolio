@@ -1,6 +1,4 @@
-import Footer from "@/components/shared/footer";
-import Header from "@/components/shared/header";
-import Main from "@/components/shared/main";
+import { Footer, Header, Main } from "@/lib/imports";
 
 export default function Home() {
   return (

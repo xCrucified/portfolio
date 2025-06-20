@@ -4,7 +4,7 @@ interface Props {
   className?: string;
 }
 
-export const ProjectsModalWindow: React.FC<Props> = ({ className }) => {
+export const ToolsModalWindow: React.FC<Props> = ({ className }) => {
   return (
     <div className={className}>
 
@@ -12,4 +12,4 @@ export const ProjectsModalWindow: React.FC<Props> = ({ className }) => {
   );
 };
 
-export default ProjectsModalWindow;
+export default ToolsModalWindow;
