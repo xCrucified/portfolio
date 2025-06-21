@@ -43,31 +43,29 @@ export const Main: React.FC<Props> = ({ className }) => {
       <div className="flex flex-col gap-10 w-[5%] h-[100%] p-5 ">
           {leftPanel
             .map((item) => (
-              <a
-                href={`#${item.id}`}
+              <button
                 key={item.id}
-                className="flex items-center gap-2 p-1 flex-col h-[5%] section font-light"
+                className="flex items-center gap-2 p-1 flex-col h-[5%] section cursor-pointer"
               >
                 <img
                   src={item.icon}
                   alt={item.label}
                   className="w-[100%] h-[100%] p-[6px]"
                 />
-                <Label className="text-xs opacity-85">{item.id.length > 7 ? item.label.slice(0, 7) + "..." : item.id}</Label>
-              </a>
+                <Label className="text-xs opacity-85">{item.id.length > 8 ? item.label.slice(0, 3) + "..." : item.id}</Label>
+              </button>
             ))
             .slice(0, 5)}
         </div>
-        <div className="w-[90%] h-[100%] p-5">
+        <div className="w-[90%] h-[100%] p-5 outline">
           <div className="w-[100%] h-[100%]"></div>
         </div>
         <div className="flex flex-col gap-10 w-[5%] h-[100%] p-5">
           {leftPanel
             .map((item) => (
-              <a
-                href={`#${item.id}`}
+              <button
                 key={item.id}
-                className="flex items-center gap-2 p-1 flex-col h-[5%] section"
+                className="flex items-center gap-2 p-1 flex-col h-[5%] section cursor-pointer"
               >
                 <img
                   src={item.icon}
@@ -75,7 +73,7 @@ export const Main: React.FC<Props> = ({ className }) => {
                   className="w-[100%] h-[100%] p-[6px]"
                 />
                 <Label className="text-xs opacity-85">{item.id.length > 7 ? item.label.slice(0, 7) + "..." : item.id}</Label>
-              </a>
+              </button>
             ))
             .slice(5, 10)}
         </div>

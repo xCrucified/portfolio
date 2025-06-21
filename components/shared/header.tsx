@@ -39,8 +39,9 @@ export const Header: React.FC<Props> = ({ className }) => {
 
         <div className="flex w-[100px] outline m-4 rounded-sm bg-[#2C2032]">
           <div className="flex justify-center items-center gap-2 bg-[#382c3e] opacity-90 rounded-sm w-full h-full">
-            <div className="w-[8px] h-[8px] bg-[#1FAC71] rounded-full opacity-75"></div>
+            <div className="w-[9px] h-[8px] bg-[#1FAC71] rounded-full opacity-75"></div>
             <Label className="text-center">available</Label>
+            <button className="p-1 absolute ml-30 outline-0 cursor-pointer" onClick={() => console.log("yiooo")}/>
           </div>
         </div>
 
