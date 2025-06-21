@@ -1,4 +1,21 @@
-import { AboutMeModalWindow, AchievementsModalWindow, cn, ContactModalWindow, GalleryModalWindow, Label, ProjectsModalWindow, ResumeModalWindow, ServicesModalWindow, SkillsModalWindow, ToolsModalWindow } from "@/lib/imports";
+"use client";
+import {
+  AboutMeModalWindow,
+  AchievementsModalWindow,
+  cn,
+  ContactModalWindow,
+  GalleryModalWindow,
+  Label,
+  ProjectsModalWindow,
+  ResumeModalWindow,
+  ServicesModalWindow,
+  SkillsModalWindow,
+  ToolsModalWindow,
+  useEffect,
+  useState,
+} from "@/lib/imports";
+import { Info } from "lucide-react";
+import ExperienceModalWindow from "./sections/ExperienceModal";
 
 interface Props {
   className?: string;
@@ -19,18 +36,27 @@ const leftPanel = [
 ];
 
 export const Main: React.FC<Props> = ({ className }) => {
+
+  const handleTabChange = (tab: keyof typeof tabs) => {
+    setActiveTab(tab);
+  };
+
   const tabs = {
     Projects: () => <ProjectsModalWindow />,
     Services: () => <ServicesModalWindow />,
     Skills: () => <SkillsModalWindow />,
-    Experience: () => <SkillsModalWindow />,
-    AboutMe: () => <AboutMeModalWindow />,
+    Experience: () => <ExperienceModalWindow />,
+    Info: () => <AboutMeModalWindow />,
     Achievements: () => <AchievementsModalWindow />,
     Contact: () => <ContactModalWindow />,
     Gallery: () => <GalleryModalWindow />,
     Tools: () => <ToolsModalWindow />,
     Resume: () => <ResumeModalWindow />,
   } as const;
+
+  const [activeTab, setActiveTab] = useState<TabKey>("Projects");
+  type TabKey = keyof typeof tabs;
+  const ActiveComponent = tabs[activeTab];
 
   return (
     <div
@@ -40,11 +66,12 @@ export const Main: React.FC<Props> = ({ className }) => {
       )}
     >
       <div className="flex w-[1920px] h-[83vh] justify-between">
-      <div className="flex flex-col gap-10 w-[5%] h-[100%] p-5 ">
+        <div className="flex flex-col gap-10 w-[5%] h-[100%] p-5 ">
           {leftPanel
             .map((item) => (
               <button
                 key={item.id}
+                onClick={() => handleTabChange(item.id as TabKey)}
                 className="flex items-center gap-2 p-1 flex-col h-[5%] section cursor-pointer"
               >
                 <img
@@ -52,18 +79,25 @@ export const Main: React.FC<Props> = ({ className }) => {
                   alt={item.label}
                   className="w-[100%] h-[100%] p-[6px]"
                 />
-                <Label className="text-xs opacity-85">{item.id.length > 8 ? item.label.slice(0, 3) + "..." : item.id}</Label>
+                <Label className="text-xs opacity-85">
+                  {item.id.length > 8
+                    ? item.label.slice(0, 3) + "..."
+                    : item.id}
+                </Label>
               </button>
             ))
             .slice(0, 5)}
         </div>
         <div className="w-[90%] h-[100%] p-5 outline">
-          <div className="w-[100%] h-[100%]"></div>
+          <div className="md:flex-[2] w-full flex items-start md:justify-between justify-start flex-col md:flex-row min-h-screen px-0 md:p-4 md:mt-[50px] mt-[34px]">
+            <ActiveComponent />
+          </div>
         </div>
         <div className="flex flex-col gap-10 w-[5%] h-[100%] p-5">
           {leftPanel
             .map((item) => (
               <button
+                onClick={() => handleTabChange(item.id as TabKey)}
                 key={item.id}
                 className="flex items-center gap-2 p-1 flex-col h-[5%] section cursor-pointer"
               >
@@ -72,7 +106,11 @@ export const Main: React.FC<Props> = ({ className }) => {
                   alt={item.label}
                   className="w-[100%] h-[100%] p-[6px]"
                 />
-                <Label className="text-xs opacity-85">{item.id.length > 7 ? item.label.slice(0, 7) + "..." : item.id}</Label>
+                <Label className="text-xs opacity-85">
+                  {item.id.length > 7
+                    ? item.label.slice(0, 7) + "..."
+                    : item.id}
+                </Label>
               </button>
             ))
             .slice(5, 10)}

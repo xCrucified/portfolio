@@ -1,3 +1,4 @@
+import { cn } from '@/lib/imports';
 import React from 'react';
 
 interface Props {
@@ -6,9 +7,11 @@ interface Props {
 
 export const ResumeModalWindow: React.FC<Props> = ({ className }) => {
   return (
-    <div className={className}>
-
-    </div>
+    <div className={cn("w-[1200px] h-[1000px] bg-amber-950",className)}>
+            <div>
+    
+            </div>
+        </div>
   );
 };
 
