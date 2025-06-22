@@ -2,16 +2,11 @@ import { cn, useState } from "@/lib/imports";
 
 interface Props {
   className?: string;
+  onClose: () => void;
 }
 
-export const AboutMeModalWindow: React.FC<Props> = ({ className }) => {
-  const [isOpen, setIsOpen] = useState(true);
-
-  const handleClose = () => {
-    setIsOpen(false);
-  };
-  if (!isOpen) return null;
-  
+export const AboutMeModalWindow: React.FC<Props> = ({ className, onClose }) => {
+    
   return (
     <section
       className={cn(
@@ -23,7 +18,7 @@ export const AboutMeModalWindow: React.FC<Props> = ({ className }) => {
         <h2 className="font-light">About</h2>
         <button
           className="w-6 h-6 border-[1px] border-[#ffffff61] flex justify-center bg-[#1a131f] rounded-xs items-center cursor-pointer mr-[5px]"
-          onClick={handleClose}
+          onClick={onClose}
         >
           <img src="/images/x.svg" alt="close"></img>
         </button>
@@ -32,7 +27,7 @@ export const AboutMeModalWindow: React.FC<Props> = ({ className }) => {
         <img
           src="/images/aboutme2.png"
           alt=""
-          className="object-cover w-full h-80 bg-teal-900 rounded-lg"
+          className="object-cover w-full h-80 bg-teal-900 rounded-lg pointer-events-none"
         />
         <div className="flex flex-col gap-4 font-light text-base leading-relaxed text-[#EFEDFD]">
           <h3 className="text-xl font-normal">

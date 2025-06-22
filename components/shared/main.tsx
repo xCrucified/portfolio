@@ -14,8 +14,8 @@ import {
   useEffect,
   useState,
 } from "@/lib/imports";
-import { Info } from "lucide-react";
 import ExperienceModalWindow from "./sections/ExperienceModal";
+import DraggableDiv from "./dragElement";
 
 interface Props {
   className?: string;
@@ -36,24 +36,33 @@ const leftPanel = [
 ];
 
 export const Main: React.FC<Props> = ({ className }) => {
-  const handleTabChange = (tab: keyof typeof tabs, isLeft: boolean) => {
-    setActiveTab(tab);
-    setIsLeftPanel(isLeft);
-    setOpenTabs((prev) => [...prev, { id: tab, isLeft }]);
+  const handleTabChange = (tab: TabKey, isLeft: boolean) => {
+  setActiveTab(tab);
+  setIsLeftPanel(isLeft);
+  setOpenTabs((prev) => {
+    if (prev.some(t => t.id === tab)) return prev; // don't add duplicate
+    return [...prev, { id: tab, isLeft }];
+  });
+};
+  const close = () => {
+    setOpenTabs((prev) => prev.filter((tab) => tab.id !== activeTab));
+    setActiveTab("" as TabKey);
   };
+
 
   const tabs = {
     Projects: () => <ProjectsModalWindow />,
     Services: () => <ServicesModalWindow />,
     Skills: () => <SkillsModalWindow />,
     Experience: () => <ExperienceModalWindow />,
-    Info: () => <AboutMeModalWindow />,
+    Info: () => <AboutMeModalWindow onClose={close} />,
     Achievements: () => <AchievementsModalWindow />,
     Contact: () => <ContactModalWindow />,
     Gallery: () => <GalleryModalWindow />,
     Tools: () => <ToolsModalWindow />,
     Resume: () => <ResumeModalWindow />,
   } as const;
+
   const [openTabs, setOpenTabs] = useState<TabData[]>([]);
   type TabData = { id: TabKey; isLeft: boolean };
   const [activeTab, setActiveTab] = useState<TabKey>("" as TabKey);
@@ -102,7 +111,9 @@ export const Main: React.FC<Props> = ({ className }) => {
                   "z-" + (index + 10)
                 )}
               >
-                <Component />
+                <DraggableDiv>
+                  <Component />
+                </DraggableDiv>
               </div>
             );
           })}
