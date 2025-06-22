@@ -15,6 +15,7 @@ import {
 } from "@/lib/imports";
 import ExperienceModalWindow from "./sections/ExperienceModal";
 import DraggableDiv from "./dragElement";
+import { reverse } from "dns";
 
 interface Props {
   className?: string;
@@ -101,9 +102,9 @@ export const Main: React.FC<Props> = ({ className }) => {
                     "transition-all duration-300"
                   )}
                   style={{
-                    top: `${60 + index * 40}px`,
-                    left: tab.isLeft ? `${60 + index * 40}px` : "auto",
-                    right: tab.isLeft ? "auto" : `-800px`,
+                    top: tab.isLeft ? `${0 + index * 20}px` : "0px",
+                    left: tab.isLeft ? `${index * 10}px` : `${index / 320}`,
+                    right: tab.isLeft ? "auto" : `${165 * (-index)}px`,
                     zIndex: 10 + index,
                   }}
                 >
@@ -135,7 +136,7 @@ export const Main: React.FC<Props> = ({ className }) => {
                   : item.id}
               </Label>
             </button>
-          ))}
+          )).reverse()}
         </div>
       </div>
     </div>
