@@ -7,7 +7,7 @@ interface Props {
 
 export const ExperienceModalWindow: React.FC<Props> = ({ className }) => {
   return (
-   <div className={cn("w-[1200px] h-[1000px] bg-purple-500",className)}>
+   <div className={cn("w-[900px] h-[850px] bg-purple-500",className)}>
            <div>
    
            </div>

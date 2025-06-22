@@ -36,9 +36,10 @@ const leftPanel = [
 ];
 
 export const Main: React.FC<Props> = ({ className }) => {
-
-  const handleTabChange = (tab: keyof typeof tabs) => {
+  const handleTabChange = (tab: keyof typeof tabs, isLeft: boolean) => {
     setActiveTab(tab);
+    setIsLeftPanel(isLeft);
+    setOpenTabs((prev) => [...prev, { id: tab, isLeft }]);
   };
 
   const tabs = {
@@ -53,10 +54,11 @@ export const Main: React.FC<Props> = ({ className }) => {
     Tools: () => <ToolsModalWindow />,
     Resume: () => <ResumeModalWindow />,
   } as const;
-
-  const [activeTab, setActiveTab] = useState<TabKey>("Projects");
+  const [openTabs, setOpenTabs] = useState<TabData[]>([]);
+  type TabData = { id: TabKey; isLeft: boolean };
+  const [activeTab, setActiveTab] = useState<TabKey>("" as TabKey);
+  const [isLeftPanel, setIsLeftPanel] = useState(true);
   type TabKey = keyof typeof tabs;
-  const ActiveComponent = tabs[activeTab];
 
   return (
     <div
@@ -71,7 +73,7 @@ export const Main: React.FC<Props> = ({ className }) => {
             .map((item) => (
               <button
                 key={item.id}
-                onClick={() => handleTabChange(item.id as TabKey)}
+                onClick={() => handleTabChange(item.id as TabKey, true)}
                 className="flex items-center gap-2 p-1 flex-col h-[5%] section cursor-pointer"
               >
                 <img
@@ -88,16 +90,28 @@ export const Main: React.FC<Props> = ({ className }) => {
             ))
             .slice(0, 5)}
         </div>
-        <div className="w-[90%] h-[100%] p-5 outline">
-          <div className="md:flex-[2] w-full flex items-start md:justify-between justify-start flex-col md:flex-row min-h-screen px-0 md:p-4 md:mt-[50px] mt-[34px]">
-            <ActiveComponent />
-          </div>
+        <div className="w-[90%] h-[100%] p-5 outline relative">
+          {openTabs.map((tab, index) => {
+            const Component = tabs[tab.id];
+            return (
+              <div
+                key={index}
+                className={cn(
+                  "absolute top-0 w-[50%] h-full transition-all duration-300",
+                  tab.isLeft ? "left-0" : "right-0 mr-[340px]",
+                  "z-" + (index + 10)
+                )}
+              >
+                <Component />
+              </div>
+            );
+          })}
         </div>
         <div className="flex flex-col gap-10 w-[5%] h-[100%] p-5">
           {leftPanel
             .map((item) => (
               <button
-                onClick={() => handleTabChange(item.id as TabKey)}
+                onClick={() => handleTabChange(item.id as TabKey, false)}
                 key={item.id}
                 className="flex items-center gap-2 p-1 flex-col h-[5%] section cursor-pointer"
               >

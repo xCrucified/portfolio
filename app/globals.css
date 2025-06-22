@@ -125,7 +125,7 @@
 }
 
 .bg-main {
-  background-image: url("/images/background.png");
+  background-image: url("/images/testbg2.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -139,12 +139,29 @@
 }
 
 .section:hover {
- transition: all;
+  transition: all;
   transform: scale(1.01);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
   transition-duration: 0.3s;
-  -webkit-box-shadow:0px 0px 91px 32px rgba(255,255,255,0.13);
-  -moz-box-shadow: 0px 0px 91px 32px rgba(255,255,255,0.13);
-  box-shadow: 0px 0px 91px 32px rgba(255,255,255,0.13);
+  -webkit-box-shadow: 0px 0px 91px 32px rgba(255, 255, 255, 0.13);
+  -moz-box-shadow: 0px 0px 91px 32px rgba(255, 255, 255, 0.13);
+  box-shadow: 0px 0px 91px 32px rgba(255, 255, 255, 0.13);
 }
 
+.info-panel {
+  width: 650px;
+  height: 655px;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(31, 23, 41, 0.93);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.125);
+}
+.info-panel:hover {
+  transition: all 0.45s ease-in-out;
+
+  -webkit-box-shadow: 0px 0px 213px 0px rgba(255, 255, 255, 0.07);
+  -moz-box-shadow: 0px 0px 213px 0px rgba(255, 255, 255, 0.07);
+  box-shadow: inset 0px 0px 213px 0px rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.379);
+}
