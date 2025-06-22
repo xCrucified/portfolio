@@ -7,7 +7,7 @@ interface Props {
 
 export const AchievementsModalWindow: React.FC<Props> = ({ className }) => {
   return (
-    <div className={cn("w-[1200px] h-[1100px] bg-yellow-500",className)}>
+    <div className={cn("w-[800px] h-[800px] bg-yellow-500",className)}>
             <div>
     
             </div>
