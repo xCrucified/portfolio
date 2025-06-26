@@ -15,7 +15,6 @@ import {
 } from "@/lib/imports";
 import ExperienceModalWindow from "./sections/ExperienceModal";
 import DraggableDiv from "./dragElement";
-import { reverse } from "dns";
 
 interface Props {
   className?: string;
@@ -91,52 +90,81 @@ export const Main: React.FC<Props> = ({ className }) => {
         </div>
 
         {/* Center */}
-        <div className="w-[90%] h-[100%] p-5 outline relative">
-          {openTabs.map((tab, index) => {
-            const Component = tabs[tab.id];
-            return (
-              <DraggableDiv key={tab.id}>
-                <div
-                  className={cn(
-                    "absolute w-[640px] h-[90%]",
-                    "transition-all duration-300"
-                  )}
-                  style={{
-                    top: tab.isLeft ? `${0 + index * 20}px` : "0px",
-                    left: tab.isLeft ? `${index * 10}px` : `${index / 320}`,
-                    right: tab.isLeft ? "auto" : `${165 * (-index)}px`,
-                    zIndex: 10 + index,
-                  }}
-                >
-                  <Component
-                    onClose={() => handleTabChange(tab.id, tab.isLeft)}
-                  />
-                </div>
-              </DraggableDiv>
-            );
-          })}
+        <div className="w-[90%] h-[100%] p-5 relative flex justify-between">
+          {/* left column */}
+          <div className="relative h-full outline">
+            {openTabs
+              .filter((tab) => tab.isLeft)
+              .map((tab, index) => {
+                const Component = tabs[tab.id];
+                return (
+                  <DraggableDiv key={tab.id}>
+                    <div
+                      className="absolute w-[640px] h-[90%] transition-all duration-300"
+                      style={{
+                        top: `${index * 80}px`,
+                        left: "0px",
+                        zIndex: 10 + index,
+                      }}
+                    >
+                      <Component
+                        onClose={() => handleTabChange(tab.id, true)}
+                      />
+                    </div>
+                  </DraggableDiv>
+                );
+              })}
+          </div>
+
+          {/* right column */}
+          <div className="relative h-[100%] flex flex-col outline">
+            {openTabs
+              .filter((tab) => !tab.isLeft)
+              .map((tab, index) => {
+                const Component = tabs[tab.id];
+                return (
+                  <DraggableDiv key={tab.id}>
+                    <div
+                      className="absolute w-[640px] h-[90%] transition-all duration-300"
+                      style={{
+                        top: `${index * 80}px`,
+                        right: "0px",
+                        zIndex: 10 + index,
+                      }}
+                    >
+                      <Component
+                        onClose={() => handleTabChange(tab.id, false)}
+                      />
+                    </div>
+                  </DraggableDiv>
+                );
+              })}
+          </div>
         </div>
 
         {/* Right Panel */}
         <div className="flex flex-col gap-10 w-[5%] h-full p-5">
-          {leftPanel.slice(5, 10).map((item) => (
-            <button
-              key={item.id}
-              onClick={() => handleTabChange(item.id as TabKey, false)} // <<< ОБЯЗАТЕЛЬНО FALSE
-              className="flex items-center gap-2 p-1 flex-col h-[5%] section cursor-pointer"
-            >
-              <img
-                src={item.icon}
-                alt={item.label}
-                className="w-full h-full p-[6px]"
-              />
-              <Label className="text-xs opacity-85">
-                {item.label.length > 7
-                  ? item.label.slice(0, 7) + "..."
-                  : item.id}
-              </Label>
-            </button>
-          )).reverse()}
+          {leftPanel
+            .slice(5, 10)
+            .map((item) => (
+              <button
+                key={item.id}
+                onClick={() => handleTabChange(item.id as TabKey, false)}
+                className="flex items-center gap-2 p-1 flex-col h-[5%] section cursor-pointer"
+              >
+                <img
+                  src={item.icon}
+                  alt={item.label}
+                  className="w-full h-full p-[6px]"
+                />
+                <Label className="text-xs opacity-85">
+                  {item.label.length > 7
+                    ? item.label.slice(0, 5) + "..."
+                    : item.id}
+                </Label>
+              </button>
+            ))
+            .reverse()}
         </div>
       </div>
     </div>
