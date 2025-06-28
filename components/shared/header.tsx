@@ -17,7 +17,7 @@ export const Header: React.FC<Props> = ({ className }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <header className="w-[100%] h-[64px] bg-[#1a131f] text-white border-b-[2] border-[#382c3e]">
+    <header className="w-[100%] h-[65px] bg-[#1a131f] text-white border-b-[2] border-[#382c3e]">
       <div
         className={cn(
           "flex w-[100%] justify-between content-center h-[100%]",
@@ -25,13 +25,13 @@ export const Header: React.FC<Props> = ({ className }) => {
         )}
       >
         <div className="flex items-center gap-2 justify-start ml-5 w-[30%]">
-          <Avatar className="h-[50px] w-[50px] p-1 rounded-2xl">
+          <Avatar className="h-[50px] w-[50px] rounded-md">
             <AvatarImage src="/images/owner3.png" />
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>
           <div className="flex flex-col ml-2 text-sm gap-1">
             <Label className="opacity-75">Max Kononchuk</Label>
-            <Label className="text-[#EFEDFD] opacity-55">
+            <Label className="opacity-55">
               Software developer
             </Label>
           </div>

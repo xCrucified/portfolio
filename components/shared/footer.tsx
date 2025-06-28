@@ -6,7 +6,7 @@ interface Props {
 
 export const Footer: React.FC<Props> = ({ className }) => {
   return (
-    <footer className={cn("h-22 text-white flex items-center bottom-0 w-full absolute", className)}>
+    <footer className={cn("h-22 flex items-center bottom-0 w-full absolute", className)}>
       <Label className="flex w-[23%] justify-center">
         © {new Date().getFullYear()} Max Kononchuk. All rights reserved.
       </Label>

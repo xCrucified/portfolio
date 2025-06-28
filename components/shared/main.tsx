@@ -20,7 +20,7 @@ interface Props {
   className?: string;
 }
 
-const leftPanel = [
+const panels = [
   { id: "Projects", label: "Projects", icon: "/images/projects.svg" },
   { id: "Services", label: "Services", icon: "/images/services.svg" },
   { id: "Skills", label: "Skills", icon: "/images/skills.svg" },
@@ -31,7 +31,14 @@ const leftPanel = [
   { id: "Gallery", label: "Gallery", icon: "/images/gallery.svg" },
   { id: "Tools", label: "Tools I Use", icon: "/images/tools.svg" },
   { id: "Resume", label: "Resume", icon: "/images/resume.svg" },
-];
+] as const;
+
+const menuItems = [
+  { id: "github", label: "https://github.com/xCrucified", icon: "/images/github.svg" },
+  { id: "instagram", label: "https://www.instagram.com/xsyhe_/", icon: "/images/instagram.svg" },
+  { id: "telegram", label: "https://web.telegram.org/k/#@x1Crucified", icon: "/images/telegram.svg" },
+  { id: "linkedin", label: "https://www.linkedin.com/in/mxxknk/", icon: "/images/linkedin.svg" },
+] as const;
 
 const tabs = {
   Projects: ProjectsModalWindow,
@@ -45,6 +52,7 @@ const tabs = {
   Tools: ToolsModalWindow,
   Resume: ResumeModalWindow,
 } as const;
+
 
 type TabKey = keyof typeof tabs;
 type TabData = { id: TabKey; isLeft: boolean };
@@ -65,13 +73,13 @@ export const Main: React.FC<Props> = ({ className }) => {
     <div
       className={cn(
         className,
-        "flex justify-center w-[100%] h-[100%] p-[50px] text-[#EFEDFD]"
+        "flex justify-center w-[100%] h-[100%] p-[50px]"
       )}
     >
       <div className="flex w-[1920px] h-[83vh] justify-between">
         {/* Left Panel */}
         <div className="flex flex-col gap-10 w-[5%] h-[100%] p-5">
-          {leftPanel.slice(0, 5).map((item) => (
+          {panels.slice(0, 5).map((item) => (
             <button
               key={item.id}
               onClick={() => handleTabChange(item.id as TabKey, true)}
@@ -115,7 +123,30 @@ export const Main: React.FC<Props> = ({ className }) => {
                 );
               })}
           </div>
-
+          <div className="absolute bottom-0 left-0 right-0 w-[100%] h-[80px] z-[999]">
+            <div className="flex place-self-center menu-container">
+                <button
+                onClick={() => (window.location.href = "/")}
+                className="flex items-center gap-2 mr-2 p-1 flex-col h-[100%] w-full home-btn cursor-pointer"
+                >
+                <img src="/images/house.svg" alt="Home" />
+                </button>
+              <hr className="vertical-hr"></hr>
+              {menuItems.map((item) => (
+                <button
+                  key={item.id}
+                  className="flex items-center gap-2 p-1 flex-col w-[100%] h-[100%] home-btn cursor-pointer"
+                  onClick={() =>  (window.location.href = item.label)}
+                >
+                  <img
+                    src={item.icon}
+                    alt={item.label}
+                    className="w-full h-full p-[6px]"
+                  />
+                </button>
+              ))}
+            </div>
+          </div>
           {/* right column */}
           <div className="relative h-[100%] flex flex-col outline">
             {openTabs
@@ -144,7 +175,7 @@ export const Main: React.FC<Props> = ({ className }) => {
 
         {/* Right Panel */}
         <div className="flex flex-col gap-10 w-[5%] h-full p-5">
-          {leftPanel
+          {panels
             .slice(5, 10)
             .map((item) => (
               <button

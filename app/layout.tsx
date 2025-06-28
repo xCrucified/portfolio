@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Orbitron } from "next/font/google";
+import { Roboto } from "next/font/google";
 import { cn } from "@/lib/utils";
 import CursorShadow from "@/components/shared/cursorShadows";
 
-const orbitronFont = Orbitron({
+const googleFont = Roboto({
   subsets: ["latin"],
   weight: ["400"],
 });
@@ -25,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn(orbitronFont.className, "bg-[#1a131f]")}>
+    <html lang="en" className={cn(googleFont.className, "bg-[#1a131f]")}>
       <body className={`orbitron bg-main h-[100vh]`}>
         <CursorShadow />
         {children}

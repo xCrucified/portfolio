@@ -4,8 +4,8 @@ export default function Home() {
   return (
     <div className="">
       <Header />
-      <Main className="" />
-      <Footer className="" />
+      <Main />
+      <Footer />
     </div>
   );
 }
