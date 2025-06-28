@@ -20,14 +20,13 @@ Then open [http://localhost:3000](http://localhost:3000) in your browser.
 
 - **Framework:** [Next.js](https://nextjs.org)
 - **Styling:** [Tailwind CSS](https://tailwindcss.com)
-- **Font:** [Orbitron via next/font](https://nextjs.org/docs/app/building-your-application/optimizing/fonts)
+- **Font:** [Roboto via next/font](https://nextjs.org/docs/app/building-your-application/optimizing/fonts)
 - **Deployment:** [Vercel](https://vercel.com)
 
 ## 📁 Project Structure
 
 - `app/` – routes and layout using App Router
 - `components/` – reusable UI components
-- `styles/` – global styles (Tailwind config)
 - `public/` – static assets (images, icons, etc.)
 
 ## 🧑‍💻 Customization
