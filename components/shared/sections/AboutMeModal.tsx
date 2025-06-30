@@ -6,7 +6,6 @@ interface Props {
 }
 
 export const AboutMeModalWindow: React.FC<Props> = ({ className, onClose }) => {
-    
   return (
     <section
       className={cn(
@@ -41,6 +40,7 @@ export const AboutMeModalWindow: React.FC<Props> = ({ className, onClose }) => {
             and animated detail. My toolkit includes React, Next.js, TypeScript,
             and Tailwind — all backed by a love for minimalism and precision.
           </p>
+          <p className="opacity-50">Stack: Full-Stack C# with React/Next.js</p>
         </div>
       </div>
     </section>

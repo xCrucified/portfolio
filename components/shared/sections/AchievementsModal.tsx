@@ -1,4 +1,5 @@
 import { cn } from "@/lib/imports";
+import { Label } from "@radix-ui/react-label";
 import React from "react";
 
 interface Props {
@@ -39,11 +40,12 @@ export const AchievementsModalWindow: React.FC<Props> = ({
             multifunctional bot in C#
           </h3>
 
-          <p className="opacity-70">
-            Languages: C++, C#, Java, JavaScript, TypeScript Frameworks: React,
-            Angular, Next.js Backend: .NET, ASP.NET Web API/MVC Databases:
-            MySQL, SQLite, Prisma
-          </p>
+          <Label className="opacity-70">
+            Languages: C++, C#, Java, JavaScript, TypeScript <hr className="opacity-0" />
+            Frameworks: React, Angular, Next.js <hr className="opacity-0" />
+            Backend: .NET, ASP.NET Web API/MVC <hr className="opacity-0" />
+            Databases: MySQL, SQLite, Prisma <hr className="opacity-0" />
+          </Label>
         </div>
       </div>
     </section>

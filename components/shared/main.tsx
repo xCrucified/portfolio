@@ -34,10 +34,10 @@ const panels = [
 ] as const;
 
 const menuItems = [
-  { id: "github", label: "https://github.com/xCrucified", icon: "/images/github.svg" },
-  { id: "instagram", label: "https://www.instagram.com/xsyhe_/", icon: "/images/instagram.svg" },
-  { id: "telegram", label: "https://web.telegram.org/k/#@x1Crucified", icon: "/images/telegram.svg" },
-  { id: "linkedin", label: "https://www.linkedin.com/in/mxxknk/", icon: "/images/linkedin.svg" },
+  { id: "github", link: "https://github.com/xCrucified", icon: "/images/github.svg" },
+  { id: "instagram", link: "https://www.instagram.com/xsyhe_/", icon: "/images/instagram.svg" },
+  { id: "telegram", link: "https://web.telegram.org/k/#@x1Crucified", icon: "/images/telegram.svg" },
+  { id: "linkedin", link: "https://www.linkedin.com/in/mxxknk/", icon: "/images/linkedin.svg" },
 ] as const;
 
 const tabs = {
@@ -59,9 +59,9 @@ type TabData = { id: TabKey; isLeft: boolean };
 
 export const Main: React.FC<Props> = ({ className }) => {
   const [openTabs, setOpenTabs] = useState<TabData[]>([]);
-
+  
   const handleTabChange = (tab: TabKey, isLeft: boolean) => {
-    setOpenTabs(
+    setOpenTabs (
       (prev) =>
         prev.some((t) => t.id === tab)
           ? prev.filter((t) => t.id !== tab) // Close the tab if it already exists
@@ -78,7 +78,7 @@ export const Main: React.FC<Props> = ({ className }) => {
     >
       <div className="flex w-[1920px] h-[83vh] justify-between">
         {/* Left Panel */}
-        <div className="flex flex-col gap-10 w-[5%] h-[100%] p-5">
+        <div className="flex flex-col gap-10 h-[100%] p-5">
           {panels.slice(0, 5).map((item) => (
             <button
               key={item.id}
@@ -123,6 +123,10 @@ export const Main: React.FC<Props> = ({ className }) => {
                 );
               })}
           </div>
+          <div className="relative w-[100%] h-full bg-black outline">
+
+          </div>
+          {/* Bottom Menu */}
           <div className="absolute bottom-0 left-0 right-0 w-[100%] h-[80px] z-[999]">
             <div className="flex place-self-center menu-container">
                 <button
@@ -136,11 +140,11 @@ export const Main: React.FC<Props> = ({ className }) => {
                 <button
                   key={item.id}
                   className="flex items-center gap-2 p-1 flex-col w-[100%] h-[100%] home-btn cursor-pointer"
-                  onClick={() =>  (window.location.href = item.label)}
+                  onClick={() =>  (window.location.href = item.link)}
                 >
                   <img
                     src={item.icon}
-                    alt={item.label}
+                    alt={item.id}
                     className="w-full h-full p-[6px]"
                   />
                 </button>
@@ -174,7 +178,7 @@ export const Main: React.FC<Props> = ({ className }) => {
         </div>
 
         {/* Right Panel */}
-        <div className="flex flex-col gap-10 w-[5%] h-full p-5">
+        <div className="flex flex-col gap-10 h-full p-5">
           {panels
             .slice(5, 10)
             .map((item) => (
@@ -183,7 +187,7 @@ export const Main: React.FC<Props> = ({ className }) => {
                 onClick={() => handleTabChange(item.id as TabKey, false)}
                 className="flex items-center gap-2 p-1 flex-col h-[5%] section cursor-pointer"
               >
-                <img
+                <img  
                   src={item.icon}
                   alt={item.label}
                   className="w-full h-full p-[6px]"

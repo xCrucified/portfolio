@@ -27,9 +27,9 @@ export const ResumeModalWindow: React.FC<Props> = ({ className, onClose }) => {
           <div className="w-full flex flex-col gap-4 p-4 bg-[#120d18] rounded-lg overflow-auto max-h-[600px]">
             <a className="w-[70%] self-center h-full block">
               <img
-                src="/images/services.png"
+                src="/images/resume2.png"
                 alt="Skills illustration"
-                className="object-contain w-full h-80 rounded-lg pointer-events-none"
+                className="object-cover w-full h-80 p-15 rounded-lg pointer-events-none"
               />
             </a>
             <div className="flex flex-col gap-4 font-light text-base leading-relaxed text-[#EFEDFD]">
