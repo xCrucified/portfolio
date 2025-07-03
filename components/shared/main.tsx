@@ -103,14 +103,14 @@ export const Main: React.FC<Props> = ({ className }) => {
               transition={popIn.transition}
               key={item.id}
               onClick={() => handleTabChange(item.id as TabKey, true)}
-              className="flex items-center gap-2 p-1 flex-col h-[5%] section cursor-pointer"
+              className="flex items-center gap-2 p-1 flex-col w-[55px] h-[5%] section cursor-pointer"
             >
               <img
                 src={item.icon}
                 alt={item.label}
                 className="w-[100%] h-[100%] p-[8px]"
               />
-              <Label className="text-xs opacity-85">
+              <Label className="text-lg font-light opacity-85">
                 {item.id.length > 8 ? item.label.slice(0, 3) + "..." : item.id}
               </Label>
             </motion.button>

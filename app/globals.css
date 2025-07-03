@@ -137,9 +137,9 @@
   background-color: #1a131f;
   outline: 1px solid #382c3e;
   border-radius: 6px;
-  -webkit-box-shadow: 0px 0px 8px 4px rgba(0, 0, 0, 0.65);
-  -moz-box-shadow: 0px 0px 8px 4px rgba(0, 0, 0, 0.65);
-  box-shadow: 0px 3.5px 8px 3px rgba(0, 0, 0, 0.65);
+  -webkit-box-shadow: 0px 0px 8px 4px rgba(0, 0, 0, 0.389);
+  -moz-box-shadow: 0px 0px 8px 4px rgba(0, 0, 0, 0.389);
+  box-shadow: 0px 3.5px 8px 3px rgba(0, 0, 0, 0.389);
 }
 
 .section:hover {
