@@ -27,7 +27,7 @@ export default function CursorShadow() {
         transition: "transform 0.05s ease",
         boxShadow: isSafari
           ? "none"
-          : "20px 15px 41px 32px rgba(255,255,255,0.13)",
+          : "20px 15px 81px 32px rgba(255,255,255,0.13)",
       }}
     />
   );

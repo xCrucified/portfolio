@@ -15,7 +15,7 @@ export const ResumeModalWindow: React.FC<Props> = ({ className, onClose }) => {
           )}
         >
           <div className="w-full h-8 flex items-center ml-1 justify-between">
-            <h2 className="font-light">Skills</h2>
+            <h2 className="font-light">Resume</h2>
             <button
               className="w-6 h-6 border-[1px] border-[#ffffff61] flex justify-center bg-[#1a131f] rounded-xs items-center cursor-pointer mr-[5px]"
               onClick={onClose}

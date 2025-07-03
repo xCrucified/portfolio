@@ -17,3 +17,4 @@ export { GalleryModalWindow } from "@/components/shared/sections/GalleryModal";
 export { ToolsModalWindow } from "@/components/shared/sections/ToolsModal";
 export { ResumeModalWindow } from "@/components/shared/sections/ResumeModal";
 export { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+export { Loading } from "@/components/shared/loading";

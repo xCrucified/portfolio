@@ -1,11 +1,21 @@
-import { Footer, Header, Main } from "@/lib/imports";
+"use client";
+import Loading from "@/components/shared/loading";
+import { Footer, Header, Main, useEffect, useState } from "@/lib/imports";
 
 export default function Home() {
+  const [loading, setLoading] = useState<boolean>(true);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1300);
+    return () => clearTimeout(timer);
+  }, []);
+  if (loading) return <Loading />;
   return (
-    <div className="">
-      <Header />
-      <Main />
-      <Footer />
+    <div>
+      <Header className="w-[100%]" />
+      <Main className="w-[100%]" />
+      <Footer className="w-[100%]" />
     </div>
   );
 }

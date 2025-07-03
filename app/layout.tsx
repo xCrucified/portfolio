@@ -3,6 +3,7 @@ import "./globals.css";
 import { Roboto } from "next/font/google";
 import { cn } from "@/lib/utils";
 import CursorShadow from "@/components/shared/cursorShadows";
+import { useEffect, useState } from "@/lib/imports";
 
 const googleFont = Roboto({
   subsets: ["latin"],
@@ -24,6 +25,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+    
+
   return (
     <html lang="en" className={cn(googleFont.className, "bg-[#1a131f]")}>
       <body className={`orbitron bg-main h-[100vh]`}>

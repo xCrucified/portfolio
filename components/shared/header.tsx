@@ -1,7 +1,14 @@
 "use client";
 
-import { Avatar, AvatarFallback, AvatarImage, cn, Label, useState } from "@/lib/imports";
-
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+  cn,
+  Label,
+  useState,
+} from "@/lib/imports";
+import { motion } from "framer-motion";
 
 interface Props {
   className?: string;
@@ -13,11 +20,13 @@ const links = [
 ];
 
 export const Header: React.FC<Props> = ({ className }) => {
-  const [isHovered, setIsHovered] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
   return (
-    <header className="w-[100%] h-[65px] bg-[#1a131f] text-white border-b-[2] border-[#382c3e]">
+    <motion.header
+      initial={{ opacity: 0, y: -90 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="w-[100%] h-[85px] bg-[#1a131f] border-b-[2] border-[#382c3e] absolute top-0 z-50"
+    >
       <div
         className={cn(
           "flex w-[100%] justify-between content-center h-[100%]",
@@ -25,23 +34,24 @@ export const Header: React.FC<Props> = ({ className }) => {
         )}
       >
         <div className="flex items-center gap-2 justify-start ml-5 w-[30%]">
-          <Avatar className="h-[50px] w-[50px] rounded-md">
+          <Avatar className="h-[55px] w-[57px] rounded-md">
             <AvatarImage src="/images/owner3.png" />
-            <AvatarFallback>CN</AvatarFallback>
+            <AvatarFallback></AvatarFallback>
           </Avatar>
-          <div className="flex flex-col ml-2 text-sm gap-1">
-            <Label className="opacity-75">Max Kononchuk</Label>
-            <Label className="opacity-55">
-              Software developer
-            </Label>
+          <div className="flex flex-col ml-2">
+            <Label className="opacity-75 text-md">Max Kononchuk</Label>
+            <Label className="opacity-55 text-sm">Software developer</Label>
           </div>
         </div>
 
-        <div className="flex w-[100px] outline m-4 rounded-sm bg-[#2C2032]">
-          <div className="flex justify-center items-center gap-2 bg-[#382c3e] opacity-90 rounded-sm w-full h-full">
+        <div className="flex w-[110px] h-[40px] self-center border-[1] border-[#3b3340] bg-[#3b334050] rounded-sm">
+          <div className="flex justify-center items-center gap-2 opacity-90 rounded-xs w-full h-[100%]">
             <div className="w-[9px] h-[8px] bg-[#1FAC71] rounded-full opacity-75"></div>
-            <Label className="text-center">available</Label>
-            <button className="p-1 absolute ml-30 outline-0 cursor-pointer" onClick={() => console.log("yiooo")}/>
+            <Label className="text-center text-md">Available</Label>
+            <button
+              className="p-1 absolute ml-30 outline-0 cursor-pointer"
+              onClick={() => console.log("yiooo")}
+            />
           </div>
         </div>
 
@@ -69,7 +79,7 @@ export const Header: React.FC<Props> = ({ className }) => {
           })()}
         </div>
       </div>
-    </header>
+    </motion.header>
   );
 };
 
