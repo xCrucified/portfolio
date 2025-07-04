@@ -155,7 +155,7 @@ export const Main: React.FC<Props> = ({ className }) => {
                 className="w-[100%] justify-center flex relative z-[999]"
               >
                 <AboutMeModalWindow
-                  className="w-full h-full"
+                  className="min-w-[650px] min-h-[650px] modal-bg"
                 />
               </motion.section>
             </DraggableDiv>

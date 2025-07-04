@@ -186,9 +186,7 @@ html {
   background-color: rgba(31, 23, 41, 0.93);
 }
 
-.info-panel {
-  min-width: 650px;
-  min-height: 655px;
+.modal-bg {
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
   background-color: rgba(31, 23, 41, 0.93);
