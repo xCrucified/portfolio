@@ -28,7 +28,7 @@ export default function RootLayout({
     
 
   return (
-    <html lang="en" className={cn(googleFont.className, "bg-[#1a131f]")}>
+    <html lang="en" className={cn(googleFont.className, "bg-[#0f0b14]")}>
       <body className={`orbitron bg-main h-[100vh]`}>
         <CursorShadow />
         {children}

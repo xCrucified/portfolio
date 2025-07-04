@@ -125,6 +125,11 @@
   @apply hidden;
 }
 
+html {
+  @apply scroll-smooth;
+  background: #0f0b14;
+}
+
 .bg-main {
   background-image: url("/images/testbg2.png");
   background-size: cover;
@@ -134,7 +139,9 @@
 }
 
 .section {
-  background-color: #1a131f;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(31, 23, 41, 0.93);
   outline: 1px solid #382c3e;
   border-radius: 6px;
   -webkit-box-shadow: 0px 0px 8px 4px rgba(0, 0, 0, 0.389);
@@ -170,16 +177,18 @@
   width: 380px;
   height: 100%;
   padding: 16px;
-  background-color: #1d1522;
   border-radius: 6px;
-  border: 1px solid #2c2a3b;
+  border: 1px solid #382c3e;
   gap: 4px;
   box-shadow: 0px 30px 210px 0px black;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(31, 23, 41, 0.93);
 }
 
 .info-panel {
-  width: 650px;
-  height: 655px;
+  min-width: 650px;
+  min-height: 655px;
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
   background-color: rgba(31, 23, 41, 0.93);
@@ -201,4 +210,10 @@
   background-color: rgba(255, 255, 255, 0.07);
   border: none;
   margin: 0;
+}
+
+.header {
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(31, 23, 41, 0.93);
 }

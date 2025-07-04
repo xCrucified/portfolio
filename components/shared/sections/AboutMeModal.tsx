@@ -2,7 +2,7 @@ import { cn, useState } from "@/lib/imports";
 
 interface Props {
   className?: string;
-  onClose: () => void;
+  onClose?: () => void;
 }
 
 export const AboutMeModalWindow: React.FC<Props> = ({ className, onClose }) => {
@@ -13,15 +13,7 @@ export const AboutMeModalWindow: React.FC<Props> = ({ className, onClose }) => {
         className
       )}
     >
-      <div className="w-full h-8 flex items-center ml-1 justify-between">
-        <h2 className="font-light">About</h2>
-        <button
-          className="w-6 h-6 border-[1px] border-[#ffffff61] flex justify-center bg-[#1a131f] rounded-xs items-center cursor-pointer mr-[5px]"
-          onClick={onClose}
-        >
-          <img src="/images/x.svg" alt="close"></img>
-        </button>
-      </div>
+      <h2 className="font-light p-1">About</h2>
       <div className="w-full flex flex-col gap-4 p-4 bg-[#120d18] rounded-lg">
         <img
           src="/images/aboutme2.png"

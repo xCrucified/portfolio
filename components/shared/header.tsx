@@ -25,7 +25,7 @@ export const Header: React.FC<Props> = ({ className }) => {
       initial={{ opacity: 0, y: -90 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="w-[100%] h-[85px] bg-[#1a131f] border-b-[2] border-[#382c3e] absolute top-0 z-50"
+      className="w-[100%] h-[85px] header border-b-[2] border-[#382c3e] absolute top-0 z-[1000] rounded-b-lg shadow-lg shadow-black/20 flex items-center justify-center"
     >
       <div
         className={cn(

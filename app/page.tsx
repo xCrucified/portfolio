@@ -7,7 +7,7 @@ export default function Home() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 1300);
+    }, 300);
     return () => clearTimeout(timer);
   }, []);
   if (loading) return <Loading />;
