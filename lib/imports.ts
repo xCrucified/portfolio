@@ -11,7 +11,6 @@ export { Header } from "@/components/shared/header";
 export { Main } from "@/components/shared/main";
 export { SkillsModalWindow } from "@/components/shared/sections/SkillsModal";
 export { AboutMeModalWindow } from "@/components/shared/sections/AboutMeModal";
-export { AchievementsModalWindow } from "@/components/shared/sections/AchievementsModal";
 export { ContactModalWindow } from "@/components/shared/sections/ContactModal";
 export { GalleryModalWindow } from "@/components/shared/sections/GalleryModal";
 export { ToolsModalWindow } from "@/components/shared/sections/ToolsModal";

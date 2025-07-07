@@ -1,7 +1,6 @@
 "use client";
 import {
   AboutMeModalWindow,
-  AchievementsModalWindow,
   cn,
   ContactModalWindow,
   GalleryModalWindow,
@@ -32,8 +31,7 @@ const panels = [
   { id: "Services", label: "Services", icon: "/images/services.svg" },
   { id: "Skills", label: "Skills", icon: "/images/skills.svg" },
   { id: "Experience", label: "Experience", icon: "/images/experience.svg" },
-  { id: "Achievements", label: "Achievements", icon: "/images/award.svg" },
-  
+
   { id: "Contact", label: "Contact", icon: "/images/contact.svg" },
   { id: "Gallery", label: "Gallery", icon: "/images/gallery.svg" },
   { id: "Tools", label: "Tools I Use", icon: "/images/tools.svg" },
@@ -69,7 +67,6 @@ const tabs = {
   Skills: SkillsModalWindow,
   Experience: ExperienceModalWindow,
   Info: AboutMeModalWindow,
-  Achievements: AchievementsModalWindow,
   Contact: ContactModalWindow,
   Gallery: GalleryModalWindow,
   Tools: ToolsModalWindow,
@@ -92,7 +89,12 @@ export const Main: React.FC<Props> = ({ className }) => {
   };
 
   return (
-    <div className={cn(className, "flex justify-center w-[100%] absolute bottom-10")}>
+    <div
+      className={cn(
+        className,
+        "flex justify-center w-[100%] absolute bottom-10"
+      )}
+   >
       <div className="flex w-[90%] h-[83vh] justify-between">
         {/* Left Panel */}
         <div className="flex flex-col gap-10 h-[100%] font-light">
@@ -120,7 +122,7 @@ export const Main: React.FC<Props> = ({ className }) => {
         {/* Center */}
         <div className="w-[100%] h-[100%] relative flex justify-between">
           {/* left column */}
-          <div className="relative h-full z-[1005] w-[310px]">
+          <div className="absolute h-full outline z-[1005] w-[310px]">
             {openTabs
               .filter((tab) => tab.isLeft)
               .map((tab, index) => {
@@ -128,7 +130,7 @@ export const Main: React.FC<Props> = ({ className }) => {
                 return (
                   <DraggableDiv key={tab.id}>
                     <div
-                      className="absolute w-[640px] h-[90%]"
+                      className="absolute w-[640px] h-[90%] transition-all duration-300"
                       style={{
                         top: `${index * 80}px`,
                         left: "0px",
@@ -145,7 +147,7 @@ export const Main: React.FC<Props> = ({ className }) => {
           </div>
 
           {/* Center Content */}
-          <div className="flex justify-center relative">
+          <div className="flex w-full justify-center relative">
             <DraggableDiv>
               <motion.section
                 key="about-me"
@@ -154,44 +156,42 @@ export const Main: React.FC<Props> = ({ className }) => {
                 transition={{ duration: 0.6, ease: "easeInOut" }}
                 className="w-[100%] justify-center flex relative z-[999]"
               >
-                <AboutMeModalWindow
-                  className="min-w-[650px] min-h-[650px] modal-bg"
-                />
+                <AboutMeModalWindow className="min-w-[650px] min-h-[650px] modal-bg" />
               </motion.section>
             </DraggableDiv>
-          </div>
-          {/* Bottom Menu */}
-          <motion.div
-            initial={{ opacity: 0, y: 300 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="absolute bottom-0 w-full h-[80px] z-[999] flex justify-center items-center"
-          >
-            <div className="flex menu-container">
-              <button
-                onClick={() => (window.location.href = "/")}
-                className="flex items-center gap-2 mr-2 p-1 flex-col h-[100%] w-full home-btn cursor-pointer"
-              >
-                <img src="/images/house.svg" alt="Home" />
-              </button>
-              <hr className="vertical-hr"></hr>
-              {menuItems.map((item) => (
+            {/* Bottom Menu */}
+            <motion.div
+              initial={{ opacity: 0, y: 300 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="absolute bottom-0 w-full h-[80px] z-[999] flex justify-center items-center"
+            >
+              <div className="flex menu-container">
                 <button
-                  key={item.id}
-                  className="flex items-center gap-2 p-1 flex-col w-[100%] h-[100%] home-btn cursor-pointer"
-                  onClick={() => (window.location.href = item.link)}
+                  onClick={() => (window.location.href = "/")}
+                  className="flex items-center gap-2 mr-2 p-1 flex-col h-[100%] w-full home-btn cursor-pointer"
                 >
-                  <img
-                    src={item.icon}
-                    alt={item.id}
-                    className="w-full h-full p-[6px]"
-                  />
+                  <img src="/images/house.svg" alt="Home" />
                 </button>
-              ))}
-            </div>
-          </motion.div>
+                <hr className="vertical-hr"></hr>
+                {menuItems.map((item) => (
+                  <button
+                    key={item.id}
+                    className="flex items-center gap-2 p-1 flex-col w-[100%] h-[100%] home-btn cursor-pointer"
+                    onClick={() => (window.location.href = item.link)}
+                  >
+                    <img
+                      src={item.icon}
+                      alt={item.id}
+                      className="w-full h-full p-[6px]"
+                    />
+                  </button>
+                ))}
+              </div>
+            </motion.div>
+          </div>
           {/* right column */}
-          <div className="relative h-full z-[1005] w-[310px]">
+          <div className="h-full outline z-[1005] w-[310px] absolute right-0">
             {openTabs
               .filter((tab) => !tab.isLeft)
               .map((tab, index) => {
@@ -224,7 +224,7 @@ export const Main: React.FC<Props> = ({ className }) => {
               animate={popIn.animate}
               transition={popIn.transition}
               key={item.id}
-              onClick={() => handleTabChange(item.id as TabKey, true)}
+              onClick={() => handleTabChange(item.id as TabKey, false)}
               className="flex items-center gap-2 p-1 flex-col w-[55px] h-[5%] section cursor-pointer"
             >
               <img
