@@ -94,7 +94,7 @@ export const Main: React.FC<Props> = ({ className }) => {
         className,
         "flex justify-center w-[100%] absolute bottom-10"
       )}
-   >
+    >
       <div className="flex w-[90%] h-[83vh] justify-between">
         {/* Left Panel */}
         <div className="flex flex-col gap-10 h-[100%] font-light">
@@ -122,7 +122,7 @@ export const Main: React.FC<Props> = ({ className }) => {
         {/* Center */}
         <div className="w-[100%] h-[100%] relative flex justify-between">
           {/* left column */}
-          <div className="absolute h-full outline z-[1005] w-[310px]">
+          <div className="absolute h-full z-[1005] w-[310px]">
             {openTabs
               .filter((tab) => tab.isLeft)
               .map((tab, index) => {
@@ -191,7 +191,7 @@ export const Main: React.FC<Props> = ({ className }) => {
             </motion.div>
           </div>
           {/* right column */}
-          <div className="h-full outline z-[1005] w-[310px] absolute right-0">
+          <div className="h-full z-[1005] w-[310px] absolute right-0">
             {openTabs
               .filter((tab) => !tab.isLeft)
               .map((tab, index) => {

@@ -25,8 +25,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-    
-
+  
   return (
     <html lang="en" className={cn(googleFont.className, "bg-[#0f0b14]")}>
       <body className={`orbitron bg-main h-[100vh]`}>

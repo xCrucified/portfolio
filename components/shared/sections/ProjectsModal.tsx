@@ -5,13 +5,7 @@ import ProjectCard from "../cards/projectCard";
 interface GitHubProject {
   name: string;
   description: string;
-  html_url: string;
-}
-
-interface Project {
-  title: string;
-  description: string;
-  image?: string; // Optional if you don’t have images
+  image?: string;
 }
 
 interface Props {
@@ -23,23 +17,20 @@ export const ProjectsModalWindow: React.FC<Props> = ({
   className,
   onClose,
 }) => {
-  const [projects, setProjects] = useState<Project[]>([]);
+  const [projects, setProjects] = useState<GitHubProject[]>([]);
+  const api = "https://api.github.com/users/xCrucified/repos";
 
   useEffect(() => {
-    const api = "https://api.github.com/users/xCrucified/repos"; // Replace with your GitHub username
-
     const fetchProjects = async () => {
       try {
         const response = await fetch(api);
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
+        if (!response.ok) throw new Error("Network response was not ok");
         const data: GitHubProject[] = await response.json();
 
         const formattedProjects = data.map((repo) => ({
-          title: repo.name,
+          name: repo.name,
           description: repo.description ?? "No description available.",
-          image: "/placeholder.svg", // optional, or you can omit it
+          image: `https://raw.githubusercontent.com/xCrucified/${repo.name}/master/${repo.name}.png`,
         }));
 
         setProjects(formattedProjects);
@@ -60,18 +51,21 @@ export const ProjectsModalWindow: React.FC<Props> = ({
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [onClose]);
+  }, [onClose, api]);
 
   return (
     <ProjectCard
       className={cn(className)}
-      projects={[
-        ...projects.map((project, index) => ({
-          title: project.title,
+      projects={projects
+        .map((project, index) => ({
+          key: index,
+          title: project.name,
+          image: project.image,
           description: project.description,
-          image: `${project.image || "/placeholder.svg"}`, // Use a placeholder if no image is provided
-        })),
-      ]} onClose={onClose}    />
+        }))
+        .filter((project) => project.title !== "xCrucified")}
+      onClose={onClose}
+    />
   );
 };
 
