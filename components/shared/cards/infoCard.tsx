@@ -1,4 +1,4 @@
-import { cn } from "@/lib/imports";
+import { cn, Label } from "@/lib/imports";
 import React from "react";
 
 interface Props {
@@ -19,7 +19,7 @@ export const InfoCard: React.FC<Props> = ({
         className
       )}
     >
-      <h2 className="font-light p-1">About</h2>
+      <Label className="font-light p-1">About</Label>
       <div className="w-full flex flex-col gap-4 p-4 bg-[#120d18] rounded-lg">
         <img
           src={imageSrc}

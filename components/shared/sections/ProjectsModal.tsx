@@ -30,7 +30,7 @@ export const ProjectsModalWindow: React.FC<Props> = ({
         const formattedProjects = data.map((repo) => ({
           name: repo.name,
           description: repo.description ?? "No description available.",
-          image: `https://raw.githubusercontent.com/xCrucified/${repo.name}/master/${repo.name}.png`,
+          image: `https://raw.githubusercontent.com/xCrucified/${repo.name}/master/${repo.name}.png` || `https://raw.githubusercontent.com/xCrucified/${repo.name}/master/preview.png`,
         }));
 
         setProjects(formattedProjects);

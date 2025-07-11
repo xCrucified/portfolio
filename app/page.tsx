@@ -4,13 +4,26 @@ import { Footer, Header, Main, useEffect, useState } from "@/lib/imports";
 
 export default function Home() {
   const [loading, setLoading] = useState<boolean>(true);
+
   useEffect(() => {
-    const timer = setTimeout(() => {
+    try {
+      // Simulate loading or perform any async initialization here
+      // For demonstration, we'll use a timeout
+      const timer = setTimeout(() => {
+        setLoading(false);
+      }, 1000);
+
+      return () => clearTimeout(timer);
+    } catch (error) {
+      // Handle error if needed
       setLoading(false);
-    }, 300);
-    return () => clearTimeout(timer);
+    }
   }, []);
-  if (loading) return <Loading />;
+
+  if (loading) {
+    return <Loading />;
+  }
+
   return (
     <div>
       <Header className="w-[100%]" />

@@ -1,4 +1,4 @@
-import { cn } from "@/lib/imports";
+import { cn, Label } from "@/lib/imports";
 import React from "react";
 
 interface Props {
@@ -23,7 +23,7 @@ export const ProjectCard: React.FC<Props> = ({
     <section className={cn("flex h-[650px] modal-bg text-zinc-100", className)}>
       <div className="flex flex-col p-3">
         <div className="flex w-full justify-between items-center mb-2">
-          <h1 className="text-lg p-1">Projects</h1>
+          <Label className="text-lg p-1">Projects</Label>
           <button
             className="w-6 h-6 border-[1px] border-[#ffffff61] flex justify-center rounded-xs items-center cursor-pointer mr-[5px]"
             onClick={onClose}
@@ -36,28 +36,24 @@ export const ProjectCard: React.FC<Props> = ({
           {projects?.map((project, index) => (
             <section
               key={project.key}
-              className="w-[100%] h-[30%] gap-3 flex flex-col justify-between items-center"
+              className="w-[100%] h-[170px] gap-3 flex flex-col items-center"
             >
               {/* Project Card */}
               <div
                 key={index}
-                className="flex flex-col md:flex-row rounded-lg w-[100%] h-[100%]"
+                className="flex flex-row rounded-lg w-[100%] h-[100%]"
               >
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full md:w-1/3 rounded-lg object-fill max-h-60"
+                  className="w-[190] rounded-lg object-fill max-h-60"
                   loading="lazy"
                 />
-
-                <div className="flex flex-col w-full justify-between items-start p-4">
-                  <h2 className="text-xl font-bold">{project.title}</h2>
-                  <p className="text-sm text-zinc-300 mt-2">
+                <div className="flex flex-col w-full h-[100%] justify-around items-start p-4">
+                  <Label className="text-xl font-light">{project.title}</Label>
+                  <Label className="text-sm text-zinc-300 opacity-60 mt-2">
                     {project.description}
-                  </p>
-                  <div className="flex w-[100px] h-[40px] items-center justify-center mt-4 rounded-sm bg-black">
-                    <button className="">asd</button>
-                  </div>
+                  </Label>
                 </div>
                 <button
                   onClick={() =>
@@ -66,7 +62,7 @@ export const ProjectCard: React.FC<Props> = ({
                       "_blank"
                     )
                   }
-                  className="flex justify-center items-center w-[60px] h-[30px] self-center section cursor-pointer"
+                  className="flex justify-center items-center w-[65px] h-[35px] self-center section cursor-pointer"
                   aria-label="View on GitHub"
                 >
                   <img
@@ -76,9 +72,12 @@ export const ProjectCard: React.FC<Props> = ({
                   />
                 </button>
               </div>
-              <hr className="w-[100%] relative opacity-[15%]" />
+              <hr className="w-[100%] h-[100%] mt-2 opacity-[15%]" />
             </section>
           ))}
+        </div>
+        <div className="flex justify-center w-[100%] pt-2">
+          <Label className="opacity-70">{projects.length} Projects</Label>
         </div>
       </div>
     </section>
