@@ -19,6 +19,7 @@ export const ProjectCard: React.FC<Props> = ({
   projects,
   onClose,
 }) => {
+  
   return (
     <section className={cn("flex h-[650px] modal-bg text-zinc-100", className)}>
       <div className="flex flex-col p-3">

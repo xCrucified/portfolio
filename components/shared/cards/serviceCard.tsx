@@ -1,56 +1,65 @@
 import { cn, Label } from "@/lib/imports";
-import React from "react";
 
 interface Props {
   className?: string;
   onClose?: () => void;
+  services?: Service[];
 }
 
-export const ServiceCard: React.FC<Props> = ({ className, onClose }) => {
+interface Service {
+  title: string;
+  icon?: string;
+}
+
+export const ServiceCard: React.FC<Props> = ({
+  className,
+  onClose,
+  services,
+}) => {
+  const displayServices = services?.slice(0, 4) ?? Array(4).fill(null);
+
   return (
     <section
       className={cn(
-        "flex flex-col text-zinc-100 p-3 rounded-xl gap-2 w-full modal-bg ",
+        "flex flex-col text-zinc-100 p-3 rounded-xl gap-4 w-full modal-bg",
         className
       )}
     >
-      <Label>Services</Label>
-      <div className="grid grid-cols-2 grid-rows-2 gap-5  bg-[#110c17] p-4 overflow-y-auto rounded-lg">
-        <div className="flex justify-center items-center h-36 outline">
-          
-        </div>
-        <div className="flex justify-center items-center h-36 outline"></div>
-        <div className="flex justify-center items-center h-36 outline"></div>
-        <div className="flex justify-center items-center h-36 outline"></div>
-      </div>
-      {/* <div className="w-full h-8 flex items-center ml-1 justify-between">
-        <h2 className="font-light">Services</h2>
+      <div className="flex w-full justify-between items-center">
+        <Label className="text-lg p-1">Services</Label>
         <button
-          className="w-6 h-6 border-[1px] border-[#ffffff61] flex justify-center bg-[#1a131f] rounded-xs items-center cursor-pointer mr-[5px]"
+          className="w-6 h-6 border border-[#ffffff61] flex justify-center items-center rounded-sm cursor-pointer mr-1"
           onClick={onClose}
           aria-label="Close modal"
         >
           <img src="/images/x.svg" alt="close" />
         </button>
       </div>
-      <div className="w-full flex flex-col gap-4 p-4 bg-[#120d18] rounded-lg overflow-auto max-h-[600px]">
-        <a className="w-[70%] self-center h-full block">
-          <img
-            src="/images/services.png"
-            alt="GitHub profile"
-            className="object-contain w-full h-80 rounded-lg pointer-events-none"
-          />
-        </a>
-        <div className="flex flex-col gap-4 font-light text-base leading-relaxed text-[#EFEDFD]">
-          <ul className="list-disc list-inside space-y-2 text-lg leading-relaxed">
-            <li>Web application development (frontend and backend)</li>
-            <li>API and microservices development (C#, ASP.NET)</li>
-            <li>UI/UX interfaces (React, Angular)</li>
-            <li>Network programming (UDP, SMTP, TCP)</li>
-            <li>Multithreading and asynchronous programming in C#</li>
-          </ul>
+
+      <div className="relative grid grid-cols-2 grid-rows-2 gap-5 bg-[#110c17] p-4 rounded-lg">
+        <div className="absolute left-1/2 -translate-x-1/2 top-0 h-full flex flex-col justify-around items-center w-[1px] z-0 pointer-events-none">
+          <div className="h-36 w-px bg-gradient-to-b from-transparent via-gray-600 to-transparent opacity-25" />
+          <div className="h-36 w-px bg-gradient-to-b from-transparent via-gray-600 to-transparent opacity-25" />
         </div>
-      </div> */}
+
+        <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-600 to-transparent opacity-25 z-0 pointer-events-none" />
+
+        {displayServices.map((service, idx) => (
+          <div
+            key={idx}
+            className="flex justify-center items-center h-36 outline outline-zinc-700 rounded-sm text-center z-10"
+          >
+            {service ? (
+              <>
+                {service.icon && (
+                  <img src={service.icon} alt={service.title} className="h-8 w-8" />
+                )}
+                <span className="ml-2">{service.title}</span>
+              </>
+            ) : null}
+          </div>
+        ))}
+      </div>
     </section>
   );
 };
