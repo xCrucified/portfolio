@@ -22,22 +22,23 @@ export const InfoCard: React.FC<Props> = ({
       <Label className="font-light p-1">About</Label>
       <div className="w-full flex flex-col gap-4 p-4 bg-[#120d18] rounded-lg">
         <img
+        draggable={false}
           src={imageSrc}
           alt="image is not provided"
           className="object-cover w-full h-80 bg-teal-900 rounded-lg pointer-events-none"
         />
         {textarea && textarea.length > 0 ? (
           <div
-            className="flex flex-col gap-4 font-light text-base leading-relaxed
+            className="flex flex-col gap-4 font-light text-base leading-relaxed p-2
             text-[#EFEDFD]"
           >
             {textarea.map((text, index) => (
-              <p
+              <Label
                 key={index}
-                className={index === 0 ? "text-xl font-normal" : "opacity-70"}
+                className={index === 0 ? "text-2xl font-normal" : "opacity-70"}
               >
                 {text}
-              </p>
+              </Label>
             ))}
           </div>
         ) : (

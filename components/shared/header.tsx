@@ -56,7 +56,7 @@ export const Header: React.FC<Props> = ({ className }) => {
         </div>
 
         <div className="flex items-center justify-end mr-5 w-[30%] opacity-90">
-          <img src="./images/clock-3.svg" alt="" className="mr-2" />
+          <img draggable={false} src="./images/clock-3.svg" alt="" className="mr-2" />
           {(() => {
             const now = new Date();
             const day = now

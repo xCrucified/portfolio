@@ -19,7 +19,7 @@ export const ProjectsModalWindow: React.FC<Props> = ({
 }) => {
   const [projects, setProjects] = useState<GitHubProject[]>([]);
   const api = "https://api.github.com/users/xCrucified/repos";
-
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     const fetchProjects = async () => {
       try {
@@ -27,15 +27,19 @@ export const ProjectsModalWindow: React.FC<Props> = ({
         if (!response.ok) throw new Error("Network response was not ok");
         const data: GitHubProject[] = await response.json();
 
-        const formattedProjects = data.map((repo) => ({
+        const formattedProjects = await data.map((repo) => ({
           name: repo.name,
           description: repo.description ?? "No description available.",
-          image: `https://raw.githubusercontent.com/xCrucified/${repo.name}/master/${repo.name}.png` || `https://raw.githubusercontent.com/xCrucified/${repo.name}/master/preview.png`,
+          image:
+            `https://raw.githubusercontent.com/xCrucified/${repo.name}/master/${repo.name}.png` ||
+            `https://raw.githubusercontent.com/xCrucified/${repo.name}/master/preview.png`,
         }));
 
         setProjects(formattedProjects);
       } catch (error) {
         console.error("Fetch error:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -52,6 +56,8 @@ export const ProjectsModalWindow: React.FC<Props> = ({
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, [onClose, api]);
+
+  if (loading) return <p>Loading projects...</p>;
 
   return (
     <ProjectCard

@@ -105,9 +105,10 @@ export const Main: React.FC<Props> = ({ className }) => {
               transition={popIn.transition}
               key={item.id}
               onClick={() => handleTabChange(item.id as TabKey, true)}
-              className="flex items-center gap-2 p-1 flex-col w-[55px] h-[5%] section cursor-pointer"
+              className="flex items-center gap-2 p-1 flex-col w-[55px] h-[50px] section cursor-pointer"
             >
               <img
+              draggable={false}
                 src={item.icon}
                 alt={item.label}
                 className="w-[100%] h-[100%] p-[8px]"
@@ -171,7 +172,7 @@ export const Main: React.FC<Props> = ({ className }) => {
                   onClick={() => (window.location.href = "/")}
                   className="flex items-center gap-2 mr-2 p-1 flex-col h-[100%] w-full home-btn cursor-pointer"
                 >
-                  <img src="/images/house.svg" alt="Home" />
+                  <img draggable={false} src="/images/house.svg" alt="Home" />
                 </button>
                 <hr className="vertical-hr"></hr>
                 {menuItems.map((item) => (
@@ -181,6 +182,7 @@ export const Main: React.FC<Props> = ({ className }) => {
                     onClick={() => (window.location.href = item.link)}
                   >
                     <img
+                    draggable={false}
                       src={item.icon}
                       alt={item.id}
                       className="w-full h-full p-[6px]"
@@ -225,9 +227,10 @@ export const Main: React.FC<Props> = ({ className }) => {
               transition={popIn.transition}
               key={item.id}
               onClick={() => handleTabChange(item.id as TabKey, false)}
-              className="flex items-center gap-2 p-1 flex-col w-[55px] h-[5%] section cursor-pointer"
+              className="flex items-center gap-2 p-1 flex-col w-[55px] h-[50px] section cursor-pointer"
             >
               <img
+              draggable={false}
                 src={item.icon}
                 alt={item.label}
                 className="w-[100%] h-[100%] p-[8px]"

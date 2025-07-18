@@ -29,12 +29,13 @@ export const ExperienceCard: React.FC<Props> = ({
           onClick={onClose}
           aria-label="Close modal"
         >
-          <img src="/images/x.svg" alt="close" />
+          <img draggable={false} src="/images/x.svg" alt="close" />
         </button>
       </div>
       <div className="w-full flex flex-col gap-4 p-4 bg-[#120d18] rounded-lg overflow-auto max-h-[600px]">
         <div className="w-[70%] self-center h-[80%] block">
           <img
+          draggable={false}
             src={imgSrc}
             alt="Experience illustration"
             className="object-contain w-[100%] rounded-lg pointer-events-none"
