@@ -1,4 +1,4 @@
-import { cn } from "@/lib/imports";
+import { cn, Label } from "@/lib/imports";
 import { i } from "framer-motion/client";
 import React from "react";
 
@@ -13,7 +13,7 @@ export const ExperienceCard: React.FC<Props> = ({
   className,
   onClose,
   textarea,
-  imgSrc
+  imgSrc,
 }) => {
   return (
     <section
@@ -23,7 +23,7 @@ export const ExperienceCard: React.FC<Props> = ({
       )}
     >
       <div className="w-full h-8 flex items-center ml-1 justify-between">
-        <h2 className="font-light">Experience</h2>
+        <Label className="font-light p-1">Experiences</Label>
         <button
           className="w-6 h-6 border-[1px] border-[#ffffff61] flex justify-center bg-[#1a131f] rounded-xs items-center cursor-pointer"
           onClick={onClose}
@@ -35,7 +35,7 @@ export const ExperienceCard: React.FC<Props> = ({
       <div className="w-full flex flex-col gap-4 p-4 bg-[#120d18] rounded-lg overflow-auto max-h-[600px]">
         <div className="w-[70%] self-center h-[80%] block">
           <img
-          draggable={false}
+            draggable={false}
             src={imgSrc}
             alt="Experience illustration"
             className="object-contain w-[100%] rounded-lg pointer-events-none"
@@ -43,11 +43,12 @@ export const ExperienceCard: React.FC<Props> = ({
         </div>
         <div className="flex flex-col gap-4 font-light text-base leading-relaxed text-[#EFEDFD]">
           <ul className="list-disc list-inside space-y-2 text-lg leading-relaxed">
-            {textarea && textarea.map((text, index) => (
-              <li key={index} className="text-lg">
-                {text}
-              </li>
-            ))}
+            {textarea &&
+              textarea.map((text, index) => (
+                <li key={index} className="text-lg">
+                  {text}
+                </li>
+              ))}
           </ul>
         </div>
       </div>

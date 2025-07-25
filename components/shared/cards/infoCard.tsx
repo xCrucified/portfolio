@@ -22,7 +22,7 @@ export const InfoCard: React.FC<Props> = ({
       <Label className="font-light p-1">About</Label>
       <div className="w-full flex flex-col gap-4 p-4 bg-[#120d18] rounded-lg">
         <img
-        draggable={false}
+          draggable={false}
           src={imageSrc}
           alt="image is not provided"
           className="object-cover w-full h-80 bg-teal-900 rounded-lg pointer-events-none"

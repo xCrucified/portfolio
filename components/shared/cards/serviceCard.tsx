@@ -27,7 +27,7 @@ export const ServiceCard: React.FC<Props> = ({
       )}
     >
       <div className="flex w-full justify-between items-center">
-        <Label className="text-lg p-1">Services</Label>
+        <Label className="font-light p-1">Services</Label>
         <button
           className="w-6 h-6 border border-[#ffffff61] flex justify-center items-center rounded-sm cursor-pointer"
           onClick={onClose}
@@ -55,7 +55,7 @@ export const ServiceCard: React.FC<Props> = ({
                 {service.icon && (
                   <div className="flex items-center p-2 flex-col icons ml-1 mt-1">
                     <img
-                    draggable={false}
+                      draggable={false}
                       src={service.icon}
                       alt={service.title}
                       className="h-8 w-8"
@@ -64,7 +64,9 @@ export const ServiceCard: React.FC<Props> = ({
                 )}
                 <div className="flex flex-col gap-1 p-1 mt-3">
                   <Label className="text-md">{service.title}</Label>
-                  <Label className="text-sm opacity-55">{service.description}</Label>
+                  <Label className="text-sm opacity-55">
+                    {service.description}
+                  </Label>
                 </div>
               </>
             ) : null}

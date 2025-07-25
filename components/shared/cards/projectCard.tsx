@@ -19,12 +19,11 @@ export const ProjectCard: React.FC<Props> = ({
   projects,
   onClose,
 }) => {
-
   return (
     <section className={cn("flex h-[650px] modal-bg text-zinc-100", className)}>
       <div className="flex flex-col p-3">
         <div className="flex w-full justify-between items-center mb-2">
-          <Label className="text-lg p-1">Projects</Label>
+          <Label className="font-light p-1">Projects</Label>
           <button
             className="w-6 h-6 border-[1px] border-[#ffffff61] flex justify-center rounded-xs items-center cursor-pointer mr-[5px]"
             onClick={onClose}
@@ -45,7 +44,7 @@ export const ProjectCard: React.FC<Props> = ({
                 className="flex flex-row rounded-lg w-[100%] h-[100%]"
               >
                 <img
-                draggable={false}
+                  draggable={false}
                   src={project.image}
                   alt={project.title}
                   className="w-[190] rounded-lg object-fill max-h-60"
@@ -68,7 +67,7 @@ export const ProjectCard: React.FC<Props> = ({
                   aria-label="View on GitHub"
                 >
                   <img
-                  draggable={false}
+                    draggable={false}
                     src="/arrow-right.svg"
                     alt="GitHub"
                     className="w-5 h-5 object-cover"

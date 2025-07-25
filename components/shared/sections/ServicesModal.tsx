@@ -4,12 +4,13 @@ import ServiceCard from "../cards/serviceCard";
 
 interface Props {
   className?: string;
+  onClose?: () => void;
 }
 const services = [
   {
     title: "Web Application development",
     description: "Building responsive and robust web applications tailored to your needs.",
-    icon: "/images/web-dev.svg",
+    icon: "/images/aws.png",
   },
   {
     title: "API and microservices development",
@@ -28,8 +29,8 @@ const services = [
   },
 ];
 
-export const ServicesModalWindow: React.FC<Props> = ({ className }) => {
-  return <ServiceCard services={services} />;
+export const ServicesModalWindow: React.FC<Props> = ({ className, onClose }) => {
+  return <ServiceCard services={services} onClose={onClose}/>;
 };
 
 export default ServicesModalWindow;
