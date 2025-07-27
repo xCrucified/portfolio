@@ -95,7 +95,7 @@ const skills = [
   {
     title: "AngularTS",
     description: "A framework for building dynamic web applications using TypeScript and Angular.",
-    icon: "/images/angular.png",
+    icon: "/images/angularts.png",
   },
   {
     title: ".NET Framework",

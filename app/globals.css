@@ -150,6 +150,23 @@ html {
   box-shadow: 0px 3.5px 8px 3px rgba(0, 0, 0, 0.389);
 }
 
+.scroll-btn{
+  background-color: rgba(31, 23, 41, 0.536);
+  cursor: pointer;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(31, 23, 41, 0.93);
+  outline: 1px solid #382c3e;
+  border-radius: 6px;
+}
+
+.scroll-btn:hover {
+  transition: all;
+  transform: scale(1.08);
+  transition-duration: 0.3s;
+}
+
+
 .icons {
   border-radius: 6px;
   background-color: rgba(31, 23, 41, 0.93);

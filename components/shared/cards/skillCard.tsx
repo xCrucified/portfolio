@@ -69,7 +69,7 @@ export const SkillCard: React.FC<Props> = ({ className, onClose, skills }) => {
         )}
       </div>
 
-      <div className="relative flex items-center justify-center w-full h-[300px] bg-[#120d18] rounded-2xl">
+      <div className="relative flex items-center justify-center w-[100%] h-[300px] bg-[#120d18] rounded-lg mx-auto mt-2">
         <div
           ref={containerRef}
           className="flex overflow-x-auto scrollbar-hide snap-x snap-mandatory m-4 rounded-2xl"
@@ -103,7 +103,7 @@ export const SkillCard: React.FC<Props> = ({ className, onClose, skills }) => {
           <button
             onClick={scrollLeft}
             className={cn(
-              "px-2 py-1 rounded text-white transition-opacity h-[100%]",
+              "px-2 py-0.5 text-white transition-opacity scroll-btn",
               scrollIndex > 0
                 ? "cursor-pointer opacity-100"
                 : "opacity-25 pointer-events-none invisible"
@@ -115,7 +115,7 @@ export const SkillCard: React.FC<Props> = ({ className, onClose, skills }) => {
           <button
             onClick={scrollRight}
             className={cn(
-              "px-2 py-1 rounded text-white transition-opacity h-[100%]",
+              "px-2 py-0.5 text-white transition-opacity scroll-btn",
               scrollIndex < totalItems - 1
                 ? "cursor-pointer opacity-100"
                 : "opacity-25 pointer-events-none invisible"
