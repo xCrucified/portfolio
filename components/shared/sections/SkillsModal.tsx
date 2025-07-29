@@ -1,5 +1,5 @@
 import { cn } from '@/lib/imports';
-import React from 'react';
+import React, { useEffect } from 'react';
 import SkillCard from '../cards/skillCard';
 
 interface Props {
@@ -105,6 +105,20 @@ const skills = [
 ];
 
 export const SkillsModalWindow: React.FC<Props> = ({ className, onClose }) => {
+  useEffect(() => {
+      const handleKeyDown = (event: KeyboardEvent) => {
+        if (event.key === "Escape") {
+          if (onClose) {
+            onClose();
+          }
+        }
+      };
+  
+      document.addEventListener("keydown", handleKeyDown);
+      return () => {
+        document.removeEventListener("keydown", handleKeyDown);
+      };
+    }, [onClose]);
   return (
     <SkillCard skills={skills} onClose={onClose} className={cn("", className)}/>
   );

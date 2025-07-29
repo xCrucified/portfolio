@@ -1,5 +1,5 @@
 import { cn } from '@/lib/imports';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 interface Props {
   className?: string;
@@ -7,6 +7,18 @@ interface Props {
 }
 
 export const ResumeModalWindow: React.FC<Props> = ({ className, onClose }) => {
+  useEffect(() => {
+      const handleKeyDown = (event: KeyboardEvent) => {
+        if (event.key === "Escape") {
+          onClose();
+        }
+      };
+  
+      document.addEventListener("keydown", handleKeyDown);
+      return () => {
+        document.removeEventListener("keydown", handleKeyDown);
+      };
+    }, [onClose]);
   return (
      <section
           className={cn(

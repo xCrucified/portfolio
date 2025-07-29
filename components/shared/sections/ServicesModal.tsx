@@ -1,5 +1,5 @@
 import { cn } from "@/lib/imports";
-import React from "react";
+import React, { useEffect } from "react";
 import ServiceCard from "../cards/serviceCard";
 
 interface Props {
@@ -10,7 +10,7 @@ const services = [
   {
     title: "Web Application development",
     description: "Building responsive and robust web applications tailored to your needs.",
-    icon: "/images/aws.png",
+    icon: "/images/web-dev.svg",
   },
   {
     title: "API and microservices development",
@@ -29,7 +29,21 @@ const services = [
   },
 ];
 
-export const ServicesModalWindow: React.FC<Props> = ({ className, onClose }) => {
+export const ServicesModalWindow: React.FC<Props> = ({ onClose }) => {
+  useEffect(() => {
+      const handleKeyDown = (event: KeyboardEvent) => {
+        if (event.key === "Escape") {
+          if (onClose) {
+            onClose();
+          }
+        }
+      };
+  
+      document.addEventListener("keydown", handleKeyDown);
+      return () => {
+        document.removeEventListener("keydown", handleKeyDown);
+      };
+    }, [onClose]);
   return <ServiceCard services={services} onClose={onClose}/>;
 };
 
