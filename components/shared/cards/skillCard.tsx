@@ -99,7 +99,7 @@ export const SkillCard: React.FC<Props> = ({ className, onClose, skills }) => {
           ))}
         </div>
 
-        <div className="flex justify-between w-[100%] h-[100%] absolute top-0 left-0 items-center z-10 px-1">
+        <div className="flex justify-between w-[100%] h-[100%] absolute top-32 left-0 items-center z-10 px-1">
           <button
             onClick={scrollLeft}
             className={cn(

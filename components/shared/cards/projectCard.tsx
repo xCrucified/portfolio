@@ -74,7 +74,9 @@ export const ProjectCard: React.FC<Props> = ({
                   />
                 </button>
               </div>
-              <hr className="w-[100%] h-[100%] mt-2 opacity-[15%]" />
+              {index !== projects.length - 1 && (
+                <hr className="w-[100%] h-[100%] mt-2 opacity-[15%]" />
+              )}
             </section>
           ))}
         </div>

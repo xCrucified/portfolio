@@ -151,12 +151,9 @@ html {
 }
 
 .scroll-btn{
-  background-color: rgba(31, 23, 41, 0.536);
   cursor: pointer;
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
-  background-color: rgba(31, 23, 41, 0.93);
-  outline: 1px solid #382c3e;
   border-radius: 6px;
 }
 

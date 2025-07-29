@@ -22,7 +22,7 @@ export const ServiceCard: React.FC<Props> = ({
   return (
     <section
       className={cn(
-        "flex flex-col text-zinc-100 p-3 rounded-xl gap-4 w-full modal-bg",
+        "flex flex-col text-zinc-100 p-3 rounded-xl gap-4 w-full modal-bg select-none",
         className
       )}
     >
