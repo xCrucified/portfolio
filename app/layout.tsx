@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Roboto } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import { cn } from "@/lib/utils";
 import CursorShadow from "@/components/shared/cursorShadows";
-import { useEffect, useState } from "@/lib/imports";
 
-const googleFont = Roboto({
+const googleFont = Montserrat({
   subsets: ["latin"],
   weight: ["400"],
 });

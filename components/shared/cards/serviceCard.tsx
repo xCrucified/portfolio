@@ -22,7 +22,7 @@ export const ServiceCard: React.FC<Props> = ({
   return (
     <section
       className={cn(
-        "flex flex-col text-zinc-100 p-3 rounded-xl gap-4 w-full modal-bg select-none",
+        "flex flex-col text-zinc-100 p-3 rounded-xl gap-4 w-[800px] modal-bg select-none",
         className
       )}
     >
@@ -62,7 +62,7 @@ export const ServiceCard: React.FC<Props> = ({
                     />
                   </div>
                 )}
-                <div className="flex flex-col gap-1 p-1 mt-3">
+                <div className="flex flex-col gap-1 p-1 mt-1">
                   <Label className="text-md">{service.title}</Label>
                   <Label className="text-sm opacity-55">
                     {service.description}

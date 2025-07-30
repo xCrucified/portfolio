@@ -98,7 +98,7 @@ export const Main: React.FC<Props> = ({ className }) => {
       <div className="flex w-[90%] h-[83vh] justify-between">
         {/* Left Panel */}
         <div className="flex flex-col gap-10 h-[100%] font-light">
-          {panels.slice(0, 5).map((item) => (
+          {panels.slice(0, 4).map((item) => (
             <motion.button
               initial={popIn.initial}
               animate={popIn.animate}
@@ -108,7 +108,7 @@ export const Main: React.FC<Props> = ({ className }) => {
               className="flex items-center gap-2 p-1 flex-col w-[55px] h-[50px] section cursor-pointer"
             >
               <img
-              draggable={false}
+                draggable={false}
                 src={item.icon}
                 alt={item.label}
                 className="w-[100%] h-[100%] p-[8px]"
@@ -182,7 +182,7 @@ export const Main: React.FC<Props> = ({ className }) => {
                     onClick={() => (window.location.href = item.link)}
                   >
                     <img
-                    draggable={false}
+                      draggable={false}
                       src={item.icon}
                       alt={item.id}
                       className="w-full h-full p-[6px]"
@@ -193,7 +193,7 @@ export const Main: React.FC<Props> = ({ className }) => {
             </motion.div>
           </div>
           {/* right column */}
-          <div className="h-full z-[1005] w-[310px] absolute right-0 mr-6">
+          <div className="h-full z-[1000] w-[310px] absolute right-0 mr-6">
             {openTabs
               .filter((tab) => !tab.isLeft)
               .map((tab, index) => {
@@ -220,7 +220,7 @@ export const Main: React.FC<Props> = ({ className }) => {
 
         {/* Right Panel */}
         <div className="flex flex-col gap-10 h-[100%] font-light">
-          {panels.slice(5, 10).map((item) => (
+          {panels.slice(4, 10).map((item) => (
             <motion.button
               initial={popIn.initial}
               animate={popIn.animate}
@@ -230,7 +230,7 @@ export const Main: React.FC<Props> = ({ className }) => {
               className="flex items-center gap-2 p-1 flex-col w-[55px] h-[50px] section cursor-pointer"
             >
               <img
-              draggable={false}
+                draggable={false}
                 src={item.icon}
                 alt={item.label}
                 className="w-[100%] h-[100%] p-[8px]"

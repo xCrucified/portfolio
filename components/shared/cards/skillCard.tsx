@@ -93,7 +93,7 @@ export const SkillCard: React.FC<Props> = ({ className, onClose, skills }) => {
                 <h3 className="select-none text-xl font-semibold text-white">
                   {skill.title}
                 </h3>
-                <p className="select-none text-gray-300">{skill.description}</p>
+                <p className="select-none text-gray-300 opacity-65">{skill.description}</p>
               </div>
             </div>
           ))}

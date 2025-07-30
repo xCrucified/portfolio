@@ -1,4 +1,5 @@
 import { cn, Label } from "@/lib/imports";
+import { error } from "console";
 import { i } from "framer-motion/client";
 import React from "react";
 
@@ -18,7 +19,7 @@ export const ExperienceCard: React.FC<Props> = ({
   return (
     <section
       className={cn(
-        "flex flex-col text-zinc-100 p-3 rounded-xl gap-2 w-full max-w-3xl bg-neutral-950 modal-bg",
+        "flex flex-col text-zinc-100 p-3 rounded-xl gap-2 w-[800px] h-[300px] bg-neutral-950 modal-bg",
         className
       )}
     >
@@ -32,23 +33,33 @@ export const ExperienceCard: React.FC<Props> = ({
           <img draggable={false} src="/images/x.svg" alt="close" />
         </button>
       </div>
-      <div className="w-full flex gap-4 p-4 bg-[#120d18] rounded-lg overflow-auto max-h-[600px]">
-        <div className="w-[70%] self-center h-[80%] block">
-          <img
+      <div className="w-full flex gap-4 p-4 bg-[#120d18] rounded-lg overflow-auto">
+        {imgSrc ? (
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
             draggable={false}
-            src={imgSrc}
-            alt="Experience illustration"
-            className="object-contain w-[100%] rounded-lg pointer-events-none"
+            src={"/images/experiencePanel.mp4"}
+            className="static object-cover w-[30%] h-[100%] self-center outline rounded-lg pointer-events-none"
           />
-        </div>
-        <div className="flex flex-col gap-4 font-light text-base leading-relaxed text-[#EFEDFD]">
-          <ul className="list-inside space-y-2 text-lg leading-relaxed">
+        ) : (
+          <img
+            src={"/images/experiencePanel.png"}
+            alt="experience"
+            draggable={false}
+            className="static object-cover w-[30%] h-[100%] self-center outline rounded-lg pointer-events-none"
+          />
+        )}
+        <div className="flex flex-col gap-4 font-light leading-relaxed text-[#EFEDFD]">
+          <ul className="list-inside list-decimal space-y-2 text-lg leading-relaxed overflow-auto opacity-65 p-1">
             {textarea &&
               textarea.map((text, index) => (
-                <li key={index} className="text-md">
+                <li key={index} className="text-base">
                   {text}
                   {index !== textarea.length - 1 && (
-                  <hr className="my-2 border-zinc-700" />
+                    <hr className="my-2 border-zinc-700" />
                   )}
                 </li>
               ))}

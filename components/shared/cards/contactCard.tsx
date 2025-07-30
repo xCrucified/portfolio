@@ -39,7 +39,7 @@ export const ContactCard: React.FC<Props> = ({ className, onClose }) => {
                     <input type="text" className="flex w-[50%] p-3 focus:outline-0 rounded-sm bg-[#17111c]" placeholder="Name"/>
                     <input type="email" className="flex w-[50%] p-3 focus:outline-0 rounded-sm bg-[#17111c]" placeholder="Email"/>
                 </div>
-                <Textarea className="w-full h-[150px] max-h-[150px] resize-none border-0 bg-[#17111c]"/>
+                <Textarea className="w-full h-[150px] max-h-[150px] resize-none border-0 bg-[#17111c]" placeholder="Message"/>
             </div>
             <button className="flex justify-center items-center w-[100%] h-[20%] bg-[#1a131f] rounded-md text-zinc-100 hover:bg-[#2a1f2f] transition-colors">
                 Send Message
