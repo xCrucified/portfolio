@@ -59,7 +59,7 @@ export const ExperienceCard: React.FC<Props> = ({
                 <li key={index} className="text-base">
                   {text}
                   {index !== textarea.length - 1 && (
-                    <hr className="my-2 border-zinc-700" />
+                    <hr className="my-2 border-zinc-600 from-transparent opacity-50 to-transparent bg-gradient-to-bl" />
                   )}
                 </li>
               ))}
