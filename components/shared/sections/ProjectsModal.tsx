@@ -27,12 +27,12 @@ export const ProjectsModalWindow: React.FC<Props> = ({
         if (!response.ok) throw new Error("Network response was not ok");
         const data: GitHubProject[] = await response.json();
 
-        const formattedProjects = await data.map((repo) => ({
+        const formattedProjects = data.map((repo) => ({
           name: repo.name,
           description: repo.description ?? "No description available.",
           image:
-            `https://raw.githubusercontent.com/xCrucified/${repo.name}/master/${repo.name}.png` ||
-            `https://raw.githubusercontent.com/xCrucified/${repo.name}/master/preview.png`,
+            `https://raw.githubusercontent.com/xCrucified/${repo.name}/master/${repo.name}.png` 
+            // `https://raw.githubusercontent.com/xCrucified/${repo.name}/master/preview.png`,
         }));
 
         setProjects(formattedProjects);
@@ -69,7 +69,7 @@ export const ProjectsModalWindow: React.FC<Props> = ({
           image: project.image,
           description: project.description,
         }))
-        .filter((project) => project.title !== "xCrucified")}
+        .filter((project) => project.title !== "  ")}
       onClose={onClose}
     />
   );
