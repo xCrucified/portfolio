@@ -9,7 +9,7 @@ export async function POST(req: Request) {
 
     await resend.emails.send({
       from: "onboarding@resend.dev", // must be verified in Resend dashboard
-      to: "mxxknk@gmail.com",       // your receiving email
+      to: "eexet17@gmail.com",       // your receiving email
       subject: `Message from ${name || "Unknown"}`,
       html: `
         <p><strong>Name:</strong> ${name}</p>
