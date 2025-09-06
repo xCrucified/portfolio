@@ -8,8 +8,8 @@ export async function POST(req: Request) {
     const { name, email, message } = await req.json();
 
     await resend.emails.send({
-      from: "onboarding@resend.dev", // must be verified in Resend dashboard
-      to: "eexet17@gmail.com",       // your receiving email
+      from: "onboarding@resend.dev",
+      to: "eexet17@gmail.com",  
       subject: `Message from ${name || "Unknown"}`,
       html: `
         <p><strong>Name:</strong> ${name}</p>
