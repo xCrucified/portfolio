@@ -31,7 +31,8 @@ export const ProjectsModalWindow: React.FC<Props> = ({
           name: repo.name,
           description: repo.description ?? "No description available.",
           image:
-            `https://raw.githubusercontent.com/xCrucified/${repo.name}/master/${repo.name}.png` 
+            `https://raw.githubusercontent.com/xCrucified/${repo.name}/master/${repo.name}.png` ||
+            `https://raw.githubusercontent.com/xCrucified/${repo.name}/main/${repo.name}.png`,
             // `https://raw.githubusercontent.com/xCrucified/${repo.name}/master/preview.png`,
         }));
 
@@ -69,7 +70,7 @@ export const ProjectsModalWindow: React.FC<Props> = ({
           image: project.image,
           description: project.description,
         }))
-        .filter((project) => project.title !== "  ")}
+        .filter((project) => project.title !== "xCrucified" && project.title !== "portfolio")}
       onClose={onClose}
     />
   );
