@@ -8,8 +8,8 @@ export async function POST(req: Request) {
     const { name, email, message } = await req.json();
 
     await resend.emails.send({
-      from: "onboarding@resend.dev",
-      to: "eexet17@gmail.com",  
+      from: process.env.oemail!,
+      to: process.env.email!,  
       subject: `Message from ${name || "Unknown"}`,
       html: `
         <p><strong>Name:</strong> ${name}</p>
