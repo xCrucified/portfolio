@@ -15,15 +15,15 @@ export const ResumeCard: React.FC<Props> = ({ className, onClose }) => {
       )}
     >
       <button
-        className="w-6 h-6 border-[1px] border-[#ffffff61] flex justify-center rounded-xs items-center cursor-pointer mr-[5px]"
+        className="w-6 h-6 border border-[#ffffff61] flex justify-center rounded-xs items-center cursor-pointer mr-1.25"
         onClick={onClose}
         aria-label="Close modal"
       >
         <img draggable={false} src="/images/x.svg" alt="close" />
       </button>
-      <a href="/files/Kononchuk-Maksym-CV.pdf" download>
+      {/* <a href="/files/Kononchuk-Maksym-CV.pdf" download>
         Download Kononchuk-Maksym-CV.pdf
-      </a>
+      </a> */}
     </section>
   );
 };

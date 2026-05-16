@@ -89,12 +89,12 @@ export const Main: React.FC<Props> = ({ className }) => {
     <div
       className={cn(
         className,
-        "flex justify-center w-[100%] absolute bottom-10"
+        "flex justify-center w-full absolute bottom-10"
       )}
     >
       <div className="flex w-[90%] h-[83vh] justify-between">
         {/* Left Panel */}
-        <div className="flex flex-col gap-10 h-[100%] font-light">
+        <div className="flex flex-col gap-10 h-full font-light">
           {panels.slice(0, 4).map((item) => (
             <motion.button
               initial={popIn.initial}
@@ -102,13 +102,13 @@ export const Main: React.FC<Props> = ({ className }) => {
               transition={popIn.transition}
               key={item.id}
               onClick={() => handleTabChange(item.id as TabKey, true)}
-              className="flex items-center gap-2 p-1 flex-col w-[55px] h-[50px] section cursor-pointer"
+              className="flex items-center gap-2 p-1 flex-col w-13.75 h-12.5 section cursor-pointer"
             >
               <img
                 draggable={false}
                 src={item.icon}
                 alt={item.label}
-                className="w-[100%] h-[100%] p-[8px]"
+                className="w-full h-full p-2"
               />
               <Label className="text-lg font-light opacity-85">
                 {item.id.length > 8 ? item.label.slice(0, 3) + "..." : item.id}
@@ -118,9 +118,9 @@ export const Main: React.FC<Props> = ({ className }) => {
         </div>
 
         {/* Center */}
-        <div className="w-[100%] h-[100%] relative flex justify-between">
+        <div className="w-full h-full relative flex justify-between">
           {/* left column */}
-          <div className="absolute h-full z-[1005] w-[310px] ml-10">
+          <div className="absolute h-full z-1005 w-77.5 ml-10">
             {openTabs
               .filter((tab) => tab.isLeft)
               .map((tab, index) => {
@@ -128,7 +128,7 @@ export const Main: React.FC<Props> = ({ className }) => {
                 return (
                   <DraggableDiv key={tab.id}>
                     <div
-                      className="absolute w-[640px] h-[90%] transition-all duration-300"
+                      className="absolute w-160 h-[90%] transition-all duration-300"
                       style={{
                         top: `${index * 80}px`,
                         left: "0px",
@@ -152,9 +152,9 @@ export const Main: React.FC<Props> = ({ className }) => {
                 initial={{ opacity: 0, scale: 0.5 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, ease: "easeInOut" }}
-                className="w-[100%] justify-center flex relative z-[999]"
+                className="w-full justify-center flex relative z-999"
               >
-                <AboutMeModalWindow className="min-w-[650px] min-h-[650px] modal-bg" />
+                <AboutMeModalWindow className="min-w-162.5 min-h-162.5 modal-bg" />
               </motion.section>
             </DraggableDiv>
             {/* Bottom Menu */}
@@ -162,12 +162,12 @@ export const Main: React.FC<Props> = ({ className }) => {
               initial={{ opacity: 0, y: 300 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
-              className="absolute bottom-0 w-full h-[80px] z-[999] flex justify-center items-center"
+              className="absolute bottom-0 w-full h-20 z-999 flex justify-center items-center"
             >
               <div className="flex menu-container">
                 <button
                   onClick={() => (window.location.href = "/")}
-                  className="flex items-center gap-2 mr-2 p-1 flex-col h-[100%] w-full home-btn cursor-pointer"
+                  className="flex items-center gap-2 mr-2 p-1 flex-col h-full w-full home-btn cursor-pointer"
                 >
                   <img draggable={false} src="/images/house.svg" alt="Home" />
                 </button>
@@ -175,14 +175,14 @@ export const Main: React.FC<Props> = ({ className }) => {
                 {menuItems.map((item) => (
                   <button
                     key={item.id}
-                    className="flex items-center gap-2 p-1 flex-col w-[100%] h-[100%] home-btn cursor-pointer"
+                    className="flex items-center gap-2 p-1 flex-col w-full h-full home-btn cursor-pointer"
                     onClick={() => (window.location.href = item.link)}
                   >
                     <img
                       draggable={false}
                       src={item.icon}
                       alt={item.id}
-                      className="w-full h-full p-[6px]"
+                      className="w-full h-full p-1.5"
                     />
                   </button>
                 ))}
@@ -190,7 +190,7 @@ export const Main: React.FC<Props> = ({ className }) => {
             </motion.div>
           </div>
           {/* right column */}
-          <div className="h-full z-[1000] w-[310px] absolute right-0 mr-6">
+          <div className="h-full z-1000 w-77.5 absolute right-0 mr-6">
             {openTabs
               .filter((tab) => !tab.isLeft)
               .map((tab, index) => {
@@ -198,7 +198,7 @@ export const Main: React.FC<Props> = ({ className }) => {
                 return (
                   <DraggableDiv key={tab.id}>
                     <div
-                      className="absolute w-[640px] h-[90%] transition-all duration-300"
+                      className="absolute w-160 h-[90%] transition-all duration-300"
                       style={{
                         top: `${index * 80}px`,
                         right: "0px",
@@ -216,7 +216,7 @@ export const Main: React.FC<Props> = ({ className }) => {
         </div>
 
         {/* Right Panel */}
-        <div className="flex flex-col gap-10 h-[100%] font-light">
+        <div className="flex flex-col gap-10 h-full font-light">
           {panels.slice(4, 10).map((item) => (
             <motion.button
               initial={popIn.initial}
@@ -224,13 +224,13 @@ export const Main: React.FC<Props> = ({ className }) => {
               transition={popIn.transition}
               key={item.id}
               onClick={() => handleTabChange(item.id as TabKey, false)}
-              className="flex items-center gap-2 p-1 flex-col w-[55px] h-[50px] section cursor-pointer"
+              className="flex items-center gap-2 p-1 flex-col w-13.75 h-12.5 section cursor-pointer"
             >
               <img
                 draggable={false}
                 src={item.icon}
                 alt={item.label}
-                className="w-[100%] h-[100%] p-[8px]"
+                className="w-full h-full p-2"
               />
               <Label className="text-lg font-light opacity-85">
                 {item.id.length > 8 ? item.label.slice(0, 3) + "..." : item.id}

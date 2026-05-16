@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-// @ts-ignore: side-effect import of global CSS (handled by Next.js)
-import "./globals.css";
 import { Montserrat } from "next/font/google";
-import { cn } from "@/lib/utils";
 import CursorShadow from "@/components/shared/cursorShadows";
+import { cn } from "@/lib/imports";
+import "./globals.css";
 
 const googleFont = Montserrat({
   subsets: ["latin"],

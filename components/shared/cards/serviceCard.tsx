@@ -22,7 +22,7 @@ export const ServiceCard: React.FC<Props> = ({
   return (
     <section
       className={cn(
-        "flex flex-col text-zinc-100 p-3 rounded-xl gap-4 w-[800px] modal-bg select-none",
+        "flex flex-col text-zinc-100 p-3 rounded-xl gap-4 w-200 modal-bg select-none",
         className
       )}
     >
@@ -38,12 +38,12 @@ export const ServiceCard: React.FC<Props> = ({
       </div>
 
       <div className="relative grid grid-cols-2 grid-rows-2 gap-5 bg-[#110c17] p-4 rounded-sm">
-        <div className="absolute left-1/2 -translate-x-1/2 top-0 h-full flex flex-col justify-around items-center w-[1px] z-0 pointer-events-none">
-          <div className="h-36 w-px bg-gradient-to-b from-transparent via-gray-600 to-transparent opacity-25" />
-          <div className="h-36 w-px bg-gradient-to-b from-transparent via-gray-600 to-transparent opacity-25" />
+        <div className="absolute left-1/2 -translate-x-1/2 top-0 h-full flex flex-col justify-around items-center w-px z-0 pointer-events-none">
+          <div className="h-36 w-px bg-linear-to-b from-transparent via-gray-600 to-transparent opacity-25" />
+          <div className="h-36 w-px bg-linear-to-b from-transparent via-gray-600 to-transparent opacity-25" />
         </div>
 
-        <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-600 to-transparent opacity-25 z-0 pointer-events-none" />
+        <div className="absolute top-1/2 left-0 w-full h-px bg-linear-to-r from-transparent via-gray-600 to-transparent opacity-25 z-0 pointer-events-none" />
 
         {displayServices.map((service, idx) => (
           <div

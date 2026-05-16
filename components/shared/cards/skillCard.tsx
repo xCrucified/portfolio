@@ -94,7 +94,7 @@ export const SkillCard: React.FC<Props> = ({ className, onClose, skills = [] }) 
         )}
       </div>
 
-      <div className="relative flex items-center justify-center w-[100%] h-[300px] bg-[#120d18] rounded-lg mx-auto mt-2">
+      <div className="relative flex items-center justify-center w-full h-75 bg-[#120d18] rounded-lg mx-auto mt-2">
         <div
           ref={containerRef}
           className="flex w-full h-full overflow-x-auto scrollbar-hide snap-x snap-mandatory rounded-2xl"
@@ -103,7 +103,7 @@ export const SkillCard: React.FC<Props> = ({ className, onClose, skills = [] }) 
           {skills.map((skill, index) => (
             <div
               key={index}
-              className="flex-shrink-0 w-full h-full snap-start flex items-center px-10 gap-4 justify-center"
+              className="shrink-0 w-full h-full snap-start flex items-center px-10 gap-4 justify-center"
               style={{ scrollSnapAlign: "start" }}
             >
               {skill.icon && (
@@ -125,7 +125,7 @@ export const SkillCard: React.FC<Props> = ({ className, onClose, skills = [] }) 
         </div>
 
         {/* Стрелки навигации */}
-        <div className="flex justify-between w-[100%] h-[100%] absolute top-0 left-0 items-center z-10 px-1 pointer-events-none">
+        <div className="flex justify-between w-full h-full absolute top-0 left-0 items-center z-10 px-1 pointer-events-none">
           <button
             onClick={scrollLeft}
             className={cn(

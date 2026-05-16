@@ -1,5 +1,5 @@
-import { cn } from '@/lib/imports';
-import React, { useEffect } from 'react';
+
+import { useEffect } from '@/lib/imports';
 import ResumeCard from '../cards/resumeCard';
 interface Props {
   className?: string;

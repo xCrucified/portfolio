@@ -7,7 +7,7 @@ interface Props {
 
 export const EmptyItemError: React.FC<Props> = ({ className }) => {
   return (
-    <div className={cn(className, "modal-bg h-[600px]")}>
+    <div className={cn(className, "modal-bg h-150")}>
         
     </div>
   );

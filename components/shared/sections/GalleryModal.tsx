@@ -1,5 +1,5 @@
-import { cn } from '@/lib/imports';
-import React, { useEffect } from 'react';
+import { cn, useEffect } from '@/lib/imports';
+
 
 interface Props {
   className?: string;
