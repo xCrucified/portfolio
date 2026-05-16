@@ -1,4 +1,4 @@
-export { default as Footer } from "@/components/shared/layout/footer";
+export { default as Footer } from "@/components/shared/footer";
 export { cn } from "@/lib/utils";
 export { default as React, useState, useEffect } from "react";
 export { Label } from "@/components/ui/label";
@@ -6,8 +6,8 @@ export { ProjectsModalWindow } from "@/components/shared/sections/ProjectsModal"
 export { ServicesModalWindow } from "@/components/shared/sections/ServicesModal";
 export { default as CursorShadow } from "@/components/shared/cursorShadows";
 export type { Metadata } from "next";
-export { Header } from "@/components/shared/layout/header";
-export { Main } from "@/components/shared/layout/main";
+export { Header } from "@/components/shared/header";
+export { Main } from "@/components/shared/main";
 export { SkillsModalWindow } from "@/components/shared/sections/SkillsModal";
 export { AboutMeModalWindow } from "@/components/shared/sections/AboutMeModal";
 export { ContactModalWindow } from "@/components/shared/sections/ContactModal";

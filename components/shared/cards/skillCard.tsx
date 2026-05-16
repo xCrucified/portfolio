@@ -2,7 +2,6 @@
 
 import { cn, Label } from "@/lib/imports";
 import React, { useRef, useState, useEffect } from "react";
-import EmptyItemError from "../emptyItem";
 
 interface Props {
   className?: string;
@@ -48,11 +47,11 @@ export const SkillCard: React.FC<Props> = ({ className, onClose, skills }) => {
     return () => el.removeEventListener("touchmove", preventTouchMove);
   }, []);
 
-  if (totalItems === 0) return <EmptyItemError />;
+  // if (totalItems === 0) return <EmptyItemError />;
 
-  if (!skills || skills.length === 0) {
-    return <EmptyItemError />;
-  }
+  // if (!skills || skills.length === 0) {
+  //   return <EmptyItemError />;
+  // }
 
   return (
     <section className={cn("flex flex-col outline modal-bg p-2", className)}>

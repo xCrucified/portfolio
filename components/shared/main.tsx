@@ -11,8 +11,8 @@ import {
   SkillsModalWindow,
   useState,
 } from "@/lib/imports";
-import ExperienceModalWindow from "../sections/ExperienceModal";
-import DraggableDiv from "../dragElement";
+import ExperienceModalWindow from "./sections/ExperienceModal";
+import DraggableDiv from "./dragElement";
 import { motion } from "framer-motion";
 
 interface Props {
