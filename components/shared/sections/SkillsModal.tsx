@@ -1,4 +1,7 @@
-import { cn, useEffect } from '@/lib/imports';
+"use client";
+
+import { useEffect } from "react";
+import { cn } from '@/lib/imports';
 import SkillCard from '../cards/skillCard';
 
 interface Props {

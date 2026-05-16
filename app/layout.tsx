@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
-import CursorShadow from "@/components/shared/cursorShadows";
 import { cn } from "@/lib/imports";
-import "./globals.css";
+import "../app/globals.css";
+import CursorShadow from "@/components/shared/cursorShadows";
 
 const googleFont = Montserrat({
   subsets: ["latin"],

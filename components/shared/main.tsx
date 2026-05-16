@@ -1,19 +1,18 @@
-"use client";
-import {
-  AboutMeModalWindow,
-  cn,
-  ContactModalWindow,
-  GalleryModalWindow,
-  Label,
-  ProjectsModalWindow,
-  ResumeModalWindow,
-  ServicesModalWindow,
-  SkillsModalWindow,
-  useState,
-} from "@/lib/imports";
-import ExperienceModalWindow from "./sections/ExperienceModal";
-import DraggableDiv from "./dragElement";
+import React, { useState } from "react";
+
+import { cn } from "@/lib/utils";
+import { Label } from "@/components/ui/label";
 import { motion } from "framer-motion";
+
+import DraggableDiv from "./dragElement";
+import ProjectsModalWindow from "./sections/ProjectsModal";
+import ServicesModalWindow from "./sections/ServicesModal";
+import SkillsModalWindow from "./sections/SkillsModal";
+import ExperienceModalWindow from "./sections/ExperienceModal";
+import AboutMeModalWindow from "./sections/AboutMeModal";
+import ContactModalWindow from "./sections/ContactModal";
+import GalleryModalWindow from "./sections/GalleryModal";
+import ResumeModalWindow from "./sections/ResumeModal";
 
 interface Props {
   className?: string;
@@ -64,7 +63,6 @@ const tabs = {
   Services: ServicesModalWindow,
   Skills: SkillsModalWindow,
   Experience: ExperienceModalWindow,
-  Info: AboutMeModalWindow,
   Contact: ContactModalWindow,
   Gallery: GalleryModalWindow,
   Resume: ResumeModalWindow,
@@ -80,8 +78,8 @@ export const Main: React.FC<Props> = ({ className }) => {
     setOpenTabs(
       (prev) =>
         prev.some((t) => t.id === tab)
-          ? prev.filter((t) => t.id !== tab) // Close the tab if it already exists
-          : [...prev, { id: tab, isLeft }] // Open a new tab
+          ? prev.filter((t) => t.id !== tab) // Закрываем, если уже открыта
+          : [...prev, { id: tab, isLeft }]   // Открываем новую
     );
   };
 
@@ -93,7 +91,7 @@ export const Main: React.FC<Props> = ({ className }) => {
       )}
     >
       <div className="flex w-[90%] h-[83vh] justify-between">
-        {/* Left Panel */}
+        {/* Левая панель */}
         <div className="flex flex-col gap-10 h-full font-light">
           {panels.slice(0, 4).map((item) => (
             <motion.button
@@ -110,17 +108,17 @@ export const Main: React.FC<Props> = ({ className }) => {
                 alt={item.label}
                 className="w-full h-full p-2"
               />
-              <Label className="text-lg font-light opacity-85">
+              <Label className="text-lg font-light opacity-85 cursor-pointer">
                 {item.id.length > 8 ? item.label.slice(0, 3) + "..." : item.id}
               </Label>
             </motion.button>
           ))}
         </div>
 
-        {/* Center */}
+        {/* Центр экрана */}
         <div className="w-full h-full relative flex justify-between">
-          {/* left column */}
-          <div className="absolute h-full z-1005 w-77.5 ml-10">
+          {/* Левая колонка открытых окон */}
+          <div className="absolute h-full z-1005 w-77.5 ml-10 pointer-events-none">
             {openTabs
               .filter((tab) => tab.isLeft)
               .map((tab, index) => {
@@ -128,7 +126,7 @@ export const Main: React.FC<Props> = ({ className }) => {
                 return (
                   <DraggableDiv key={tab.id}>
                     <div
-                      className="absolute w-160 h-[90%] transition-all duration-300"
+                      className="absolute w-160 h-[90%] transition-all duration-300 pointer-events-auto"
                       style={{
                         top: `${index * 80}px`,
                         left: "0px",
@@ -144,7 +142,7 @@ export const Main: React.FC<Props> = ({ className }) => {
               })}
           </div>
 
-          {/* Center Content */}
+          {/* Центральный контент (Приветственное окно) */}
           <div className="flex w-full justify-center relative">
             <DraggableDiv>
               <motion.section
@@ -157,7 +155,8 @@ export const Main: React.FC<Props> = ({ className }) => {
                 <AboutMeModalWindow className="min-w-162.5 min-h-162.5 modal-bg" />
               </motion.section>
             </DraggableDiv>
-            {/* Bottom Menu */}
+
+            {/* Нижнее меню */}
             <motion.div
               initial={{ opacity: 0, y: 300 }}
               animate={{ opacity: 1, y: 0 }}
@@ -171,12 +170,15 @@ export const Main: React.FC<Props> = ({ className }) => {
                 >
                   <img draggable={false} src="/images/house.svg" alt="Home" />
                 </button>
-                <hr className="vertical-hr"></hr>
+                <hr className="vertical-hr" />
+                
                 {menuItems.map((item) => (
-                  <button
+                  <a
                     key={item.id}
-                    className="flex items-center gap-2 p-1 flex-col w-full h-full home-btn cursor-pointer"
-                    onClick={() => (window.location.href = item.link)}
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 p-1 flex-col w-full h-full home-btn cursor-pointer justify-center"
                   >
                     <img
                       draggable={false}
@@ -184,13 +186,14 @@ export const Main: React.FC<Props> = ({ className }) => {
                       alt={item.id}
                       className="w-full h-full p-1.5"
                     />
-                  </button>
+                  </a>
                 ))}
               </div>
             </motion.div>
           </div>
-          {/* right column */}
-          <div className="h-full z-1000 w-77.5 absolute right-0 mr-6">
+
+          {/* Правая колонка открытых окон */}
+          <div className="h-full z-1000 w-77.5 absolute right-0 mr-6 pointer-events-none">
             {openTabs
               .filter((tab) => !tab.isLeft)
               .map((tab, index) => {
@@ -198,7 +201,7 @@ export const Main: React.FC<Props> = ({ className }) => {
                 return (
                   <DraggableDiv key={tab.id}>
                     <div
-                      className="absolute w-160 h-[90%] transition-all duration-300"
+                      className="absolute w-160 h-[90%] transition-all duration-300 pointer-events-auto"
                       style={{
                         top: `${index * 80}px`,
                         right: "0px",
@@ -215,9 +218,9 @@ export const Main: React.FC<Props> = ({ className }) => {
           </div>
         </div>
 
-        {/* Right Panel */}
+        {/* Правая панель */}
         <div className="flex flex-col gap-10 h-full font-light">
-          {panels.slice(4, 10).map((item) => (
+          {panels.slice(4, 7).map((item) => (
             <motion.button
               initial={popIn.initial}
               animate={popIn.animate}
@@ -232,7 +235,7 @@ export const Main: React.FC<Props> = ({ className }) => {
                 alt={item.label}
                 className="w-full h-full p-2"
               />
-              <Label className="text-lg font-light opacity-85">
+              <Label className="text-lg font-light opacity-85 cursor-pointer">
                 {item.id.length > 8 ? item.label.slice(0, 3) + "..." : item.id}
               </Label>
             </motion.button>

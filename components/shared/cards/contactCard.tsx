@@ -1,6 +1,9 @@
+"use client";
 
-import { cn, Label, useState } from "@/lib/imports";
+import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { cn } from "@/lib/utils";
+import { useState } from "react";
 
 interface Props {
   className?: string;

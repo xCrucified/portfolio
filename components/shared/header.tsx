@@ -1,13 +1,8 @@
 "use client";
 
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-  cn,
-  Label,
-  useState,
-} from "@/lib/imports";
+import { cn } from "@/lib/imports";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { Label } from "../ui/label";
 import { motion } from "framer-motion";
 
 interface Props {

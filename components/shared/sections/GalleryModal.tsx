@@ -1,4 +1,6 @@
-import { cn, useEffect } from '@/lib/imports';
+"use client";
+import { cn } from '@/lib/imports';
+import { useEffect } from 'react';
 
 
 interface Props {

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "@/lib/imports";
+import { useEffect, useState } from "react";
 
 export default function CursorShadow() {
   const [position, setPosition] = useState({ x: 0, y: 0 });

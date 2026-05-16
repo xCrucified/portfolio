@@ -1,6 +1,7 @@
 "use client";
 
-import { cn, Label } from "@/lib/imports";
+import { Label } from "@/components/ui/label";
+import { cn } from "@/lib/imports";
 import React, { useRef, useState, useEffect } from "react";
 
 interface Props {

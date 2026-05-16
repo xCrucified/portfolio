@@ -1,4 +1,5 @@
-import { cn, Label } from "@/lib/imports";
+import { Label } from "@/components/ui/label";
+import { cn } from "@/lib/imports";
 import React from "react";
 
 interface Props {

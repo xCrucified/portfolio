@@ -1,5 +1,6 @@
+"use client";
 
-import { useEffect } from '@/lib/imports';
+import { useEffect } from "react";
 import ContactCard from '../cards/contactCard';
 
 interface Props {

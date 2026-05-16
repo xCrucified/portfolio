@@ -1,5 +1,7 @@
-import { cn, Label } from "@/lib/imports";
+
+import { cn } from "@/lib/imports";
 import { motion } from "framer-motion";
+import { Label } from "../ui/label";
 
 interface Props {
   className?: string;

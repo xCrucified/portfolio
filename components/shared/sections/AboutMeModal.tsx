@@ -1,5 +1,6 @@
-import { cn, useState } from "@/lib/imports";
+import { cn } from "@/lib/imports";
 import InfoCard from "../cards/infoCard";
+
 
 interface Props {
   className?: string;

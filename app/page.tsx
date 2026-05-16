@@ -1,6 +1,9 @@
 "use client";
+import Footer from "@/components/shared/footer";
+import Header from "@/components/shared/header";
 import Loading from "@/components/shared/loading";
-import { Footer, Header, Main, useEffect, useState } from "@/lib/imports";
+import Main from "@/components/shared/main";
+import { useState, useEffect } from "react";
 
 export default function Home() {
   const [loading, setLoading] = useState<boolean>(true);

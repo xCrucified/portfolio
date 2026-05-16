@@ -1,5 +1,7 @@
 
-import { useEffect } from '@/lib/imports';
+"use client";
+
+import { useEffect } from "react";
 import ResumeCard from '../cards/resumeCard';
 interface Props {
   className?: string;

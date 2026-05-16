@@ -1,5 +1,8 @@
-import { cn, useEffect, useState } from "@/lib/imports";
+'use client';
+
+import { cn } from "@/lib/imports";
 import ProjectCard from "../cards/projectCard";
+import { useEffect, useState } from "react";
 
 interface GitHubProject {
   name: string;

@@ -1,4 +1,6 @@
-import { useEffect } from "@/lib/imports";
+"use client";
+
+import { useEffect } from "react";
 import ServiceCard from "../cards/serviceCard";
 
 interface Props {
