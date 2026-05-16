@@ -7,15 +7,12 @@ export default function Home() {
 
   useEffect(() => {
     try {
-      // Simulate loading or perform any async initialization here
-      // For demonstration, we'll use a timeout
       const timer = setTimeout(() => {
         setLoading(false);
       }, 1000);
 
       return () => clearTimeout(timer);
     } catch (error) {
-      // Handle error if needed
       setLoading(false);
     }
   }, []);
@@ -26,9 +23,9 @@ export default function Home() {
 
   return (
     <div>
-      <Header className="w-[100%]" />
-      <Main className="w-[100%]" />
-      <Footer className="w-[100%]" />
+      <Header className="w-full" />
+      <Main className="w-full" />
+      <Footer className="w-full" />
     </div>
   );
 }

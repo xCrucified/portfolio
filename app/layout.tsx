@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+// @ts-ignore: side-effect import of global CSS (handled by Next.js)
 import "./globals.css";
 import { Montserrat } from "next/font/google";
 import { cn } from "@/lib/utils";
@@ -27,7 +28,7 @@ export default function RootLayout({
   
   return (
     <html lang="en" className={cn(googleFont.className, "bg-[#0f0b14] select-none")}>
-      <body className={`orbitron bg-main h-[100dvh]`}>
+      <body className={`bg-main h-screen`}>
         <CursorShadow />
         {children}
       </body>

@@ -9,11 +9,10 @@ import {
   ResumeModalWindow,
   ServicesModalWindow,
   SkillsModalWindow,
-  ToolsModalWindow,
   useState,
 } from "@/lib/imports";
-import ExperienceModalWindow from "./sections/ExperienceModal";
-import DraggableDiv from "./dragElement";
+import ExperienceModalWindow from "../sections/ExperienceModal";
+import DraggableDiv from "../dragElement";
 import { motion } from "framer-motion";
 
 interface Props {
@@ -34,7 +33,6 @@ const panels = [
 
   { id: "Contact", label: "Contact", icon: "/images/contact.svg" },
   { id: "Gallery", label: "Gallery", icon: "/images/gallery.svg" },
-  { id: "Tools", label: "Tools I Use", icon: "/images/tools.svg" },
   { id: "Resume", label: "Resume", icon: "/images/resume.svg" },
 ] as const;
 
@@ -69,7 +67,6 @@ const tabs = {
   Info: AboutMeModalWindow,
   Contact: ContactModalWindow,
   Gallery: GalleryModalWindow,
-  Tools: ToolsModalWindow,
   Resume: ResumeModalWindow,
 } as const;
 
