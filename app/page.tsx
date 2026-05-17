@@ -25,7 +25,7 @@ export default function Home() {
   }
 
   return (
-    <div>
+    <div className="w-full h-screen">
       <Header className="w-full" />
       <Main className="w-full" />
       <Footer className="w-full" />

@@ -105,7 +105,7 @@ export const Main: React.FC<Props> = ({ className }) => {
     >
       <div className="flex w-[90%] h-[83vh] justify-between">
         {/* left panel */}
-        <div className="flex flex-col gap-10 h-full font-light">
+        <div className="flex flex-col gap-10 h-full font-light max-md:hidden">  {/* hide on mobile */}
           {panels.slice(0, 4).map((item) => (
             <motion.button
               initial={popIn.initial}
@@ -128,10 +128,17 @@ export const Main: React.FC<Props> = ({ className }) => {
           ))}
         </div>
 
+        {/* center mobile */}
+        <div className="max-md:flex max-md:w-full max-md:h-full max-md:justify-center max-md:items-center
+                        max-md:absolute 
+                        max-md:outline-1">
+        
+
+        </div>
         {/* center */}
         <div className="w-full h-full relative flex justify-between">
           {/* left open tabs */}
-          <div className="absolute h-full z-1005 w-77.5 ml-10 pointer-events-none">
+          <div className="absolute h-full z-1005 w-77.5 ml-10 pointer-events-none max-md:hidden">
             {openTabs
               .filter((tab) => tab.isLeft)
               .map((tab, index) => {
@@ -160,7 +167,7 @@ export const Main: React.FC<Props> = ({ className }) => {
 
           {/* center card */}
           <div className="flex w-full justify-center relative">
-            <DraggableDiv>
+            {/* <DraggableDiv>
               <motion.section
                 key="about-me"
                 initial={{ opacity: 0, scale: 0.5 }}
@@ -170,7 +177,7 @@ export const Main: React.FC<Props> = ({ className }) => {
               >
                 <AboutMeModalWindow className="lg:min-w-162.5 md:min-w-122.5 sm:min-w-82.5 modal-bg" />{" "}
               </motion.section>
-            </DraggableDiv>
+            </DraggableDiv> */}
 
             {/* footer main */}
             <motion.section
@@ -239,7 +246,7 @@ export const Main: React.FC<Props> = ({ className }) => {
         </div>
 
         {/* right panel */}
-        <div className="flex flex-col gap-10 h-full font-light">
+        <div className="flex flex-col gap-10 h-full font-light max-md:hidden">  {/* hide on mobile */}
           {panels.slice(4, 7).map((item) => (
             <motion.button
               initial={popIn.initial}

@@ -42,30 +42,30 @@ export const ContactCard: React.FC<Props> = ({ className, onClose }) => {
     }
   };
 
-  // Максимальная блокировка любых всплывающих событий мыши, тача и поинтеров
   const disableDragPropagation = (e: React.SyntheticEvent) => {
     e.stopPropagation();
   };
 
-  // Объект со всеми обработчиками для инпутов, чтобы не дублировать код
   const stopDragProps = {
     onPointerDown: disableDragPropagation,
     onMouseDown: disableDragPropagation,
     onTouchStart: disableDragPropagation,
     onKeyDown: (e: React.KeyboardEvent) => {
-      // Чтобы пробел внутри инпута не вызывал drag-события в некоторых библиотеках
       if (e.key === " ") {
         e.stopPropagation();
       }
     },
-    "data-drag": "false", // Для библиотек, поддерживающих этот дата-атрибут
+    "data-drag": "false",
   };
 
   return (
     <section
       className={cn(
-        "flex flex-col info-panel text-zinc-100 p-3 rounded-xl gap-2 w-full max-w-3xl bg-neutral-950 modal-bg",
-        className
+         `flex flex-col w-full max-w-3xl gap-2
+        text-zinc-100 bg-neutral-950
+          p-3 rounded-xl 
+          modal-bg`,
+        className,
       )}
     >
       <div className="w-full h-8 flex items-center ml-1 justify-between">
@@ -74,7 +74,7 @@ export const ContactCard: React.FC<Props> = ({ className, onClose }) => {
           className="w-6 h-6 border border-[#ffffff61] flex justify-center bg-[#1a131f] rounded-xs items-center cursor-pointer mr-1.25"
           onClick={onClose}
           aria-label="Close modal"
-          {...stopDragProps} // Защищаем и кнопку закрытия от мисскликов драга
+          {...stopDragProps}
         >
           <img src="/images/x.svg" alt="close" />
         </button>
@@ -85,8 +85,9 @@ export const ContactCard: React.FC<Props> = ({ className, onClose }) => {
         <div className="flex flex-col p-4 gap-2 h-1/2">
           <Label className="text-3xl">Let's get in touch</Label>
           <p className="text-lg opacity-45 font-light">
-            I would love to hear from you. Whether you have a project in mind, a question about my services,
-            or just want to say hello, feel free to reach out using the contact form below.
+            I would love to hear from you. Whether you have a project in mind, a
+            question about my services, or just want to say hello, feel free to
+            reach out using the contact form below.
           </p>
         </div>
 
