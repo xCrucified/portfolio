@@ -128,11 +128,14 @@
   @apply hidden;
 }
 
-html {
-  @apply scroll-smooth;
-  background: #0f0b14;
+html, body {
+  background-color: #130919;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; 
 }
-
 .bg-main {
   background-image: url("/images/testbg2.png");
   background-size: cover;
