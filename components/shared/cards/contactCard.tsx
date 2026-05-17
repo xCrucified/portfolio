@@ -11,38 +11,55 @@ interface Props {
 }
 
 export const ContactCard: React.FC<Props> = ({ className, onClose }) => {
-
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
   const sendEmail = async () => {
-  setLoading(true);
-  try {
-    const res = await fetch("/api/send-email", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, email, message }),
-    });
+    setLoading(true);
+    try {
+      const res = await fetch("/api/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, message }),
+      });
 
-    const data = await res.json();
-    if (data.success) {
-      alert("Message sent successfully!");
-      setName("");
-      setEmail("");
-      setMessage("");
-    } else {
-      alert("Failed to send message.");
+      const data = await res.json();
+      if (data.success) {
+        alert("Message sent successfully!");
+        setName("");
+        setEmail("");
+        setMessage("");
+      } else {
+        alert("Failed to send message.");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Error sending message.");
+    } finally {
+      setLoading(false);
     }
-  } catch (error) {
-    console.error(error);
-    alert("Error sending message.");
-  } finally {
-    setLoading(false);
-  }
-};
+  };
 
+  // Максимальная блокировка любых всплывающих событий мыши, тача и поинтеров
+  const disableDragPropagation = (e: React.SyntheticEvent) => {
+    e.stopPropagation();
+  };
+
+  // Объект со всеми обработчиками для инпутов, чтобы не дублировать код
+  const stopDragProps = {
+    onPointerDown: disableDragPropagation,
+    onMouseDown: disableDragPropagation,
+    onTouchStart: disableDragPropagation,
+    onKeyDown: (e: React.KeyboardEvent) => {
+      // Чтобы пробел внутри инпута не вызывал drag-события в некоторых библиотеках
+      if (e.key === " ") {
+        e.stopPropagation();
+      }
+    },
+    "data-drag": "false", // Для библиотек, поддерживающих этот дата-атрибут
+  };
 
   return (
     <section
@@ -57,6 +74,7 @@ export const ContactCard: React.FC<Props> = ({ className, onClose }) => {
           className="w-6 h-6 border border-[#ffffff61] flex justify-center bg-[#1a131f] rounded-xs items-center cursor-pointer mr-1.25"
           onClick={onClose}
           aria-label="Close modal"
+          {...stopDragProps} // Защищаем и кнопку закрытия от мисскликов драга
         >
           <img src="/images/x.svg" alt="close" />
         </button>
@@ -80,6 +98,7 @@ export const ContactCard: React.FC<Props> = ({ className, onClose }) => {
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                {...stopDragProps}
                 className="flex w-[50%] p-3 focus:outline-0 rounded-sm bg-[#17111c]"
                 placeholder="Name"
               />
@@ -87,6 +106,7 @@ export const ContactCard: React.FC<Props> = ({ className, onClose }) => {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                {...stopDragProps}
                 className="flex w-[50%] p-3 focus:outline-0 rounded-sm bg-[#17111c]"
                 placeholder="Email"
               />
@@ -94,13 +114,16 @@ export const ContactCard: React.FC<Props> = ({ className, onClose }) => {
             <Textarea
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              className="w-full h-37.5 max-h-37.5 resize-none border-0 bg-[#17111c]"
+              {...stopDragProps}
+              className="w-full h-37.5 max-h-37.5 resize-none border-0 bg-[#17111c] cursor-text focus:outline-0 rounded-sm"
               placeholder="Message"
+              draggable={false}
             />
           </div>
           <button
             onClick={sendEmail}
             disabled={loading}
+            {...stopDragProps}
             className="flex justify-center items-center w-full h-[20%] bg-[#1a131f] rounded-md text-zinc-100 hover:bg-[#2a1f2f] transition-colors disabled:opacity-50"
           >
             {loading ? "Sending..." : "Send Message"}

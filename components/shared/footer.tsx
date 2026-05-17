@@ -15,7 +15,7 @@ export const Footer: React.FC<Props> = ({ className }) => {
       transition={{ duration: 0.6}}
       className={cn("h-22 flex items-center w-full absolute bottom-0", className)}
     >
-      <Label className="flex w-[23%] justify-center">
+      <Label className="flex w-full justify-start text-sm font-light opacity-50">
         © {new Date().getFullYear()} Max Kononchuk. All rights reserved.
       </Label>
     </motion.footer>

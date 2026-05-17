@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import ContactCard from '../cards/contactCard';
+import { cn } from "@/lib/imports";
 
 interface Props {
   className?: string;
@@ -22,7 +23,7 @@ export const ContactModalWindow: React.FC<Props> = ({ className, onClose }) => {
     };
   }, [onClose]);
   return (
-     <ContactCard onClose={onClose} />
+     <ContactCard className={cn(className, "")} onClose={onClose} />
   );
 };
 

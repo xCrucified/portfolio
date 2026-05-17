@@ -11,7 +11,7 @@ export const AboutMeModalWindow: React.FC<Props> = ({ className, onClose }) => {
   return (
     <InfoCard
       className={cn(
-        "flex flex-col text-zinc-100 p-3 rounded-xl gap-2 w-full max-w-3xl",
+        "flex flex-col text-zinc-100 p-3 rounded-xl gap-2",
         className
       )}
       imageSrc="/images/aboutme2.png"

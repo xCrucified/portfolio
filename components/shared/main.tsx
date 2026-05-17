@@ -69,29 +69,42 @@ const tabs = {
 } as const;
 
 type TabKey = keyof typeof tabs;
-type TabData = { id: TabKey; isLeft: boolean };
+type TabData = { id: TabKey; isLeft: boolean; orderId: number };
 
 export const Main: React.FC<Props> = ({ className }) => {
   const [openTabs, setOpenTabs] = useState<TabData[]>([]);
+  const [leftCount, setLeftCount] = useState(0);
+  const [rightCount, setRightCount] = useState(0);
 
   const handleTabChange = (tab: TabKey, isLeft: boolean) => {
-    setOpenTabs(
-      (prev) =>
-        prev.some((t) => t.id === tab)
-          ? prev.filter((t) => t.id !== tab) // Закрываем, если уже открыта
-          : [...prev, { id: tab, isLeft }]   // Открываем новую
-    );
+    setOpenTabs((prev) => {
+      const exists = prev.some((t) => t.id === tab);
+      if (exists) {
+        return prev.filter((t) => t.id !== tab);
+      } else {
+        const currentOrder = isLeft ? leftCount : rightCount;
+        if (isLeft) setLeftCount((c) => c + 1);
+        else setRightCount((c) => c + 1);
+
+        return [...prev, { id: tab, isLeft, orderId: currentOrder }];
+      }
+    });
+  };
+
+  const focusTab = (tabId: TabKey) => {
+    setOpenTabs((prev) => {
+      const target = prev.find((t) => t.id === tabId);
+      if (!target) return prev;
+      return [...prev.filter((t) => t.id !== tabId), target];
+    });
   };
 
   return (
     <div
-      className={cn(
-        className,
-        "flex justify-center w-full absolute bottom-10"
-      )}
+      className={cn(className, "flex justify-center w-full absolute bottom-10")}
     >
       <div className="flex w-[90%] h-[83vh] justify-between">
-        {/* Левая панель */}
+        {/* left panel */}
         <div className="flex flex-col gap-10 h-full font-light">
           {panels.slice(0, 4).map((item) => (
             <motion.button
@@ -115,22 +128,25 @@ export const Main: React.FC<Props> = ({ className }) => {
           ))}
         </div>
 
-        {/* Центр экрана */}
+        {/* center */}
         <div className="w-full h-full relative flex justify-between">
-          {/* Левая колонка открытых окон */}
+          {/* left open tabs */}
           <div className="absolute h-full z-1005 w-77.5 ml-10 pointer-events-none">
             {openTabs
               .filter((tab) => tab.isLeft)
               .map((tab, index) => {
                 const Component = tabs[tab.id];
+                const globalIndex = openTabs.findIndex((t) => t.id === tab.id);
+
                 return (
                   <DraggableDiv key={tab.id}>
                     <div
+                      onMouseDown={() => focusTab(tab.id)}
                       className="absolute w-160 h-[90%] transition-all duration-300 pointer-events-auto"
                       style={{
-                        top: `${index * 80}px`,
+                        top: `${tab.orderId * 80}px`, // fix by orderId
                         left: "0px",
-                        zIndex: 10 + index,
+                        zIndex: 10 + globalIndex, // dynamic z index
                       }}
                     >
                       <Component
@@ -142,7 +158,7 @@ export const Main: React.FC<Props> = ({ className }) => {
               })}
           </div>
 
-          {/* Центральный контент (Приветственное окно) */}
+          {/* center card */}
           <div className="flex w-full justify-center relative">
             <DraggableDiv>
               <motion.section
@@ -152,12 +168,12 @@ export const Main: React.FC<Props> = ({ className }) => {
                 transition={{ duration: 0.6, ease: "easeInOut" }}
                 className="w-full justify-center flex relative z-999"
               >
-                <AboutMeModalWindow className="min-w-162.5 min-h-162.5 modal-bg" />
+                <AboutMeModalWindow className="lg:min-w-162.5 md:min-w-122.5 sm:min-w-82.5 modal-bg" />{" "}
               </motion.section>
             </DraggableDiv>
 
-            {/* Нижнее меню */}
-            <motion.div
+            {/* footer main */}
+            <motion.section
               initial={{ opacity: 0, y: 300 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
@@ -171,7 +187,7 @@ export const Main: React.FC<Props> = ({ className }) => {
                   <img draggable={false} src="/images/house.svg" alt="Home" />
                 </button>
                 <hr className="vertical-hr" />
-                
+
                 {menuItems.map((item) => (
                   <a
                     key={item.id}
@@ -189,23 +205,27 @@ export const Main: React.FC<Props> = ({ className }) => {
                   </a>
                 ))}
               </div>
-            </motion.div>
+            </motion.section>
           </div>
 
-          {/* Правая колонка открытых окон */}
+          {/* right open tabs */}
           <div className="h-full z-1000 w-77.5 absolute right-0 mr-6 pointer-events-none">
             {openTabs
               .filter((tab) => !tab.isLeft)
               .map((tab, index) => {
                 const Component = tabs[tab.id];
+                const globalIndex = openTabs.findIndex((t) => t.id === tab.id);
+
                 return (
+                  //ctrl c ctr v for dynamic z index and orderid
                   <DraggableDiv key={tab.id}>
                     <div
+                      onMouseDown={() => focusTab(tab.id)}
                       className="absolute w-160 h-[90%] transition-all duration-300 pointer-events-auto"
                       style={{
-                        top: `${index * 80}px`,
+                        top: `${tab.orderId * 80}px`,
                         right: "0px",
-                        zIndex: 10 + index,
+                        zIndex: 10 + globalIndex,
                       }}
                     >
                       <Component
@@ -218,7 +238,7 @@ export const Main: React.FC<Props> = ({ className }) => {
           </div>
         </div>
 
-        {/* Правая панель */}
+        {/* right panel */}
         <div className="flex flex-col gap-10 h-full font-light">
           {panels.slice(4, 7).map((item) => (
             <motion.button

@@ -23,10 +23,9 @@ export const InfoCard: React.FC<Props> = ({
       <Label className="font-light p-1">About</Label>
       <div className="w-full flex flex-col gap-4 p-4 bg-[#120d18] rounded-lg">
         <img
-          draggable={false}
           src={imageSrc}
           alt="image is not provided"
-          className="object-cover w-full h-80 bg-teal-900 rounded-lg pointer-events-none"
+          className="object-cover w-full bg-teal-900 rounded-lg pointer-events-none xl:h-79 lg:h-72 md:h-64 sm:h-48 xs:h-40"
         />
         {textarea && textarea.length > 0 ? (
           <div
@@ -36,7 +35,7 @@ export const InfoCard: React.FC<Props> = ({
             {textarea.map((text, index) => (
               <Label
                 key={index}
-                className={index === 0 ? "text-2xl font-normal" : "opacity-70"}
+                className={index === 0 ? "lg:text-xl md:text-lg sm:text-sm text-2xl font-normal" : "opacity-70"}
               >
                 {text}
               </Label>
