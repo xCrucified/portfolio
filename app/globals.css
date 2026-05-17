@@ -119,6 +119,10 @@
     @apply bg-background text-foreground;
     @apply overflow-hidden;
   }
+  html {
+    @apply overflow-hidden;
+    @apply bg-[#0f0b14]
+  }
 }
 ::-webkit-scrollbar {
   @apply hidden;

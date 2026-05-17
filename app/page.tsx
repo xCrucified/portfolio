@@ -25,7 +25,7 @@ export default function Home() {
   }
 
   return (
-    <div className="w-full h-screen">
+    <div className="relative w-full h-screen overflow-hidden max-w-full">
       <Header className="w-full" />
       <Main className="w-full" />
       <Footer className="w-full" />

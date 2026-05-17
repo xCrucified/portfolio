@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+"use client";
+
+import React, { useState, useEffect } from "react";
 
 import { cn } from "@/lib/utils";
 import { Label } from "@/components/ui/label";
@@ -25,14 +27,14 @@ const popIn = {
 };
 
 const panels = [
-  { id: "Projects", label: "Projects", icon: "/images/projects.svg" },
-  { id: "Services", label: "Services", icon: "/images/services.svg" },
-  { id: "Skills", label: "Skills", icon: "/images/skills.svg" },
-  { id: "Experience", label: "Experience", icon: "/images/experience.svg" },
+  { id: "Projects", label: "Projects", icon: "/images/projects.svg", isLeft: true },
+  { id: "Services", label: "Services", icon: "/images/services.svg", isLeft: true },
+  { id: "Skills", label: "Skills", icon: "/images/skills.svg", isLeft: true },
+  { id: "Experience", label: "Experience", icon: "/images/experience.svg", isLeft: true },
 
-  { id: "Contact", label: "Contact", icon: "/images/contact.svg" },
-  { id: "Gallery", label: "Gallery", icon: "/images/gallery.svg" },
-  { id: "Resume", label: "Resume", icon: "/images/resume.svg" },
+  { id: "Contact", label: "Contact", icon: "/images/contact.svg", isLeft: false },
+  { id: "Gallery", label: "Gallery", icon: "/images/gallery.svg", isLeft: false },
+  { id: "Resume", label: "Resume", icon: "/images/resume.svg", isLeft: false },
 ] as const;
 
 const menuItems = [
@@ -73,8 +75,14 @@ type TabData = { id: TabKey; isLeft: boolean; orderId: number };
 
 export const Main: React.FC<Props> = ({ className }) => {
   const [openTabs, setOpenTabs] = useState<TabData[]>([]);
-  const [leftCount, setLeftCount] = useState(0);
-  const [rightCount, setRightCount] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   const handleTabChange = (tab: TabKey, isLeft: boolean) => {
     setOpenTabs((prev) => {
@@ -82,11 +90,10 @@ export const Main: React.FC<Props> = ({ className }) => {
       if (exists) {
         return prev.filter((t) => t.id !== tab);
       } else {
-        const currentOrder = isLeft ? leftCount : rightCount;
-        if (isLeft) setLeftCount((c) => c + 1);
-        else setRightCount((c) => c + 1);
-
-        return [...prev, { id: tab, isLeft, orderId: currentOrder }];
+        const currentPanelTabsCount = prev.filter(
+          (t) => t.isLeft === isLeft,
+        ).length;
+        return [...prev, { id: tab, isLeft, orderId: currentPanelTabsCount }];
       }
     });
   };
@@ -101,11 +108,15 @@ export const Main: React.FC<Props> = ({ className }) => {
 
   return (
     <div
-      className={cn(className, "flex justify-center w-full absolute bottom-10")}
+      className={cn(
+        className,
+        "fixed inset-0 top-17 md:top-21.25 flex justify-center items-center w-full overflow-hidden box-border select-none",
+      )}
     >
-      <div className="flex w-[90%] h-[83vh] justify-between">
+      <div className="flex w-[95%] md:w-[90%] h-full md:h-[83vh] justify-between relative items-center box-border">
+        
         {/* left panel */}
-        <div className="flex flex-col gap-10 h-full font-light max-md:hidden">  {/* hide on mobile */}
+        <div className="flex flex-col gap-10 h-full font-light max-md:hidden z-20">
           {panels.slice(0, 4).map((item) => (
             <motion.button
               initial={popIn.initial}
@@ -115,33 +126,20 @@ export const Main: React.FC<Props> = ({ className }) => {
               onClick={() => handleTabChange(item.id as TabKey, true)}
               className="flex items-center gap-2 p-1 flex-col w-13.75 h-12.5 section cursor-pointer"
             >
-              <img
-                draggable={false}
-                src={item.icon}
-                alt={item.label}
-                className="w-full h-full p-2"
-              />
-              <Label className="text-lg font-light opacity-85 cursor-pointer">
-                {item.id.length > 8 ? item.label.slice(0, 3) + "..." : item.id}
-              </Label>
+              <img draggable={false} src={item.icon} alt={item.label} className="w-full h-full p-2" />
+              <Label className="text-lg font-light opacity-85 cursor-pointer">{item.id}</Label>
             </motion.button>
           ))}
         </div>
 
-        {/* center mobile */}
-        <div className="max-md:flex max-md:w-full max-md:h-full max-md:justify-center max-md:items-center
-                        max-md:absolute 
-                        max-md:outline-1">
-        
-
-        </div>
         {/* center */}
-        <div className="w-full h-full relative flex justify-between">
-          {/* left open tabs */}
-          <div className="absolute h-full z-1005 w-77.5 ml-10 pointer-events-none max-md:hidden">
+        <div className="flex-1 h-full relative flex justify-between box-border">
+          
+          {/* left tabs */}
+          <div className="absolute h-full z-1005 w-full md:w-77.5 ml-0 md:ml-10 pointer-events-none">
             {openTabs
               .filter((tab) => tab.isLeft)
-              .map((tab, index) => {
+              .map((tab) => {
                 const Component = tabs[tab.id];
                 const globalIndex = openTabs.findIndex((t) => t.id === tab.id);
 
@@ -149,44 +147,55 @@ export const Main: React.FC<Props> = ({ className }) => {
                   <DraggableDiv key={tab.id}>
                     <div
                       onMouseDown={() => focusTab(tab.id)}
-                      className="absolute w-160 h-[90%] transition-all duration-300 pointer-events-auto"
+                      // ИСПРАВЛЕНО: Сместили окна чуть ниже (top: 76px), чтобы они открывались ровно под верхней панелью кнопок
+                      className="absolute w-160 max-md:w-full h-[70%] md:h-[90%] pointer-events-auto box-border"
                       style={{
-                        top: `${tab.orderId * 80}px`, // fix by orderId
+                        top: isMobile ? "76px" : `${tab.orderId * 40}px`,
                         left: "0px",
-                        zIndex: 10 + globalIndex, // dynamic z index
+                        zIndex: 10 + globalIndex,
                       }}
                     >
-                      <Component
-                        onClose={() => handleTabChange(tab.id, true)}
-                      />
+                      <Component onClose={() => handleTabChange(tab.id, true)} />
                     </div>
                   </DraggableDiv>
                 );
               })}
           </div>
 
-          {/* center card */}
-          <div className="flex w-full justify-center relative">
-            {/* <DraggableDiv>
-              <motion.section
-                key="about-me"
-                initial={{ opacity: 0, scale: 0.5 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, ease: "easeInOut" }}
-                className="w-full justify-center flex relative z-999"
-              >
-                <AboutMeModalWindow className="lg:min-w-162.5 md:min-w-122.5 sm:min-w-82.5 modal-bg" />{" "}
-              </motion.section>
-            </DraggableDiv> */}
+          {/* main footer + mobile panel */}
+          <div className="flex w-full relative pointer-events-none justify-center">
+            
+            {/* ИСПРАВЛЕНО: Закрепили панель сверху по центру (top-4), убрали конфликтующий bottom-28 */}
+            <div className="hidden max-md:flex justify-center w-full absolute top-4 z-1010 px-2 pointer-events-auto">
+              <div className="flex flex-row gap-3 max-w-full overflow-x-auto py-2 px-3 bg-[#1a131fcc] backdrop-blur-md rounded-xl border border-[#3b3340] shadow-xl">
+                {panels.map((item) => {
+                  const isActive = openTabs.some((t) => t.id === item.id);
+                  return (
+                    <motion.button
+                      initial={popIn.initial}
+                      animate={popIn.animate}
+                      key={item.id}
+                      onClick={() => handleTabChange(item.id as TabKey, item.isLeft)}
+                      className={cn(
+                        "flex items-center justify-center p-2 rounded-lg cursor-pointer w-11 h-11 transition-all",
+                        isActive ? "bg-[#3b3340] scale-95 border border-[#1FAC71]" : "bg-[#251b2a50]"
+                      )}
+                    >
+                      <img draggable={false} src={item.icon} alt={item.label} className="w-6 h-6 object-contain" />
+                    </motion.button>
+                  );
+                })}
+              </div>
+            </div>
 
-            {/* footer main */}
+            {/* main footer */}
             <motion.section
               initial={{ opacity: 0, y: 300 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
-              className="absolute bottom-0 w-full h-20 z-999 flex justify-center items-center"
+              className="absolute bottom-4 w-full h-20 z-999 flex justify-center items-center pointer-events-auto"
             >
-              <div className="flex menu-container">
+              <div className="flex menu-container box-border">
                 <button
                   onClick={() => (window.location.href = "/")}
                   className="flex items-center gap-2 mr-2 p-1 flex-col h-full w-full home-btn cursor-pointer"
@@ -203,41 +212,35 @@ export const Main: React.FC<Props> = ({ className }) => {
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 p-1 flex-col w-full h-full home-btn cursor-pointer justify-center"
                   >
-                    <img
-                      draggable={false}
-                      src={item.icon}
-                      alt={item.id}
-                      className="w-full h-full p-1.5"
-                    />
+                    <img draggable={false} src={item.icon} alt={item.id} className="w-full h-full p-1.5" />
                   </a>
                 ))}
               </div>
             </motion.section>
+            
           </div>
 
-          {/* right open tabs */}
-          <div className="h-full z-1000 w-77.5 absolute right-0 mr-6 pointer-events-none">
+          {/* right tabs */}
+          <div className="h-full z-1000 w-full md:w-77.5 absolute right-0 pointer-events-none">
             {openTabs
               .filter((tab) => !tab.isLeft)
-              .map((tab, index) => {
+              .map((tab) => {
                 const Component = tabs[tab.id];
                 const globalIndex = openTabs.findIndex((t) => t.id === tab.id);
 
                 return (
-                  //ctrl c ctr v for dynamic z index and orderid
                   <DraggableDiv key={tab.id}>
                     <div
                       onMouseDown={() => focusTab(tab.id)}
-                      className="absolute w-160 h-[90%] transition-all duration-300 pointer-events-auto"
+                      // ИСПРАВЛЕНО: Синхронизировали отступ сверху с левыми вкладками на мобилке
+                      className="absolute w-160 max-md:w-full h-[70%] md:h-[90%] pointer-events-auto box-border"
                       style={{
-                        top: `${tab.orderId * 80}px`,
+                        top: isMobile ? "76px" : `${tab.orderId * 40}px`,
                         right: "0px",
                         zIndex: 10 + globalIndex,
                       }}
                     >
-                      <Component
-                        onClose={() => handleTabChange(tab.id, false)}
-                      />
+                      <Component onClose={() => handleTabChange(tab.id, false)} />
                     </div>
                   </DraggableDiv>
                 );
@@ -246,7 +249,7 @@ export const Main: React.FC<Props> = ({ className }) => {
         </div>
 
         {/* right panel */}
-        <div className="flex flex-col gap-10 h-full font-light max-md:hidden">  {/* hide on mobile */}
+        <div className="flex flex-col gap-10 h-full font-light max-md:hidden z-20">
           {panels.slice(4, 7).map((item) => (
             <motion.button
               initial={popIn.initial}
@@ -256,18 +259,12 @@ export const Main: React.FC<Props> = ({ className }) => {
               onClick={() => handleTabChange(item.id as TabKey, false)}
               className="flex items-center gap-2 p-1 flex-col w-13.75 h-12.5 section cursor-pointer"
             >
-              <img
-                draggable={false}
-                src={item.icon}
-                alt={item.label}
-                className="w-full h-full p-2"
-              />
-              <Label className="text-lg font-light opacity-85 cursor-pointer">
-                {item.id.length > 8 ? item.label.slice(0, 3) + "..." : item.id}
-              </Label>
+              <img draggable={false} src={item.icon} alt={item.label} className="w-full h-full p-2" />
+              <Label className="text-lg font-light opacity-85 cursor-pointer">{item.id}</Label>
             </motion.button>
           ))}
         </div>
+
       </div>
     </div>
   );

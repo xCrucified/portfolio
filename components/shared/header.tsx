@@ -16,13 +16,14 @@ export const Header: React.FC<Props> = ({ className }) => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       className="grid grid-cols-3 items-center px-6
-        h-21.25 
-        header 
-        border-b-[2] border-[#382c3e] 
-        absolute top-0 z-1000 w-full
-        rounded-b-lg 
-        shadow-lg shadow-black/20
-        max-md:flex max-md:justify-between max-md:h-17 max-md:px-4"
+  h-21.25 
+  header 
+  border-b-2 border-[#382c3e] 
+  fixed top-0 inset-x-0 z-1000 
+  box-border
+  rounded-b-lg 
+  shadow-lg shadow-black/20
+  max-md:flex max-md:justify-between max-md:h-17 max-md:px-4"
     >
       <div className="flex items-center gap-2 justify-start max-md:whitespace-nowrap">
         <Avatar className="h-13.75 w-14.25 max-md:h-10 max-md:w-10 rounded-md">
