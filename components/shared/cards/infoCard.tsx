@@ -16,7 +16,7 @@ export const InfoCard: React.FC<Props> = ({
   return (
     <section
       className={cn(
-        "flex flex-col text-zinc-100 p-3 rounded-xl gap-2 w-full max-w-3xl",
+        "flex flex-col text-zinc-100 p-3 rounded-xl gap-2 max-md:text-xs",
         className
       )}
     >
