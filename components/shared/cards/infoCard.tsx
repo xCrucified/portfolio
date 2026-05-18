@@ -16,7 +16,7 @@ export const InfoCard: React.FC<Props> = ({
   return (
     <section
       className={cn(
-        "flex flex-col text-zinc-100 p-3 rounded-xl gap-2 max-md:text-xs",
+        "flex flex-col text-zinc-100 p-3 rounded-xl gap-2 w-full  max-w-3xl max-md:mt-20",
         className
       )}
     >
@@ -25,17 +25,16 @@ export const InfoCard: React.FC<Props> = ({
         <img
           src={imageSrc}
           alt="image is not provided"
-          className="object-cover w-full bg-teal-900 rounded-lg pointer-events-none xl:h-79 lg:h-72 md:h-64 sm:h-48 xs:h-40"
+          className="object-cover w-full bg-teal-900 rounded-lg pointer-events-none"
         />
         {textarea && textarea.length > 0 ? (
           <div
-            className="flex flex-col gap-4 font-light text-base leading-relaxed p-2
-            text-[#EFEDFD]"
+            className="flex flex-col gap-4 font-light text-base leading-relaxed p-2"
           >
             {textarea.map((text, index) => (
               <Label
                 key={index}
-                className={index === 0 ? "lg:text-xl md:text-lg sm:text-sm text-2xl font-normal" : "opacity-70"}
+                className={index === 0 ? "text-[#fcfcfcdb] lg:text-xl md:text-lg font-normal" : "opacity-50"}
               >
                 {text}
               </Label>
@@ -43,8 +42,8 @@ export const InfoCard: React.FC<Props> = ({
           </div>
         ) : (
           // Default content if textarea is not provided
-          <div className="flex flex-col gap-4 font-light text-base leading-relaxed text-[#EFEDFD]">
-            <h3 className="text-xl font-normal">
+          <div className="flex flex-col gap-4 font-light text-base leading-relaxed ">
+            <h3 className="text-xl font-normal ">
               Text not provided, using default content.
             </h3>
 

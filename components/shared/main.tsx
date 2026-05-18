@@ -226,20 +226,19 @@ export const Main: React.FC<Props> = ({ className }) => {
               </div>
             </div>
             {/* main footer */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-999 px-4 md:px-0">
+            <div className="absolute inset-0 flex items-start justify-center pointer-events-none z-999 outline-1 p-5 box-border">
               <DraggableDiv>
                 <motion.section
                   key="about-me"
                   initial={{ opacity: 0, scale: 0.5 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.6, ease: "easeInOut" }}
-                  className="w-full max-w-165.5 flex justify-center items-center pointer-events-auto mb-30"
+                  className="w-full flex justify-center items-center pointer-events-auto"
                 >
                   <AboutMeModalWindow
                     className={cn(
-                      "modal-bg w-full h-auto max-md:max-h-[75vh] max-md:overflow-y-auto",
-                      "md:min-w-165.5 md:min-h-162.5",
-                      "max-md:w-full",
+                      "modal-bg max-md:overflow-y-auto",
+                      "w-full",
                     )}
                   />
                 </motion.section>
