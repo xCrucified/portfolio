@@ -3,9 +3,10 @@ import React, { useState, useRef, useCallback } from 'react';
 
 interface Props {
   children?: React.ReactNode;
+  className?: string;
 }
 
-function DraggableDiv({ children }: Props) {
+function DraggableDiv({ children, className }: Props) {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
   const offset = useRef({ x: 0, y: 0 });
@@ -35,6 +36,7 @@ function DraggableDiv({ children }: Props) {
 
   return (
     <div
+      className={className}
       style={{
         position: 'relative',
         width: '300px',

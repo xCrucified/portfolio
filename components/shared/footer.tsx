@@ -13,7 +13,7 @@ export const Footer: React.FC<Props> = ({ className }) => {
       initial={{ opacity: 0}}
       animate={{ opacity: 1}}
       transition={{ duration: 0.6}}
-      className={cn("h-22 flex items-center w-full absolute bottom-0", className)}
+      className={cn("h-22 flex items-center w-full absolute bottom-0 max-md:hidden", className)}
     >
       <Label className="flex w-full justify-start text-sm font-light opacity-50">
         © {new Date().getFullYear()} Max Kononchuk. All rights reserved.

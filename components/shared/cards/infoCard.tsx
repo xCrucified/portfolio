@@ -16,43 +16,41 @@ export const InfoCard: React.FC<Props> = ({
   return (
     <section
       className={cn(
-        "flex flex-col text-zinc-100 p-3 rounded-xl gap-2 w-full  max-w-3xl max-md:mt-20",
+        "flex flex-col text-zinc-100 p-3 rounded-xl gap-2 w-full h-[60vh] overflow-hidden",
         className
       )}
     >
-      <Label className="font-light p-1">About</Label>
-      <div className="w-full flex flex-col gap-4 p-4 bg-[#120d18] rounded-lg">
+      <Label className="font-light p-1 shrink-0">About</Label>
+      
+      <div className="w-full flex flex-col gap-4 p-4 bg-[#120d18] rounded-lg overflow-y-auto custom-scrollbar h-full">
         <img
           src={imageSrc}
           alt="image is not provided"
-          className="object-cover w-full bg-teal-900 rounded-lg pointer-events-none"
+          className="object-cover w-full bg-teal-900 rounded-lg pointer-events-none shrink-0"
         />
         {textarea && textarea.length > 0 ? (
-          <div
-            className="flex flex-col gap-4 font-light text-base leading-relaxed p-2"
-          >
+          <div className="flex flex-col gap-4 font-light text-base leading-relaxed p-2">
             {textarea.map((text, index) => (
-              <Label
+              <p
                 key={index}
-                className={index === 0 ? "text-[#fcfcfcdb] lg:text-xl md:text-lg font-normal" : "opacity-50"}
+                className={cn(
+                  index === 0 
+                    ? "text-[#fcfcfcdb] lg:text-xl md:text-lg font-normal" 
+                    : "text-zinc-100/70 text-sm",
+                  index === 2 && "text-zinc-100/40" 
+                )}
               >
                 {text}
-              </Label>
+              </p>
             ))}
           </div>
         ) : (
-          // Default content if textarea is not provided
-          <div className="flex flex-col gap-4 font-light text-base leading-relaxed ">
-            <h3 className="text-xl font-normal ">
+          <div className="flex flex-col gap-4 font-light text-base leading-relaxed">
+            <h3 className="text-xl font-normal">
               Text not provided, using default content.
             </h3>
-
-            <p className="opacity-70">
-              Text not provided, using default content.
-            </p>
-            <p className="opacity-50">
-              Text not provided, using default content.
-            </p>
+            <p className="opacity-70">Text not provided, using default content.</p>
+            <p className="opacity-50">Text not provided, using default content.</p>
           </div>
         )}
       </div>

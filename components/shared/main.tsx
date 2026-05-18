@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 
 import { cn } from "@/lib/utils";
 import { Label } from "@/components/ui/label";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 import DraggableDiv from "./dragElement";
 import ProjectsModalWindow from "./sections/ProjectsModal";
@@ -101,6 +101,7 @@ type TabData = { id: TabKey; isLeft: boolean; orderId: number };
 export const Main: React.FC<Props> = ({ className }) => {
   const [openTabs, setOpenTabs] = useState<TabData[]>([]);
   const [isMobile, setIsMobile] = useState(false);
+  const [inOpen, setInOpen] = useState(true);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -194,7 +195,7 @@ export const Main: React.FC<Props> = ({ className }) => {
           </div>
 
           {/* main footer + mobile panel */}
-          <div className="flex w-full relative pointer-events-none justify-center">
+          <div className="flex w-full relative pointer-events-none justify-center items-center">
             <div className="hidden max-md:flex justify-center w-full absolute top-4 z-1010 px-2 pointer-events-auto">
               <div className="flex flex-row gap-3 max-w-full overflow-x-auto py-2 px-3 bg-[#1a131fcc] backdrop-blur-md rounded-xl border border-[#3b3340] shadow-xl">
                 {panels.map((item) => {
@@ -225,57 +226,87 @@ export const Main: React.FC<Props> = ({ className }) => {
                 })}
               </div>
             </div>
+
+            {/* main panel */}
+
+            <DraggableDiv className="flex relative md:min-w-xl max-md:min-w-lg max-sm:min-w-xs mb-30">
+              <motion.section
+                key="about-me"
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, ease: "easeInOut" }}
+                className="flex relative justify-center self-center items-center pointer-events-auto"
+              >
+                <AboutMeModalWindow className={cn("modal-bg", "max-w-3xl")} />
+              </motion.section>
+            </DraggableDiv>
+
             {/* main footer */}
-            <div className="absolute inset-0 flex items-start justify-center pointer-events-none z-999 outline-1 p-5 box-border">
-              <DraggableDiv>
-                <motion.section
-                  key="about-me"
-                  initial={{ opacity: 0, scale: 0.5 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, ease: "easeInOut" }}
-                  className="w-full flex justify-center items-center pointer-events-auto"
-                >
-                  <AboutMeModalWindow
-                    className={cn(
-                      "modal-bg max-md:overflow-y-auto",
-                      "w-full",
-                    )}
-                  />
-                </motion.section>
-              </DraggableDiv>
-            </div>
             <motion.section
               initial={{ opacity: 0, y: 300 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
-              className="absolute bottom-4 w-full h-20 z-999 flex justify-center items-center pointer-events-auto max-md:bottom-15"
+              className="absolute bottom-4 w-full h-20 z-2005 flex justify-center items-center pointer-events-auto"
             >
-              <div className="flex menu-container box-border">
-                <button
-                  onClick={() => (window.location.href = "/")}
-                  className="flex items-center gap-2 mr-2 p-1 flex-col h-full w-full home-btn cursor-pointer"
-                >
-                  <img draggable={false} src="/images/house.svg" alt="Home" />
-                </button>
-                <hr className="vertical-hr" />
+              <button
+                onClick={() => setInOpen(!inOpen)}
+                className={cn(
+                  "h-10 absolute bg-[#1a131fcc] backdrop-blur-md rounded-t-xl border border-[#2c2a2d7c] shadow-xl flex items-center justify-center p-2 box-border cursor-pointer transition-all duration-300 md:hidden",
+                  inOpen ? "bottom-20" : " rounded-xl",
+                )}
+              >
+                <img
+                  draggable={false}
+                  src="/bottom-slide.svg"
+                  alt="decor"
+                  className={cn(
+                    "w-10 object-contain pointer-events-none transition-transform duration-300",
+                    !inOpen && "rotate-180",
+                  )}
+                />
+              </button>
 
-                {menuItems.map((item) => (
-                  <a
-                    key={item.id}
-                    href={item.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 p-1 flex-col w-full h-full home-btn cursor-pointer justify-center"
+              {/* footer */}
+              <AnimatePresence>
+                {inOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 50, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 50, scale: 0.95 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    className="flex menu-container box-border"
                   >
-                    <img
-                      draggable={false}
-                      src={item.icon}
-                      alt={item.id}
-                      className="w-full h-full p-1.5"
-                    />
-                  </a>
-                ))}
-              </div>
+                    <button
+                      onClick={() => (window.location.href = "/")}
+                      className="flex items-center gap-2 mr-2 p-1 flex-col h-full w-full home-btn cursor-pointer"
+                    >
+                      <img
+                        draggable={false}
+                        src="/images/house.svg"
+                        alt="Home"
+                      />
+                    </button>
+                    <hr className="vertical-hr" />
+
+                    {menuItems.map((item) => (
+                      <a
+                        key={item.id}
+                        href={item.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 p-1 flex-col w-full h-full home-btn cursor-pointer justify-center"
+                      >
+                        <img
+                          draggable={false}
+                          src={item.icon}
+                          alt={item.id}
+                          className="w-full h-full p-1.5"
+                        />
+                      </a>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </motion.section>
           </div>
 
@@ -291,7 +322,6 @@ export const Main: React.FC<Props> = ({ className }) => {
                   <DraggableDiv key={tab.id}>
                     <div
                       onMouseDown={() => focusTab(tab.id)}
-                      // ИСПРАВЛЕНО: Синхронизировали отступ сверху с левыми вкладками на мобилке
                       className="absolute w-160 max-md:w-full h-[70%] md:h-[90%] pointer-events-auto box-border"
                       style={{
                         top: isMobile ? "76px" : `${tab.orderId * 40}px`,
