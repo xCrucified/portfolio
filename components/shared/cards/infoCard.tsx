@@ -17,7 +17,7 @@ export const InfoCard: React.FC<Props> = ({
 }) => {
   return (
     <section className={cn("flex flex-col w-full h-full gap-3 p-4 max-md:mt-40", className)}>
-      <div className="w-full h-[60vh]">
+      <div className="w-full h-[60vh] gap-4 flex flex-col">
         <div className="px-1 shrink-0">
           <Label className="text-xs font-semibold tracking-widest uppercase text-zinc-500 sm:text-sm">
             About
