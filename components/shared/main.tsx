@@ -229,7 +229,7 @@ export const Main: React.FC<Props> = ({ className }) => {
 
             {/* main panel */}
 
-            <DraggableDiv className="flex relative md:min-w-xl max-md:min-w-lg max-sm:min-w-xs mb-30">
+            <DraggableDiv className="flex relative md:min-w-xl max-md:min-w-lg max-sm:min-w-xs mb-10">
               <motion.section
                 key="about-me"
                 initial={{ opacity: 0, scale: 0.5 }}
