@@ -136,7 +136,7 @@ export const Main: React.FC<Props> = ({ className }) => {
     <div
       className={cn(
         className,
-        "fixed inset-0 top-[68px] md:top-[85px] flex justify-center items-center w-full overflow-hidden box-border select-none",
+        "fixed inset-0 top-17 md:top-21.25 max-lg:top-20 flex justify-center items-center w-full overflow-hidden box-border select-none",
       )}
     >
       <div className="flex w-[95%] md:w-[90%] h-full md:h-[83vh] justify-between relative items-center box-border">
