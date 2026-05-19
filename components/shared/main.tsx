@@ -136,7 +136,7 @@ export const Main: React.FC<Props> = ({ className }) => {
     <div
       className={cn(
         className,
-        "fixed inset-0 top-17 md:top-21.25 flex justify-center items-center w-full overflow-hidden box-border select-none",
+        "fixed inset-0 top-[68px] md:top-[85px] flex justify-center items-center w-full overflow-hidden box-border select-none",
       )}
     >
       <div className="flex w-[95%] md:w-[90%] h-full md:h-[83vh] justify-between relative items-center box-border">
@@ -149,7 +149,7 @@ export const Main: React.FC<Props> = ({ className }) => {
               transition={popIn.transition}
               key={item.id}
               onClick={() => handleTabChange(item.id as TabKey, true)}
-              className="flex items-center gap-2 p-1 flex-col w-13.75 h-12.5 section cursor-pointer"
+              className="flex items-center gap-2 p-1 flex-col w-[55px] h-[50px] section cursor-pointer"
             >
               <img
                 draggable={false}
@@ -167,7 +167,7 @@ export const Main: React.FC<Props> = ({ className }) => {
         {/* center */}
         <div className="flex-1 h-full relative flex justify-between box-border">
           {/* left tabs */}
-          <div className="absolute h-full z-1005 w-full md:w-77.5 ml-0 md:ml-10 pointer-events-none">
+          <div className="absolute h-full z-[1005] w-full md:w-[310px] ml-0 md:ml-10 pointer-events-none">
             {openTabs
               .filter((tab) => tab.isLeft)
               .map((tab) => {
@@ -178,7 +178,7 @@ export const Main: React.FC<Props> = ({ className }) => {
                   <DraggableDiv key={tab.id}>
                     <div
                       onMouseDown={() => focusTab(tab.id)}
-                      className="absolute w-160 max-md:w-full h-[70%] md:h-[90%] pointer-events-auto box-border"
+                      className="absolute w-[640px] max-md:w-full h-[70%] md:h-[90%] pointer-events-auto box-border"
                       style={{
                         top: isMobile ? "76px" : `${tab.orderId * 40}px`,
                         left: "0px",
@@ -196,7 +196,7 @@ export const Main: React.FC<Props> = ({ className }) => {
 
           {/* main footer + mobile panel */}
           <div className="flex w-full relative pointer-events-none justify-center items-center">
-            <div className="hidden max-md:flex justify-center w-full absolute top-4 z-1010 px-2 pointer-events-auto">
+            <div className="hidden max-md:flex justify-center w-full absolute top-4 z-[1010] px-2 pointer-events-auto">
               <div className="flex flex-row gap-3 max-w-full overflow-x-auto py-2 px-3 bg-[#1a131fcc] backdrop-blur-md rounded-xl border border-[#3b3340] shadow-xl">
                 {panels.map((item) => {
                   const isActive = openTabs.some((t) => t.id === item.id);
@@ -229,15 +229,15 @@ export const Main: React.FC<Props> = ({ className }) => {
 
             {/* main panel */}
 
-            <DraggableDiv className="flex relative md:min-w-xl max-md:min-w-lg max-sm:min-w-xs mb-30">
+            <DraggableDiv className="flex relative md:min-w-[36rem] max-md:min-w-[32rem] max-sm:min-w-[20rem] mb-[120px]">
               <motion.section
                 key="about-me"
                 initial={{ opacity: 0, scale: 0.5 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, ease: "easeInOut" }}
-                className="flex relative justify-center self-center items-center pointer-events-auto"
+                className="flex relative justify-center self-center items-center pointer-events-auto w-full max-w-3xl"
               >
-                <AboutMeModalWindow className={cn("modal-bg", "max-w-3xl")} />
+                <AboutMeModalWindow />
               </motion.section>
             </DraggableDiv>
 
@@ -246,7 +246,7 @@ export const Main: React.FC<Props> = ({ className }) => {
               initial={{ opacity: 0, y: 300 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
-              className="absolute bottom-4 w-full h-20 z-2005 flex justify-center items-center pointer-events-auto"
+              className="absolute bottom-4 w-full h-20 z-[2005] flex justify-center items-center pointer-events-auto"
             >
               <button
                 onClick={() => setInOpen(!inOpen)}
@@ -311,7 +311,7 @@ export const Main: React.FC<Props> = ({ className }) => {
           </div>
 
           {/* right tabs */}
-          <div className="h-full z-1000 w-full md:w-77.5 absolute right-0 pointer-events-none">
+          <div className="h-full z-[1000] w-full md:w-[310px] absolute right-0 pointer-events-none">
             {openTabs
               .filter((tab) => !tab.isLeft)
               .map((tab) => {
@@ -322,7 +322,7 @@ export const Main: React.FC<Props> = ({ className }) => {
                   <DraggableDiv key={tab.id}>
                     <div
                       onMouseDown={() => focusTab(tab.id)}
-                      className="absolute w-160 max-md:w-full h-[70%] md:h-[90%] pointer-events-auto box-border"
+                      className="absolute w-[640px] max-md:w-full h-[70%] md:h-[90%] pointer-events-auto box-border"
                       style={{
                         top: isMobile ? "76px" : `${tab.orderId * 40}px`,
                         right: "0px",
@@ -348,7 +348,7 @@ export const Main: React.FC<Props> = ({ className }) => {
               transition={popIn.transition}
               key={item.id}
               onClick={() => handleTabChange(item.id as TabKey, false)}
-              className="flex items-center gap-2 p-1 flex-col w-13.75 h-12.5 section cursor-pointer"
+              className="flex items-center gap-2 p-1 flex-col w-[55px] h-[50px] section cursor-pointer"
             >
               <img
                 draggable={false}
