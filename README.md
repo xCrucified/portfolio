@@ -45,9 +45,9 @@ npx vercel
 
 If you'd like to collaborate or have any questions, feel free to reach out via:
 
-- Email: `youremail@example.com`
-- LinkedIn: [your-profile](https://linkedin.com/in/yourprofile)
-- Website: [https://gptonline.ai](https://gptonline.ai)
+- Email: `mxxknk@gmail.com`
+- LinkedIn: www.linkedin.com/in/mxxknk
+- Website: https://www.xcrucified.cloud/
 
 ---
 
