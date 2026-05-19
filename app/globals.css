@@ -121,8 +121,7 @@
   }
   html {
     @apply overflow-hidden;
-    @apply bg-[#0f0b14];
-    @apply bg-linear-[to_bottom,_#3b334050,_#130919];
+    @apply bg-linear-[to_bottom,#3b334050,#130919];
   }
 }
 
