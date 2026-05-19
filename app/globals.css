@@ -121,6 +121,7 @@
   }
   html {
     @apply overflow-hidden;
+    @apply bg-linear-to-b from-[#1f1729] to-[#120d18];
   }
 }
 
