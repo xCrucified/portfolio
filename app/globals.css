@@ -121,7 +121,6 @@
   }
   html {
     @apply overflow-hidden;
-    @apply bg-linear-to-b from-[#1f1729] to-[#120d18];
   }
 }
 
@@ -131,7 +130,7 @@
 
 html,
 body {
-  background: linear-gradient(to bottom, #1f1729, #120d18);
+  background-color: #1f1729;
   margin: 0;
   padding: 0;
   width: 100%;
