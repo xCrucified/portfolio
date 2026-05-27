@@ -167,7 +167,7 @@ export const Main: React.FC<Props> = ({ className }) => {
         {/* center */}
         <div className="flex-1 h-full relative flex justify-between box-border">
           {/* left tabs */}
-          <div className="absolute h-full z-[1005] w-full md:w-[310px] ml-0 md:ml-10 pointer-events-none">
+          <div className="absolute h-full z-1005 w-full md:w-77.5 ml-0 md:ml-10 pointer-events-none">
             {openTabs
               .filter((tab) => tab.isLeft)
               .map((tab) => {
@@ -175,21 +175,21 @@ export const Main: React.FC<Props> = ({ className }) => {
                 const globalIndex = openTabs.findIndex((t) => t.id === tab.id);
 
                 return (
-                  <DraggableDiv key={tab.id}>
-                    <div
-                      onMouseDown={() => focusTab(tab.id)}
-                      className="absolute w-[640px] max-md:w-full h-[70%] md:h-[90%] pointer-events-auto box-border"
-                      style={{
-                        top: isMobile ? "76px" : `${tab.orderId * 40}px`,
-                        left: "0px",
-                        zIndex: 10 + globalIndex,
-                      }}
-                    >
-                      <Component
-                        onClose={() => handleTabChange(tab.id, true)}
-                      />
-                    </div>
-                  </DraggableDiv>
+                  <div
+                    onMouseDown={() => focusTab(tab.id)}
+                    className={cn(
+                      "absolute pointer-events-auto box-border w-full",
+                      "max-w-[92vw] md:max-w-[540px] xl:max-w-[600px]",
+                      "h-[65vh] max-h-[500px] md:h-[75vh] md:max-h-[580px]",
+                    )}
+                    style={{
+                      top: isMobile ? "80px" : `${tab.orderId * 25}px`,
+                      left: isMobile ? "0px" : `${tab.orderId * 15}px`,
+                      zIndex: 10 + globalIndex,
+                    }}
+                  >
+                    <Component onClose={() => handleTabChange(tab.id, true)} />
+                  </div>
                 );
               })}
           </div>

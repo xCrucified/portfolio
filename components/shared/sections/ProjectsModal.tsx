@@ -64,7 +64,7 @@ export const ProjectsModalWindow: React.FC<Props> = ({
 
   return (
     <ProjectCard
-      className={cn(className)}
+      className={cn("h-full w-full",className)}
       projects={projects
         .map((project, index) => ({
           key: index,

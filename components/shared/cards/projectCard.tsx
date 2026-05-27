@@ -21,69 +21,92 @@ export const ProjectCard: React.FC<Props> = ({
   onClose,
 }) => {
   return (
-    <section className={cn("flex h-132.5 modal-bg text-zinc-100", className)}>
-      <div className="flex flex-col p-3">
-        <div className="flex w-full justify-between items-center mb-2">
-          <Label className="font-light p-1">Projects</Label>
-          <button
-            className="w-6 h-6 border border-[#ffffff61] flex justify-center rounded-xs items-center cursor-pointer mr-1.25"
-            onClick={onClose}
-            aria-label="Close modal"
-          >
-            <img draggable={false} src="/images/x.svg" alt="close" />
-          </button>
-        </div>
-        <div className="flex flex-col bg-[#110c17] w-full rounded-lg p-4 gap-10 overflow-y-auto">
-          {projects?.map((project, index) => (
-            <section
+    <section className={cn("flex flex-col w-full h-full modal-bg text-zinc-100 p-3 sm:p-4 overflow-hidden min-h-0", className)}>
+      <div className="flex w-full justify-between items-center mb-3 shrink-0 px-1">
+        <Label className="text-sm font-semibold tracking-widest uppercase text-zinc-400 sm:text-base">
+          Projects
+        </Label>
+        <button
+          className="w-7 h-7 sm:w-8 sm:h-8 border border-white/20 flex justify-center rounded-md items-center cursor-pointer transition-colors hover:bg-white/5"
+          onClick={onClose}
+          aria-label="Close modal"
+        >
+          <img draggable={false} src="/images/x.svg" alt="close" className="w-4 h-4" />
+        </button>
+      </div>
+
+      <div className="flex flex-col bg-[#110c17]/60 w-full h-full rounded-xl p-3 sm:p-5 gap-6 sm:gap-8 overflow-y-auto custom-scrollbar min-h-0 flex-1">
+        {projects && projects.length > 0 ? (
+          projects.map((project, index) => (
+            <div
               key={project.key}
-              className="w-full h-42.5 gap-3 flex flex-col items-center"
+              className="w-full flex flex-col gap-4 sm:gap-5"
             >
-              {/* Project Card */}
-              <div
-                key={index}
-                className="flex flex-row rounded-lg w-full h-full"
-              >
-                <img
-                  draggable={false}
-                  src={project.image}
-                  alt={project.title}
-                  className="w-48 rounded-lg object-fill max-h-60"
-                  loading="lazy"
-                />
-                <div className="flex flex-col w-full h-full justify-around items-start p-4">
-                  <Label className="text-xl font-light">{project.title}</Label>
-                  <Label className="text-sm text-zinc-300 opacity-60 mt-2">
-                    {project.description}
-                  </Label>
+              <div className="flex flex-col md:flex-row gap-4 items-center md:items-stretch w-full">
+                
+                <div className="w-full md:w-48 h-36 md:h-28 lg:h-32 rounded-lg overflow-hidden bg-zinc-900 shrink-0 relative aspect-video md:aspect-auto">
+                  {project.image ? (
+                    <img
+                      draggable={false}
+                      src={project.image}
+                      alt={project.title}
+                      className="absolute inset-0 w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center text-xs text-zinc-600">
+                      No Image
+                    </div>
+                  )}
                 </div>
-                <button
-                  onClick={() =>
-                    window.open(
-                      `https://github.com/xCrucified/${project.title}`,
-                      "_blank"
-                    )
-                  }
-                  className="flex justify-center items-center w-16.25 h-8.75 self-center section cursor-pointer"
-                  aria-label="View on GitHub"
-                >
-                  <img
-                    draggable={false}
-                    src="/arrow-right.svg"
-                    alt="GitHub"
-                    className="w-5 h-5 object-cover"
-                  />
-                </button>
+
+                <div className="flex flex-col flex-1 min-w-0 justify-center items-center text-center md:items-start md:text-left gap-1 py-1">
+                  <Label className="text-lg sm:text-xl font-medium tracking-tight text-zinc-100 truncate w-full">
+                    {project.title}
+                  </Label>
+                  <p className="text-xs sm:text-sm text-zinc-400 font-light leading-relaxed line-clamp-3 md:line-clamp-2">
+                    {project.description}
+                  </p>
+                </div>
+
+                <div className="flex items-center justify-center shrink-0 w-full md:w-auto">
+                  <button
+                    onClick={() =>
+                      window.open(
+                        `https://github.com/xCrucified/${project.title}`,
+                        "_blank"
+                      )
+                    }
+                    className="flex justify-center items-center w-full md:w-12 h-10 md:h-12 rounded-lg section cursor-pointer transition-all hover:scale-105 active:scale-95"
+                    aria-label="View on GitHub"
+                  >
+                    <img
+                      draggable={false}
+                      src="/arrow-right.svg"
+                      alt="GitHub"
+                      className="w-5 h-5 object-contain"
+                    />
+                  </button>
+                </div>
+
               </div>
+
               {index !== projects.length - 1 && (
-                <hr className="w-full h-full mt-2 opacity-15" />
+                <hr className="w-full border-t border-white/5 opacity-50" />
               )}
-            </section>
-          ))}
-        </div>
-        <div className="flex justify-center w-full pt-2">
-          <Label className="opacity-70">{projects.length} Projects</Label>
-        </div>
+            </div>
+          ))
+        ) : (
+          <div className="w-full h-full flex items-center justify-center text-zinc-500 text-sm">
+            No projects found.
+          </div>
+        )}
+      </div>
+
+      <div className="flex justify-center w-full pt-3 shrink-0">
+        <Label className="text-xs sm:text-sm text-zinc-500 font-medium tracking-wide">
+          {projects?.length || 0} Projects
+        </Label>
       </div>
     </section>
   );
