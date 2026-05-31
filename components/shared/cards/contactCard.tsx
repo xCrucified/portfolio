@@ -61,46 +61,50 @@ export const ContactCard: React.FC<Props> = ({ className, onClose }) => {
   return (
     <section
       className={cn(
-         `flex flex-col w-full max-w-3xl gap-2
-        text-zinc-100 bg-neutral-950
-          p-3 rounded-xl 
-          modal-bg`,
+        "flex flex-col w-full h-full text-zinc-100 p-3 sm:p-4 overflow-hidden min-h-0 modal-bg",
         className,
       )}
     >
-      <div className="w-full h-8 flex items-center ml-1 justify-between">
-        <h2 className="font-light">Contact</h2>
+      {/* Шапка модалки */}
+      <div className="flex w-full justify-between items-center mb-3 shrink-0 px-1">
+        <Label className="text-sm font-semibold tracking-widest uppercase text-zinc-400 sm:text-base">
+          Contact
+        </Label>
         <button
-          className="w-6 h-6 border border-[#ffffff61] flex justify-center bg-[#1a131f] rounded-xs items-center cursor-pointer mr-1.25"
+          className="w-7 h-7 sm:w-8 sm:h-8 border border-white/20 flex justify-center bg-[#1a131f] rounded-md items-center cursor-pointer transition-colors hover:bg-white/5"
           onClick={onClose}
           aria-label="Close modal"
           {...stopDragProps}
         >
-          <img src="/images/x.svg" alt="close" />
+          <img src="/images/x.svg" alt="close" className="w-4 h-4" />
         </button>
       </div>
 
-      <div className="flex flex-col h-125 bg-[#120d18] rounded-lg p-1">
-        {/* Text side */}
-        <div className="flex flex-col p-4 gap-2 h-1/2">
-          <Label className="text-3xl">Let's get in touch</Label>
-          <p className="text-lg opacity-45 font-light">
+      {/* Основной контейнер */}
+      <div className="flex flex-col lg:flex-row bg-[#110c17]/60 w-full h-full rounded-xl p-3 sm:p-5 gap-6 overflow-y-auto custom-scrollbar min-h-0 flex-1">
+        
+        {/* Текстовая сторона */}
+        <div className="flex flex-col gap-2 w-full lg:w-1/2 shrink-0 lg:justify-center text-center lg:text-left">
+          <Label className="text-2xl sm:text-3xl font-medium tracking-tight text-zinc-100">
+            Let's get in touch
+          </Label>
+          <p className="text-sm sm:text-base text-zinc-400 font-light leading-relaxed">
             I would love to hear from you. Whether you have a project in mind, a
             question about my services, or just want to say hello, feel free to
-            reach out using the contact form below.
+            reach out using the contact form.
           </p>
         </div>
 
-        {/* Input side */}
-        <div className="flex flex-col p-4 gap-4 h-full justify-between">
-          <div className="flex gap-4 flex-wrap min-w-full justify-center">
-            <div className="flex gap-5 w-full h-[20%]">
+        {/* Сторона ввода инпутов */}
+        <div className="flex flex-col gap-4 w-full lg:w-1/2 min-h-0 justify-between">
+          <div className="flex flex-col gap-3 w-full">
+            <div className="flex flex-col sm:flex-row gap-3 w-full">
               <input
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 {...stopDragProps}
-                className="flex w-[50%] p-3 focus:outline-0 rounded-sm bg-[#17111c]"
+                className="w-full sm:w-1/2 p-3 text-sm focus:outline-hidden rounded-lg bg-[#17111c] text-zinc-100 border border-white/5 focus:border-white/20 transition-colors"
                 placeholder="Name"
               />
               <input
@@ -108,7 +112,7 @@ export const ContactCard: React.FC<Props> = ({ className, onClose }) => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 {...stopDragProps}
-                className="flex w-[50%] p-3 focus:outline-0 rounded-sm bg-[#17111c]"
+                className="w-full sm:w-1/2 p-3 text-sm focus:outline-hidden rounded-lg bg-[#17111c] text-zinc-100 border border-white/5 focus:border-white/20 transition-colors"
                 placeholder="Email"
               />
             </div>
@@ -116,20 +120,22 @@ export const ContactCard: React.FC<Props> = ({ className, onClose }) => {
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               {...stopDragProps}
-              className="w-full h-37.5 max-h-37.5 resize-none border-0 bg-[#17111c] cursor-text focus:outline-0 rounded-sm"
+              className="w-full h-28 sm:h-36 resize-none border border-white/5 bg-[#17111c] cursor-text focus:outline-hidden rounded-lg p-3 text-sm focus:border-white/20 transition-colors"
               placeholder="Message"
               draggable={false}
             />
           </div>
+          
           <button
             onClick={sendEmail}
             disabled={loading}
             {...stopDragProps}
-            className="flex justify-center items-center w-full h-[20%] bg-[#1a131f] rounded-md text-zinc-100 hover:bg-[#2a1f2f] transition-colors disabled:opacity-50"
+            className="flex justify-center items-center w-full h-11 sm:h-12 bg-[#1a131f] border border-white/10 rounded-lg text-zinc-100 font-medium hover:bg-[#2a1f2f] transition-all cursor-pointer active:scale-[0.99] disabled:opacity-50"
           >
             {loading ? "Sending..." : "Send Message"}
           </button>
         </div>
+
       </div>
     </section>
   );

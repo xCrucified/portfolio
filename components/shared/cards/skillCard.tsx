@@ -54,57 +54,49 @@ export const SkillCard: React.FC<Props> = ({ className, onClose, skills = [] }) 
     return () => el.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-
-    const preventTouchMove = (e: TouchEvent) => e.preventDefault();
-    el.addEventListener("touchmove", preventTouchMove, { passive: false });
-
-    return () => el.removeEventListener("touchmove", preventTouchMove);
-  }, []);
-
   if (totalItems === 0) {
     return (
-      <section className={cn("flex flex-col outline modal-bg p-2", className)}>
-        <div className="flex items-center justify-between p-1">
-          <Label className="font-light p-1">Skills</Label>
+      <section className={cn("flex flex-col w-full h-full text-zinc-100 p-3 sm:p-4 overflow-hidden min-h-0 modal-bg", className)}>
+        <div className="flex items-center justify-between p-1 shrink-0 mb-3">
+          <Label className="text-sm font-semibold tracking-widest uppercase text-zinc-400 sm:text-base">Skills</Label>
           {onClose && (
             <button onClick={onClose} aria-label="Close modal">
-              <img src="/images/x.svg" alt="close" />
+              <img src="/images/x.svg" alt="close" className="w-4 h-4" />
             </button>
           )}
         </div>
-        <div className="text-center text-gray-400 p-8">Нет доступных навыков</div>
+        <div className="text-center text-zinc-500 text-sm p-8 flex-1 flex items-center justify-center">No skills available.</div>
       </section>
     );
   }
 
   return (
-    <section className={cn("flex flex-col outline modal-bg p-2", className)}>
-      <div className="flex items-center justify-between p-1">
-        <Label className="font-light p-1">Skills</Label>
+    <section className={cn("flex flex-col w-full h-full text-zinc-100 p-3 sm:p-4 overflow-hidden min-h-0 modal-bg", className)}>
+      {/* Шапка */}
+      <div className="flex items-center justify-between shrink-0 px-1 mb-3">
+        <Label className="text-sm font-semibold tracking-widest uppercase text-zinc-400 sm:text-base">Skills</Label>
         {onClose && (
           <button
-            className="w-6 h-6 border border-[#ffffff61] flex justify-center items-center rounded-sm cursor-pointer"
+            className="w-7 h-7 sm:w-8 sm:h-8 border border-white/20 flex justify-center items-center rounded-md cursor-pointer transition-colors hover:bg-white/5"
             onClick={onClose}
             aria-label="Close modal"
           >
-            <img src="/images/x.svg" draggable={false} alt="close" />
+            <img src="/images/x.svg" draggable={false} alt="close" className="w-4 h-4" />
           </button>
         )}
       </div>
 
-      <div className="relative flex items-center justify-center w-full h-75 bg-[#120d18] rounded-lg mx-auto mt-2">
+      {/* Тело слайдера */}
+      <div className="relative flex items-center justify-center w-full h-full bg-[#110c17]/60 rounded-xl border border-white/5 overflow-hidden flex-1 min-h-0">
         <div
           ref={containerRef}
-          className="flex w-full h-full overflow-x-auto scrollbar-hide snap-x snap-mandatory rounded-2xl"
+          className="flex w-full h-full overflow-x-auto scrollbar-hide snap-x snap-mandatory rounded-xl"
           style={{ scrollSnapType: "x mandatory" }}
         >
           {skills.map((skill, index) => (
             <div
               key={index}
-              className="shrink-0 w-full h-full snap-start flex items-center px-10 gap-4 justify-center"
+              className="shrink-0 w-full h-full snap-start flex flex-col sm:flex-row items-center justify-center px-10 sm:px-14 gap-4 sm:gap-6 overflow-y-auto custom-scrollbar"
               style={{ scrollSnapAlign: "start" }}
             >
               {skill.icon && (
@@ -112,44 +104,46 @@ export const SkillCard: React.FC<Props> = ({ className, onClose, skills = [] }) 
                   draggable={false}
                   src={skill.icon}
                   alt={skill.title}
-                  className="object-cover w-40 h-40 rounded-lg pointer-events-none shadow-2xl" 
+                  className="object-contain w-24 h-24 sm:w-36 sm:h-36 md:w-40 md:h-40 rounded-lg pointer-events-none shrink-0" 
                 />
               )}
-              <div className="flex flex-col items-center mt-3 gap-2 text-center">
-                <h3 className="select-none text-xl font-semibold text-white">
+              <div className="flex flex-col items-center sm:items-start text-center sm:text-left gap-1 sm:gap-2 min-w-0 max-w-xs sm:max-w-none pb-4 sm:pb-0">
+                <h3 className="select-none text-lg sm:text-xl md:text-2xl font-medium tracking-tight text-white w-full truncate">
                   {skill.title}
                 </h3>
-                <p className="select-none text-gray-300 opacity-65">{skill.description}</p>
+                <p className="select-none text-xs sm:text-sm text-zinc-400 font-light leading-relaxed line-clamp-4 sm:line-clamp-none">
+                  {skill.description}
+                </p>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Стрелки навигации */}
+        {/* Навигационные стрелки */}
         <div className="flex justify-between w-full h-full absolute top-0 left-0 items-center z-10 px-1 pointer-events-none">
           <button
             onClick={scrollLeft}
             className={cn(
-              "px-2 py-0.5 text-white transition-opacity scroll-btn pointer-events-auto",
+              "p-2 text-white transition-opacity scroll-btn pointer-events-auto rounded-lg bg-black/10 hover:bg-black/30 backdrop-blur-xs",
               scrollIndex > 0
                 ? "cursor-pointer opacity-100"
-                : "opacity-25 pointer-events-none invisible"
+                : "opacity-0 pointer-events-none invisible"
             )}
             aria-label="Scroll left"
           >
-            <img src="/arrow-left.svg" alt="Scroll left" draggable={false} />
+            <img src="/arrow-left.svg" alt="Scroll left" draggable={false} className="w-5 h-5" />
           </button>
           <button
             onClick={scrollRight}
             className={cn(
-              "px-2 py-0.5 text-white transition-opacity scroll-btn pointer-events-auto",
+              "p-2 text-white transition-opacity scroll-btn pointer-events-auto rounded-lg bg-black/10 hover:bg-black/30 backdrop-blur-xs",
               scrollIndex < totalItems - 1
                 ? "cursor-pointer opacity-100"
-                : "opacity-25 pointer-events-none invisible"
+                : "opacity-0 pointer-events-none invisible"
             )}
             aria-label="Scroll right"
           >
-            <img src="/arrow-right.svg" alt="Scroll right" draggable={false} />
+            <img src="/arrow-right.svg" alt="Scroll right" draggable={false} className="w-5 h-5" />
           </button>
         </div>
       </div>

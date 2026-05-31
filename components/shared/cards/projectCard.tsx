@@ -35,7 +35,7 @@ export const ProjectCard: React.FC<Props> = ({
         </button>
       </div>
 
-      <div className="flex flex-col bg-[#110c17]/60 w-full h-full rounded-xl p-3 sm:p-5 gap-6 sm:gap-8 overflow-y-auto custom-scrollbar min-h-0 flex-1">
+      <div className="flex flex-col bg-[#110c17]/60 w-full h-full rounded-xl p-2.5 sm:p-5 gap-6 sm:gap-8 overflow-y-auto custom-scrollbar min-h-0 flex-1">
         {projects && projects.length > 0 ? (
           projects.map((project, index) => (
             <div

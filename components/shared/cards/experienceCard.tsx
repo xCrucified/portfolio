@@ -1,5 +1,6 @@
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/imports";
+import React from "react";
 
 interface Props {
   imgSrc?: string;
@@ -17,52 +18,67 @@ export const ExperienceCard: React.FC<Props> = ({
   return (
     <section
       className={cn(
-        "flex flex-col text-zinc-100 p-3 rounded-xl gap-2 w-200 h-75 bg-neutral-950 modal-bg",
+        "flex flex-col w-full h-full text-zinc-100 p-3 sm:p-4 overflow-hidden min-h-0 modal-bg",
         className
       )}
     >
-      <div className="w-full h-6 flex items-center ml-1 justify-between">
-        <Label className="font-light p-1">Experiences</Label>
+      {/* Шапка */}
+      <div className="flex w-full justify-between items-center mb-3 shrink-0 px-1">
+        <Label className="text-sm font-semibold tracking-widest uppercase text-zinc-400 sm:text-base">
+          Experiences
+        </Label>
         <button
-          className="w-6 h-6 border border-[#ffffff61] flex justify-center bg-[#1a131f] rounded-xs items-center cursor-pointer"
+          className="w-7 h-7 sm:w-8 sm:h-8 border border-white/20 flex justify-center bg-[#1a131f] rounded-md items-center cursor-pointer transition-colors hover:bg-white/5"
           onClick={onClose}
           aria-label="Close modal"
         >
-          <img draggable={false} src="/images/x.svg" alt="close" />
+          <img draggable={false} src="/images/x.svg" alt="close" className="w-4 h-4" />
         </button>
       </div>
-      <div className="w-full flex gap-4 p-4 bg-[#120d18] rounded-lg overflow-auto">
-        {imgSrc ? (
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            draggable={false}
-            src={"/images/experiencePanel.mp4"}
-            className="static object-cover w-[30%] h-full self-center outline rounded-lg pointer-events-none"
-          />
-        ) : (
-          <img
-            src={"/images/experiencePanel.png"}
-            alt="experience"
-            draggable={false}
-            className="static object-cover w-[30%] h-full self-center outline rounded-lg pointer-events-none"
-          />
-        )}
-        <div className="flex flex-col gap-4 font-light leading-relaxed text-[#EFEDFD]">
-          <ul className="list-inside list-decimal space-y-2 text-lg leading-relaxed overflow-auto opacity-65 p-1">
-            {textarea &&
+
+      {/* Рабочая зона */}
+      <div className="flex flex-col md:flex-row bg-[#110c17]/60 w-full h-full rounded-xl p-3 sm:p-5 gap-5 overflow-y-auto custom-scrollbar min-h-0 flex-1">
+        
+        {/* Медиа сторона (Превью) */}
+        <div className="w-full md:w-[35%] shrink-0 relative aspect-video md:aspect-auto md:h-full max-h-[200px] md:max-h-none rounded-lg overflow-hidden bg-zinc-900 border border-white/5">
+          {imgSrc ? (
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              draggable={false}
+              src={"/images/experiencePanel.mp4"}
+              className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+            />
+          ) : (
+            <img
+              src={"/images/experiencePanel.png"}
+              alt="experience"
+              draggable={false}
+              className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+            />
+          )}
+        </div>
+
+        {/* Сторона списка */}
+        <div className="flex-1 flex flex-col min-w-0 h-full overflow-y-auto custom-scrollbar pr-1">
+          <ul className="list-inside list-decimal space-y-3 text-zinc-300 font-light leading-relaxed">
+            {textarea && textarea.length > 0 ? (
               textarea.map((text, index) => (
-                <li key={index} className="text-base">
-                  {text}
+                <li key={index} className="text-sm sm:text-base leading-relaxed break-words">
+                  <span className="text-zinc-100">{text}</span>
                   {index !== textarea.length - 1 && (
-                    <hr className="my-2 border-zinc-600 from-transparent opacity-50 to-transparent bg-linear-to-bl" />
+                    <hr className="mt-3 border-t border-white/5 opacity-50" />
                   )}
                 </li>
-              ))}
+              ))
+            ) : (
+              <div className="text-zinc-500 text-sm">No experiences listed.</div>
+            )}
           </ul>
         </div>
+
       </div>
     </section>
   );
