@@ -21,7 +21,7 @@ export const ProjectCard: React.FC<Props> = ({
   onClose,
 }) => {
   return (
-    <section className={cn("flex flex-col w-full h-full modal-bg text-zinc-100 p-3 sm:p-4 overflow-hidden min-h-0", className)}>
+    <section className={cn("flex flex-col min-w-155 max-md:min-w-0 max-md:min-h-[55vh] min-h-140 modal-bg text-zinc-100 p-3 sm:p-4 overflow-hidden", className)}>
       <div className="flex w-full justify-between items-center mb-3 shrink-0 px-1">
         <Label className="text-sm font-semibold tracking-widest uppercase text-zinc-400 sm:text-base">
           Projects
@@ -35,7 +35,7 @@ export const ProjectCard: React.FC<Props> = ({
         </button>
       </div>
 
-      <div className="flex flex-col bg-[#110c17]/60 w-full h-full rounded-xl p-2.5 sm:p-5 gap-6 sm:gap-8 overflow-y-auto custom-scrollbar min-h-0 flex-1">
+      <div className="flex flex-col bg-[#110c17]/60 w-full h-full rounded-xl p-3 sm:p-5 gap-6 sm:gap-8 overflow-y-auto custom-scrollbar min-h-0 flex-1">
         {projects && projects.length > 0 ? (
           projects.map((project, index) => (
             <div

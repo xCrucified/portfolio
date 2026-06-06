@@ -36,10 +36,8 @@ export const ExperienceCard: React.FC<Props> = ({
         </button>
       </div>
 
-      {/* Рабочая зона */}
+      {/* workflow */}
       <div className="flex flex-col md:flex-row bg-[#110c17]/60 w-full h-full rounded-xl p-3 sm:p-5 gap-5 overflow-y-auto custom-scrollbar min-h-0 flex-1">
-        
-        {/* Медиа сторона (Превью) */}
         <div className="w-full md:w-[35%] shrink-0 relative aspect-video md:aspect-auto md:h-full max-h-[200px] md:max-h-none rounded-lg overflow-hidden bg-zinc-900 border border-white/5">
           {imgSrc ? (
             <video

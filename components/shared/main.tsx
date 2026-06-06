@@ -27,20 +27,61 @@ const popIn = {
 };
 
 const panels = [
-  { id: "Projects", label: "Projects", icon: "/images/projects.svg", isLeft: true },
-  { id: "Services", label: "Services", icon: "/images/services.svg", isLeft: true },
+  {
+    id: "Projects",
+    label: "Projects",
+    icon: "/images/projects.svg",
+    isLeft: true,
+  },
+  {
+    id: "Services",
+    label: "Services",
+    icon: "/images/services.svg",
+    isLeft: true,
+  },
   { id: "Skills", label: "Skills", icon: "/images/skills.svg", isLeft: true },
-  { id: "Experience", label: "Experience", icon: "/images/experience.svg", isLeft: true },
-  { id: "Contact", label: "Contact", icon: "/images/contact.svg", isLeft: false },
-  { id: "Gallery", label: "Gallery", icon: "/images/gallery.svg", isLeft: false },
+  {
+    id: "Experience",
+    label: "Experience",
+    icon: "/images/experience.svg",
+    isLeft: true,
+  },
+  {
+    id: "Contact",
+    label: "Contact",
+    icon: "/images/contact.svg",
+    isLeft: false,
+  },
+  {
+    id: "Gallery",
+    label: "Gallery",
+    icon: "/images/gallery.svg",
+    isLeft: false,
+  },
   { id: "Resume", label: "Resume", icon: "/images/resume.svg", isLeft: false },
 ] as const;
 
 const menuItems = [
-  { id: "github", link: "https://github.com/xCrucified", icon: "/images/github.svg" },
-  { id: "instagram", link: "https://www.instagram.com/xsyhe_/", icon: "/images/instagram.svg" },
-  { id: "telegram", link: "https://web.telegram.org/k/#@x1Crucified", icon: "/images/telegram.svg" },
-  { id: "linkedin", link: "https://www.linkedin.com/in/mxxknk/", icon: "/images/linkedin.svg" },
+  {
+    id: "github",
+    link: "https://github.com/xCrucified",
+    icon: "/images/github.svg",
+  },
+  {
+    id: "instagram",
+    link: "https://www.instagram.com/xsyhe_/",
+    icon: "/images/instagram.svg",
+  },
+  {
+    id: "telegram",
+    link: "https://web.telegram.org/k/#@x1Crucified",
+    icon: "/images/telegram.svg",
+  },
+  {
+    id: "linkedin",
+    link: "https://www.linkedin.com/in/mxxknk/",
+    icon: "/images/linkedin.svg",
+  },
 ] as const;
 
 const tabs = {
@@ -74,7 +115,9 @@ export const Main: React.FC<Props> = ({ className }) => {
       if (exists) {
         return prev.filter((t) => t.id !== tab);
       } else {
-        const currentPanelTabsCount = prev.filter((t) => t.isLeft === isLeft).length;
+        const currentPanelTabsCount = prev.filter(
+          (t) => t.isLeft === isLeft,
+        ).length;
         return [...prev, { id: tab, isLeft, orderId: currentPanelTabsCount }];
       }
     });
@@ -96,7 +139,6 @@ export const Main: React.FC<Props> = ({ className }) => {
       )}
     >
       <div className="flex w-[95%] md:w-[90%] h-full md:h-[83vh] justify-between relative items-center box-border">
-        
         {/* left panel buttons */}
         <div className="flex flex-col gap-10 h-full font-light max-md:hidden z-20">
           {panels.slice(0, 4).map((item) => (
@@ -108,17 +150,23 @@ export const Main: React.FC<Props> = ({ className }) => {
               onClick={() => handleTabChange(item.id as TabKey, true)}
               className="flex items-center gap-2 p-1 flex-col w-[55px] h-[50px] section cursor-pointer"
             >
-              <img draggable={false} src={item.icon} alt={item.label} className="w-full h-full p-2" />
-              <Label className="text-lg font-light opacity-85 cursor-pointer">{item.id}</Label>
+              <img
+                draggable={false}
+                src={item.icon}
+                alt={item.label}
+                className="w-full h-full p-2"
+              />
+              <Label className="text-lg font-light opacity-85 cursor-pointer">
+                {item.id}
+              </Label>
             </motion.button>
           ))}
         </div>
 
         {/* center context */}
         <div className="flex-1 h-full relative flex justify-between box-border">
-          
           {/* left tabs windows */}
-          <div className="absolute h-full w-full md:w-77.5 ml-0 md:ml-10 pointer-events-none">
+          <div className="absolute h-full z-[1005] w-full md:w-[310px] pointer-events-none ml-7">
             {openTabs
               .filter((tab) => tab.isLeft)
               .map((tab) => {
@@ -126,33 +174,29 @@ export const Main: React.FC<Props> = ({ className }) => {
                 const globalIndex = openTabs.findIndex((t) => t.id === tab.id);
 
                 return (
-                  <div
-                    key={tab.id}
-                    className={cn(
-                      "absolute box-border w-full pointer-events-none",
-                      "max-w-[92vw] md:max-w-[540px] xl:max-w-[600px]",
-                      "h-[65vh] max-h-[420px] md:h-[75vh] md:max-h-[580px]",
-                    )}
-                    style={{
-                      top: isMobile ? "80px" : `${tab.orderId * 25}px`,
-                      left: isMobile ? "0px" : `${tab.orderId * 15}px`,
-                      zIndex: 50 + globalIndex,
-                    }}
-                  >
-                    <DraggableDiv>
-                      <div onMouseDown={() => focusTab(tab.id)} className="w-full h-full pointer-events-auto">
-                        <Component onClose={() => handleTabChange(tab.id, true)} />
-                      </div>
-                    </DraggableDiv>
-                  </div>
+                  <DraggableDiv key={tab.id}>
+                    <div
+                      onMouseDown={() => focusTab(tab.id)}
+                      className="absolute w-full h-full pointer-events-auto box-border"
+                      style={{
+                        top: isMobile ? "76px" : `${tab.orderId * 40}px`,
+                        left: "0px",
+                        zIndex: 10 + globalIndex,
+                      }}
+                    >
+                      <Component
+                        onClose={() => handleTabChange(tab.id, true)}
+                      />
+                    </div>
+                  </DraggableDiv>
                 );
               })}
           </div>
 
           {/* main footer + mobile panel */}
-          <div className="flex w-full relative pointer-events-none justify-center">
+          <div className="flex w-full relative pointer-events-none justify-center ">
             <div className="hidden max-md:flex justify-between w-full absolute top-0 z-[1010] px-2 pointer-events-auto">
-              <div className="flex flex-row gap-3 max-w-full overflow-x-auto py-2 px-3 bg-[#1a131fcc] backdrop-blur-md rounded-xl border border-[#3b3340] shadow-xl">
+              <div className="flex flex-col gap-3 overflow-x-auto py-2 px-3 bg-[#1a131fcc] backdrop-blur-md rounded-xl border border-[#3b3340] shadow-xl ">
                 {panels.map((item) => {
                   const isActive = openTabs.some((t) => t.id === item.id);
                   return (
@@ -160,13 +204,22 @@ export const Main: React.FC<Props> = ({ className }) => {
                       initial={popIn.initial}
                       animate={popIn.animate}
                       key={item.id}
-                      onClick={() => handleTabChange(item.id as TabKey, item.isLeft)}
+                      onClick={() =>
+                        handleTabChange(item.id as TabKey, item.isLeft)
+                      }
                       className={cn(
                         "flex items-center justify-center p-2 rounded-lg cursor-pointer w-11 h-11 transition-all",
-                        isActive ? "bg-[#3b3340] scale-95 border border-[#1FAC71]" : "bg-[#251b2a50]",
+                        isActive
+                          ? "bg-[#3b3340] scale-95 border border-[#1FAC71]"
+                          : "bg-[#251b2a50]",
                       )}
                     >
-                      <img draggable={false} src={item.icon} alt={item.label} className="w-6 h-6 object-contain" />
+                      <img
+                        draggable={false}
+                        src={item.icon}
+                        alt={item.label}
+                        className="w-6 h-6 object-contain"
+                      />
                     </motion.button>
                   );
                 })}
@@ -204,7 +257,10 @@ export const Main: React.FC<Props> = ({ className }) => {
                   draggable={false}
                   src="/bottom-slide.svg"
                   alt="decor"
-                  className={cn("w-10 object-contain pointer-events-none transition-transform duration-300", !inOpen && "rotate-180")}
+                  className={cn(
+                    "w-10 object-contain pointer-events-none transition-transform duration-300",
+                    !inOpen && "rotate-180",
+                  )}
                 />
               </button>
 
@@ -217,14 +273,32 @@ export const Main: React.FC<Props> = ({ className }) => {
                     transition={{ duration: 0.3, ease: "easeInOut" }}
                     className="flex menu-container box-border"
                   >
-                    <button onClick={() => (window.location.href = "/")} className="flex items-center gap-2 mr-2 p-1 flex-col h-full w-full home-btn cursor-pointer">
-                      <img draggable={false} src="/images/house.svg" alt="Home" />
+                    <button
+                      onClick={() => (window.location.href = "/")}
+                      className="flex items-center gap-2 mr-2 p-1 flex-col h-full w-full home-btn cursor-pointer"
+                    >
+                      <img
+                        draggable={false}
+                        src="/images/house.svg"
+                        alt="Home"
+                      />
                     </button>
                     <hr className="vertical-hr" />
 
                     {menuItems.map((item) => (
-                      <a key={item.id} href={item.link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 p-1 flex-col w-full h-full home-btn cursor-pointer justify-center">
-                        <img draggable={false} src={item.icon} alt={item.id} className="w-full h-full p-1.5" />
+                      <a
+                        key={item.id}
+                        href={item.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 p-1 flex-col w-full h-full home-btn cursor-pointer justify-center"
+                      >
+                        <img
+                          draggable={false}
+                          src={item.icon}
+                          alt={item.id}
+                          className="w-full h-full p-1.5"
+                        />
                       </a>
                     ))}
                   </motion.div>
@@ -234,8 +308,7 @@ export const Main: React.FC<Props> = ({ className }) => {
           </div>
 
           {/* right tabs windows */}
-          {/* Контейнер тоже пропускает клики и не имеет фиксированного zIndex */}
-          <div className="absolute h-full w-full md:w-[310px] right-0 pointer-events-none">
+          <div className="h-full z-[1000] w-full md:w-[310px] absolute right-0 mr-4 pointer-events-none">
             {openTabs
               .filter((tab) => !tab.isLeft)
               .map((tab) => {
@@ -243,26 +316,23 @@ export const Main: React.FC<Props> = ({ className }) => {
                 const globalIndex = openTabs.findIndex((t) => t.id === tab.id);
 
                 return (
-                  <div
-                    key={tab.id}
-                    className={cn(
-                      "absolute box-border w-full pointer-events-none", // <- Обертка пропускает клики
-                      "max-w-[92vw] md:max-w-[540px] xl:max-w-[600px]",
-                      "h-[65vh] max-h-[420px] md:h-[75vh] md:max-h-[580px]",
-                    )}
-                    style={{
-                      top: isMobile ? "80px" : `${tab.orderId * 25}px`,
-                      right: isMobile ? "0px" : `${tab.orderId * 15}px`,
-                      zIndex: 50 + globalIndex,
-                    }}
-                  >
-                    <DraggableDiv>
-                       {/* Сам контент внутри ловит клики */}
-                      <div onMouseDown={() => focusTab(tab.id)} className="w-full h-full pointer-events-auto">
-                        <Component onClose={() => handleTabChange(tab.id, false)} />
-                      </div>
-                    </DraggableDiv>
-                  </div>
+                  <DraggableDiv key={tab.id}>
+                    <div
+                      onMouseDown={() => focusTab(tab.id)}
+                      className={cn(
+                        "absolute w-full h-full pointer-events-auto",
+                      )}
+                      style={{
+                        top: isMobile ? "76px" : `${tab.orderId * 40}px`,
+                        right: `0`,
+                        zIndex: 10 + globalIndex,
+                      }}
+                    >
+                      <Component
+                        onClose={() => handleTabChange(tab.id, false)}
+                      />
+                    </div>
+                  </DraggableDiv>
                 );
               })}
           </div>
@@ -279,12 +349,18 @@ export const Main: React.FC<Props> = ({ className }) => {
               onClick={() => handleTabChange(item.id as TabKey, false)}
               className="flex items-center gap-2 p-1 flex-col w-[55px] h-[50px] section cursor-pointer"
             >
-              <img draggable={false} src={item.icon} alt={item.label} className="w-full h-full p-2" />
-              <Label className="text-lg font-light opacity-85 cursor-pointer">{item.id}</Label>
+              <img
+                draggable={false}
+                src={item.icon}
+                alt={item.label}
+                className="w-full h-full p-2"
+              />
+              <Label className="text-lg font-light opacity-85 cursor-pointer">
+                {item.id}
+              </Label>
             </motion.button>
           ))}
         </div>
-        
       </div>
     </div>
   );
