@@ -26,7 +26,7 @@ export const InfoCard: React.FC<Props> = ({
 
       <div className="flex flex-col w-full h-full gap-4 sm:gap-6 overflow-y-auto custom-scrollbar min-h-0 flex-1">
         
-        <div className="w-full shrink-0 relative aspect-video rounded-xl overflow-hidden bg-zinc-900 border border-white/5 max-h-[25vh] sm:max-h-[30vh]">
+        <div className="w-full shrink-0 relative aspect-video rounded-xl overflow-hidden bg-zinc-900 border border-white/5 max-h-[25vh] md:max-h-[30vh]">
           {imageSrc ? (
             <img
               src={imageSrc}

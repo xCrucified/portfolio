@@ -194,9 +194,9 @@ export const Main: React.FC<Props> = ({ className }) => {
           </div>
 
           {/* main footer + mobile panel */}
-          <div className="flex w-full relative pointer-events-none justify-center ">
-            <div className="hidden max-md:flex justify-between w-full absolute top-0 z-[1010] px-2 pointer-events-auto">
-              <div className="flex flex-col gap-3 overflow-x-auto py-2 px-3 bg-[#1a131fcc] backdrop-blur-md rounded-xl border border-[#3b3340] shadow-xl ">
+          <div className="flex w-full relative pointer-events-none justify-center">
+            <div className="hidden max-md:flex justify-between w-full fixed top-1/6 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[1010] px-2 pointer-events-auto">
+              <div className="flex flex-row gap-3 w-auto mx-auto outline-1 overflow-x-auto py-2 px-3 bg-[#1a131fcc] backdrop-blur-md rounded-xl border border-[#3b3340] shadow-xl">
                 {panels.map((item) => {
                   const isActive = openTabs.some((t) => t.id === item.id);
                   return (
@@ -227,7 +227,7 @@ export const Main: React.FC<Props> = ({ className }) => {
             </div>
 
             {/* main panel (About Me) */}
-            <DraggableDiv className="flex relative md:min-w-[36rem] max-md:min-w-[32rem] max-sm:min-w-[20rem] mb-30 pointer-events-none">
+            <DraggableDiv className="flex relative md:min-w-xl max-md:min-w-104 max-sm:min-w-[20rem] outline-1 md:mb-35 self-end pointer-events-none">
               <motion.section
                 key="about-me"
                 initial={{ opacity: 0, scale: 0.5 }}
