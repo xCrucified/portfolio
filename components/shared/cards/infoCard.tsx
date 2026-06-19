@@ -19,14 +19,15 @@ export const InfoCard: React.FC<Props> = ({
     <section className={cn("flex flex-col w-full h-full text-zinc-100 p-3 sm:p-4 overflow-hidden", className)}>
       
       <div className="px-1 shrink-0 mb-3">
-        <Label className="text-sm font-semibold tracking-widest uppercase text-zinc-400 sm:text-base">
+        <Label className="text-sm font-semibold tracking-widest uppercase text-zinc-400 sm:text-sm">
           About
-          </Label>
+        </Label>
       </div>
 
-      <div className="flex flex-col w-full h-full gap-4 sm:gap-6 overflow-y-auto custom-scrollbar min-h-0 flex-1">
+      {/* Убрали h-full, теперь flex-1 идеально рассчитывает доступную высоту для скролла */}
+      <div className="flex flex-col w-full gap-4 sm:gap-6 overflow-y-auto custom-scrollbar min-h-0 flex-1">
         
-        <div className="w-full shrink-0 relative aspect-video rounded-xl overflow-hidden bg-zinc-900 border border-white/5 max-h-[25vh] md:max-h-[30vh]">
+        <div className="w-full shrink-0 relative aspect-video rounded-xl overflow-hidden bg-zinc-900 border border-white/5 max-h-[25vh] md:max-h-[30vh] lg:max-h-[35vh] xl:max-h-[40vh]">
           {imageSrc ? (
             <img
               src={imageSrc}
@@ -43,8 +44,7 @@ export const InfoCard: React.FC<Props> = ({
           )}
         </div>
 
-        {/* Абзацы текста с внутренним контролируемым скроллом */}
-        <div className="flex flex-col gap-3 sm:gap-4 px-1 pb-2">
+        <div className="flex flex-col gap-3 sm:gap-4 px-1 pb-2 shrink-0">
           {textarea && textarea.length > 0 ? (
             textarea.map((text, index) => (
               <p
@@ -52,8 +52,8 @@ export const InfoCard: React.FC<Props> = ({
                 className={cn(
                   "leading-relaxed tracking-normal break-words",
                   index === 0
-                    ? "text-zinc-100 text-lg sm:text-xl md:text-2xl font-medium tracking-tight mb-1"
-                    : "text-zinc-400 text-xs sm:text-sm md:text-base font-light",
+                    ? "text-zinc-100 sm:text-md md:text-lg lg:text-xl font-light tracking-tight mb-1"
+                    : "text-zinc-400 sm:text-sm md:text-md lg:text-lg font-thin",
                   index > 1 && "text-zinc-500 text-[11px] sm:text-xs",
                 )}
               >

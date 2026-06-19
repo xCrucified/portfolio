@@ -166,7 +166,7 @@ export const Main: React.FC<Props> = ({ className }) => {
         {/* center context */}
         <div className="flex-1 h-full relative flex justify-between box-border">
           {/* left tabs windows */}
-          <div className="absolute h-full z-[1005] w-full md:w-[310px] pointer-events-none ml-7">
+          <div className="absolute h-full z-[1005] w-full md:w-[310px] pointer-events-none">
             {openTabs
               .filter((tab) => tab.isLeft)
               .map((tab) => {
@@ -227,29 +227,29 @@ export const Main: React.FC<Props> = ({ className }) => {
             </div>
 
             {/* main panel (About Me) */}
-            <DraggableDiv className="flex relative md:min-w-xl max-md:min-w-104 max-sm:min-w-[20rem] outline xl:mb-35 self-end pointer-events-none">
+            <DraggableDiv className="flex relative md:min-w-xl md:self-start max-md:min-w-110 max-sm:min-w-[20rem] outline h-[500px] md:h-[600px] max-h-[80vh] max-md:h-[75%] max-md:self-center pointer-events-none">
               <motion.section
                 key="about-me"
                 initial={{ opacity: 0, scale: 0.5 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, ease: "easeInOut" }}
-                className="flex relative justify-center self-center items-center pointer-events-auto w-full max-w-3xl"
+                className="flex relative justify-center items-center pointer-events-auto w-full h-full max-w-3xl min-h-0"
               >
-                <AboutMeModalWindow />
+                <AboutMeModalWindow className="h-full w-full min-h-0" />
               </motion.section>
             </DraggableDiv>
 
             {/* main footer bottom slider */}
             <motion.section
               initial={{ opacity: 0, y: 300 }}
-              animate={{ opacity: 1, y: 0 }}
+              animate={{ opacity: 1, y: 10 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
-              className="absolute bottom-4 w-full h-20 z-[2005] flex justify-center items-center pointer-events-auto"
+              className="absolute bottom-4 w-full h-20 z-[2005] flex justify-center items-center pointer-events-auto "
             >
               <button
                 onClick={() => setInOpen(!inOpen)}
                 className={cn(
-                  "h-10 absolute bg-[#1a131fcc] backdrop-blur-md rounded-t-xl border border-[#2c2a2d7c] shadow-xl flex items-center justify-center p-2 box-border cursor-pointer transition-all duration-300 md:hidden",
+                  "h-10 absolute bg-[#1a131fcc] opacity-85 backdrop-blur-md rounded-t-xl border border-[#2c2a2d7c] shadow-xl flex items-center justify-center p-2 box-border cursor-pointer transition-all duration-300 md:hidden",
                   inOpen ? "bottom-20" : " rounded-xl",
                 )}
               >
@@ -275,7 +275,7 @@ export const Main: React.FC<Props> = ({ className }) => {
                   >
                     <button
                       onClick={() => (window.location.href = "/")}
-                      className="flex items-center gap-2 mr-2 p-1 flex-col h-full w-full home-btn cursor-pointer"
+                      className="flex items-center gap-2 mr-2 p-1 flex-col h-full home-btn w-full cursor-pointer"
                     >
                       <img
                         draggable={false}
@@ -283,15 +283,14 @@ export const Main: React.FC<Props> = ({ className }) => {
                         alt="Home"
                       />
                     </button>
-                    <hr className="vertical-hr" />
-
+                    <hr className="h-full w-px border-0 bg-gray-300/15" />
                     {menuItems.map((item) => (
                       <a
                         key={item.id}
                         href={item.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 p-1 flex-col w-full h-full home-btn cursor-pointer justify-center"
+                        className="flex items-center gap-2 p-1 flex-col w-full h-full cursor-pointer justify-center"
                       >
                         <img
                           draggable={false}
@@ -308,7 +307,7 @@ export const Main: React.FC<Props> = ({ className }) => {
           </div>
 
           {/* right tabs windows */}
-          <div className="h-full z-[1000] w-full md:w-[310px] absolute right-0 mr-4 pointer-events-none">
+          <div className="absolute right-0 top-0 h-full z-[1000] w-full max-md:outline max-md:items-start max-md:justify-end max-md:flex md:w-[310px] pointer-events-none">
             {openTabs
               .filter((tab) => !tab.isLeft)
               .map((tab) => {
@@ -320,11 +319,11 @@ export const Main: React.FC<Props> = ({ className }) => {
                     <div
                       onMouseDown={() => focusTab(tab.id)}
                       className={cn(
-                        "absolute w-full h-full pointer-events-auto",
+                        "absolute w-full h-full pointer-events-auto box-border",
                       )}
                       style={{
                         top: isMobile ? "76px" : `${tab.orderId * 40}px`,
-                        right: `0`,
+                        right: "0px",
                         zIndex: 10 + globalIndex,
                       }}
                     >
