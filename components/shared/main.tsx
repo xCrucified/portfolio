@@ -164,9 +164,9 @@ export const Main: React.FC<Props> = ({ className }) => {
         </div>
 
         {/* center context */}
-        <div className="flex-1 h-full relative flex justify-between box-border">
+        <div className="flex-1 h-full relative flex justify-start box-border">
           {/* left tabs windows */}
-          <div className="absolute h-full z-[1005] w-full md:w-[310px] pointer-events-none">
+          <div className="absolute h-full z-[1005] md:w-[310px] pointer-events-none">
             {openTabs
               .filter((tab) => tab.isLeft)
               .map((tab) => {
@@ -227,7 +227,7 @@ export const Main: React.FC<Props> = ({ className }) => {
             </div>
 
             {/* main panel (About Me) */}
-            <DraggableDiv className="flex relative md:min-w-xl md:self-start max-md:min-w-110 max-sm:min-w-[20rem] outline h-[500px] md:h-[600px] max-h-[80vh] max-md:h-[75%] max-md:self-center pointer-events-none">
+            <DraggableDiv className="flex relative md:min-w-xl md:self-start max-md:min-w-110 max-sm:min-w-[20rem] h-[500px] md:h-[600px] max-h-[80vh] max-md:h-[75%] max-md:self-center pointer-events-none">
               <motion.section
                 key="about-me"
                 initial={{ opacity: 0, scale: 0.5 }}
@@ -307,7 +307,7 @@ export const Main: React.FC<Props> = ({ className }) => {
           </div>
 
           {/* right tabs windows */}
-          <div className="absolute right-0 top-0 h-full z-[1005] w-full max-md:right-0 max-md:left-0 max-md:outline md:w-[310px] pointer-events-none">
+          <div className="absolute right-0 h-full z-[1005] max-md:right-0 md:w-[310px] pointer-events-none">
             {openTabs
               .filter((tab) => !tab.isLeft)
               .map((tab) => {
