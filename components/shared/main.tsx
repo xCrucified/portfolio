@@ -244,7 +244,7 @@ export const Main: React.FC<Props> = ({ className }) => {
               initial={{ opacity: 0, y: 300 }}
               animate={{ opacity: 1, y: 10 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
-              className="absolute bottom-4 w-full h-20 z-[2005] flex justify-center items-center pointer-events-auto "
+              className="absolute  bottom-4 w-full h-20 z-[2005] flex justify-center items-center pointer-events-auto "
             >
               <button
                 onClick={() => setInOpen(!inOpen)}
@@ -307,7 +307,7 @@ export const Main: React.FC<Props> = ({ className }) => {
           </div>
 
           {/* right tabs windows */}
-          <div className="absolute right-0 top-0 h-full z-[1000] w-full max-md:outline max-md:items-start max-md:justify-end max-md:flex md:w-[310px] pointer-events-none">
+          <div className="absolute right-0 top-0 h-full z-[1005] w-full max-md:right-0 max-md:left-0 max-md:outline md:w-[310px] pointer-events-none">
             {openTabs
               .filter((tab) => !tab.isLeft)
               .map((tab) => {
