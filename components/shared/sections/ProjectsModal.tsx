@@ -35,7 +35,6 @@ export const ProjectsModalWindow: React.FC<Props> = ({
           image:
             `https://raw.githubusercontent.com/xCrucified/${repo.name}/master/${repo.name}.png` ||
             `https://raw.githubusercontent.com/xCrucified/${repo.name}/main/${repo.name}.png`,
-            // `https://raw.githubusercontent.com/xCrucified/${repo.name}/master/preview.png`,
         }));
 
         setProjects(formattedProjects);
@@ -63,18 +62,20 @@ export const ProjectsModalWindow: React.FC<Props> = ({
   if (loading) return <p>Loading projects...</p>;
 
   return (
-    <ProjectCard
-      className={cn("h-full w-full",className)}
-      projects={projects
-        .map((project, index) => ({
-          key: index,
-          title: project.name,
-          image: project.image,
-          description: project.description,
-        }))
-        .filter((project) => project.title !== "xCrucified" && project.title !== "portfolio")}
-      onClose={onClose}
-    />
+    <div className={cn("md:w-full md:h-full max-md:fixed max-md:inset-0 max-md:z-[9999] max-md:bg-black/50 max-md:backdrop-blur-sm max-md:flex max-md:items-center max-md:justify-center pointer-events-auto", className)}>
+      <ProjectCard
+        className="md:h-full md:w-full max-md:w-[95%] max-md:h-auto max-md:max-h-[50vh] max-md:overflow-y-auto"
+        projects={projects
+          .map((project, index) => ({
+            key: index,
+            title: project.name,
+            image: project.image,
+            description: project.description,
+          }))
+          .filter((project) => project.title !== "xCrucified" && project.title !== "portfolio")}
+        onClose={onClose}
+      />
+    </div>
   );
 };
 

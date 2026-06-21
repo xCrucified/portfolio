@@ -24,9 +24,7 @@ export const InfoCard: React.FC<Props> = ({
         </Label>
       </div>
 
-      {/* Убрали h-full, теперь flex-1 идеально рассчитывает доступную высоту для скролла */}
       <div className="flex flex-col w-full gap-4 sm:gap-6 overflow-y-auto custom-scrollbar min-h-0 flex-1">
-        
         <div className="w-full shrink-0 relative aspect-video rounded-xl overflow-hidden bg-zinc-900 border border-white/5 max-h-[25vh] md:max-h-[30vh] lg:max-h-[35vh] xl:max-h-[40vh]">
           {imageSrc ? (
             <img

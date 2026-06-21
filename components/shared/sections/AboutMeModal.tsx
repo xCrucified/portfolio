@@ -9,7 +9,12 @@ interface Props {
 export const AboutMeModalWindow: React.FC<Props> = ({ className, onClose }) => {
   return (
     <InfoCard
-      className={cn("modal-bg", className)}
+      className={cn(
+        "modal-bg",
+        "w-full h-auto max-h-[100%] overflow-y-auto box-border",
+        "scrollbar-hide", 
+        className
+      )}
       imageSrc="/images/aboutme2.png"
       textarea={[
         "Hey there! I'm Max — a digital creative who crafts experiences that not only work but resonate. I blend aesthetics with functionality to build interfaces that speak without words.",

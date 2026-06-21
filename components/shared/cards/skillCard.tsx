@@ -56,7 +56,7 @@ export const SkillCard: React.FC<Props> = ({ className, onClose, skills = [] }) 
 
   if (totalItems === 0) {
     return (
-      <section className={cn("flex flex-col w-full h-full text-zinc-100 p-3 sm:p-4 overflow-hidden min-h-0 modal-bg", className)}>
+      <section className={cn("flex flex-col w-full md:h-full max-md:h-auto max-md:max-h-[55vh] text-zinc-100 p-3 sm:p-4 md:overflow-hidden max-md:overflow-y-auto min-h-0 modal-bg", className)}>
         <div className="flex items-center justify-between p-1 shrink-0 mb-3">
           <Label className="text-sm font-semibold tracking-widest uppercase text-zinc-400 sm:text-base">Skills</Label>
           {onClose && (
@@ -71,8 +71,7 @@ export const SkillCard: React.FC<Props> = ({ className, onClose, skills = [] }) 
   }
 
   return (
-    <section className={cn("flex flex-col w-full h-full text-zinc-100 p-3 sm:p-4 overflow-hidden min-h-0 modal-bg", className)}>
-      {/* Шапка */}
+    <section className={cn("flex flex-col w-full md:h-full max-md:h-auto max-md:max-h-[55vh] text-zinc-100 p-3 sm:p-4 md:overflow-hidden max-md:overflow-y-auto min-h-0 modal-bg", className)}>
       <div className="flex items-center justify-between shrink-0 px-1 mb-3">
         <Label className="text-sm font-semibold tracking-widest uppercase text-zinc-400 sm:text-base">Skills</Label>
         {onClose && (
@@ -86,7 +85,6 @@ export const SkillCard: React.FC<Props> = ({ className, onClose, skills = [] }) 
         )}
       </div>
 
-      {/* Тело слайдера */}
       <div className="relative flex items-center justify-center w-full h-full bg-[#110c17]/60 rounded-xl border border-white/5 overflow-hidden flex-1 min-h-0">
         <div
           ref={containerRef}
@@ -119,7 +117,6 @@ export const SkillCard: React.FC<Props> = ({ className, onClose, skills = [] }) 
           ))}
         </div>
 
-        {/* Навигационные стрелки */}
         <div className="flex justify-between w-full h-full absolute top-0 left-0 items-center z-10 px-1 pointer-events-none">
           <button
             onClick={scrollLeft}

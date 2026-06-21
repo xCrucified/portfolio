@@ -18,11 +18,10 @@ export const ExperienceCard: React.FC<Props> = ({
   return (
     <section
       className={cn(
-        "flex flex-col w-full h-full text-zinc-100 p-3 sm:p-4 overflow-hidden min-h-0 modal-bg",
+        "flex flex-col w-full md:h-full max-md:h-auto max-md:max-h-[55vh] text-zinc-100 p-3 sm:p-4 md:overflow-hidden max-md:overflow-y-auto min-h-0 modal-bg",
         className
       )}
     >
-      {/* Шапка */}
       <div className="flex w-full justify-between items-center mb-3 shrink-0 px-1">
         <Label className="text-sm font-semibold tracking-widest uppercase text-zinc-400 sm:text-base">
           Experiences
@@ -36,9 +35,8 @@ export const ExperienceCard: React.FC<Props> = ({
         </button>
       </div>
 
-      {/* workflow */}
-      <div className="flex flex-col md:flex-row bg-[#110c17]/60 w-full h-full rounded-xl p-3 sm:p-5 gap-5 overflow-y-auto custom-scrollbar min-h-0 flex-1">
-        <div className="w-full md:w-[35%] shrink-0 relative aspect-video md:aspect-auto md:h-full max-h-[200px] md:max-h-none rounded-lg overflow-hidden bg-zinc-900 border border-white/5">
+      <div className="bg-[#110c17]/60 w-full h-full rounded-xl p-3 sm:p-5 overflow-y-auto custom-scrollbar flex-1 min-h-0">
+        <div className="w-full mb-5 aspect-video rounded-lg overflow-hidden bg-zinc-900 border border-white/5">
           {imgSrc ? (
             <video
               autoPlay
@@ -47,20 +45,19 @@ export const ExperienceCard: React.FC<Props> = ({
               playsInline
               draggable={false}
               src={"/images/experiencePanel.mp4"}
-              className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+              className="w-full h-full object-cover pointer-events-none"
             />
           ) : (
             <img
               src={"/images/experiencePanel.png"}
               alt="experience"
               draggable={false}
-              className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+              className="w-full h-full object-cover pointer-events-none"
             />
           )}
         </div>
 
-        {/* Сторона списка */}
-        <div className="flex-1 flex flex-col min-w-0 h-full overflow-y-auto custom-scrollbar pr-1">
+        <div className="w-full">
           <ul className="list-inside list-decimal space-y-3 text-zinc-300 font-light leading-relaxed">
             {textarea && textarea.length > 0 ? (
               textarea.map((text, index) => (
@@ -76,7 +73,6 @@ export const ExperienceCard: React.FC<Props> = ({
             )}
           </ul>
         </div>
-
       </div>
     </section>
   );

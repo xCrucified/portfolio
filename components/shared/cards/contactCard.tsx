@@ -61,11 +61,10 @@ export const ContactCard: React.FC<Props> = ({ className, onClose }) => {
   return (
     <section
       className={cn(
-        "flex flex-col w-full h-full text-zinc-100 p-3 sm:p-4 overflow-hidden min-h-0 modal-bg",
+        "flex flex-col w-full md:h-full max-md:h-auto max-md:max-h-[55vh] text-zinc-100 p-3 sm:p-4 md:overflow-hidden max-md:overflow-y-auto min-h-0 modal-bg",
         className,
       )}
     >
-      {/* Шапка модалки */}
       <div className="flex w-full justify-between items-center mb-3 shrink-0 px-1">
         <Label className="text-sm font-semibold tracking-widest uppercase text-zinc-400 sm:text-base">
           Contact
@@ -80,10 +79,7 @@ export const ContactCard: React.FC<Props> = ({ className, onClose }) => {
         </button>
       </div>
 
-      {/* Основной контейнер */}
-      <div className="flex flex-col lg:flex-row bg-[#110c17]/60 w-full h-full rounded-xl p-3 sm:p-5 gap-6 overflow-y-auto custom-scrollbar min-h-0 flex-1">
-        
-        {/* Текстовая сторона */}
+      <div className="flex flex-col lg:flex-row bg-[#110c17]/60 w-full h-full rounded-xl p-3 sm:p-5 gap-6 overflow-y-auto custom-scrollbar min-h-0 flex-1">        
         <div className="flex flex-col gap-2 w-full lg:w-1/2 shrink-0 lg:justify-center text-center lg:text-left">
           <Label className="text-2xl sm:text-3xl font-medium tracking-tight text-zinc-100">
             Let's get in touch
@@ -95,7 +91,6 @@ export const ContactCard: React.FC<Props> = ({ className, onClose }) => {
           </p>
         </div>
 
-        {/* Сторона ввода инпутов */}
         <div className="flex flex-col gap-4 w-full lg:w-1/2 min-h-0 justify-between">
           <div className="flex flex-col gap-3 w-full">
             <div className="flex flex-col sm:flex-row gap-3 w-full">
@@ -130,7 +125,7 @@ export const ContactCard: React.FC<Props> = ({ className, onClose }) => {
             onClick={sendEmail}
             disabled={loading}
             {...stopDragProps}
-            className="flex justify-center items-center w-full h-11 sm:h-12 bg-[#1a131f] border border-white/10 rounded-lg text-zinc-100 font-medium hover:bg-[#2a1f2f] transition-all cursor-pointer active:scale-[0.99] disabled:opacity-50"
+            className="flex justify-center items-center w-full h-11 p-2 sm:h-12 bg-[#1a131f] border border-white/10 rounded-lg text-zinc-100 font-medium hover:bg-[#2a1f2f] transition-all cursor-pointer active:scale-[0.99] disabled:opacity-50"
           >
             {loading ? "Sending..." : "Send Message"}
           </button>

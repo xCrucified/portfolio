@@ -13,7 +13,6 @@ import SkillsModalWindow from "./sections/SkillsModal";
 import ExperienceModalWindow from "./sections/ExperienceModal";
 import AboutMeModalWindow from "./sections/AboutMeModal";
 import ContactModalWindow from "./sections/ContactModal";
-import GalleryModalWindow from "./sections/GalleryModal";
 import ResumeModalWindow from "./sections/ResumeModal";
 
 interface Props {
@@ -52,12 +51,6 @@ const panels = [
     icon: "/images/contact.svg",
     isLeft: false,
   },
-  {
-    id: "Gallery",
-    label: "Gallery",
-    icon: "/images/gallery.svg",
-    isLeft: false,
-  },
   { id: "Resume", label: "Resume", icon: "/images/resume.svg", isLeft: false },
 ] as const;
 
@@ -90,7 +83,6 @@ const tabs = {
   Skills: SkillsModalWindow,
   Experience: ExperienceModalWindow,
   Contact: ContactModalWindow,
-  Gallery: GalleryModalWindow,
   Resume: ResumeModalWindow,
 } as const;
 
@@ -115,6 +107,10 @@ export const Main: React.FC<Props> = ({ className }) => {
       if (exists) {
         return prev.filter((t) => t.id !== tab);
       } else {
+        if (isMobile) {
+          return [{ id: tab, isLeft, orderId: 0 }];
+        }
+        
         const currentPanelTabsCount = prev.filter(
           (t) => t.isLeft === isLeft,
         ).length;

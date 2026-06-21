@@ -11,11 +11,10 @@ export const ResumeCard: React.FC<Props> = ({ className, onClose }) => {
   return (
     <section
       className={cn(
-        "flex flex-col w-full h-full text-zinc-100 p-3 sm:p-4 overflow-hidden min-h-0 modal-bg",
+        "flex flex-col w-full md:h-full max-md:h-auto max-md:max-h-[55vh] text-zinc-100 p-3 sm:p-4 md:overflow-hidden max-md:overflow-y-auto min-h-0 modal-bg",
         className
       )}
     >
-      {/* Шапка */}
       <div className="flex w-full justify-between items-center mb-3 shrink-0 px-1">
         <Label className="text-sm font-semibold tracking-widest uppercase text-zinc-400 sm:text-base">
           Resume
@@ -29,7 +28,6 @@ export const ResumeCard: React.FC<Props> = ({ className, onClose }) => {
         </button>
       </div>
 
-      {/* Внутренний контейнер */}
       <div className="flex flex-col items-center justify-center bg-[#110c17]/60 w-full h-full rounded-xl p-4 sm:p-6 text-center overflow-y-auto custom-scrollbar flex-1 min-h-0">
         <div className="max-w-md flex flex-col items-center gap-4">
           <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center border border-white/10">
