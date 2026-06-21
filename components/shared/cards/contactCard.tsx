@@ -61,7 +61,7 @@ export const ContactCard: React.FC<Props> = ({ className, onClose }) => {
   return (
     <section
       className={cn(
-        "flex flex-col w-full md:h-full max-md:h-auto max-md:max-h-[55vh] text-zinc-100 p-3 sm:p-4 md:overflow-hidden max-md:overflow-y-auto min-h-0 modal-bg",
+        "flex flex-col w-full h-full max-md:min-h-[55vh] max-md:max-h-[55vh] text-zinc-100 p-3 sm:p-4 md:overflow-hidden max-md:overflow-y-auto min-h-0 modal-bg",
         className,
       )}
     >
@@ -115,7 +115,7 @@ export const ContactCard: React.FC<Props> = ({ className, onClose }) => {
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               {...stopDragProps}
-              className="w-full h-28 sm:h-36 resize-none border border-white/5 bg-[#17111c] cursor-text focus:outline-hidden rounded-lg p-3 text-sm focus:border-white/20 transition-colors"
+              className="md:w-60 h-28 sm:h-36 resize-none border border-white/5 bg-[#17111c] cursor-text focus:outline-hidden rounded-lg p-3 text-sm focus:border-white/20 transition-colors"
               placeholder="Message"
               draggable={false}
             />

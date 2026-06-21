@@ -56,7 +56,7 @@ export const SkillCard: React.FC<Props> = ({ className, onClose, skills = [] }) 
 
   if (totalItems === 0) {
     return (
-      <section className={cn("flex flex-col w-full md:h-full max-md:h-auto max-md:max-h-[55vh] text-zinc-100 p-3 sm:p-4 md:overflow-hidden max-md:overflow-y-auto min-h-0 modal-bg", className)}>
+      <section className={cn("flex flex-col md:min-w-130 md:min-h-[29vh] max-md:h-auto max-md:max-h-[55vh] text-zinc-100 p-3 sm:p-4 md:overflow-hidden max-md:overflow-y-auto min-h-0 modal-bg", className)}>
         <div className="flex items-center justify-between p-1 shrink-0 mb-3">
           <Label className="text-sm font-semibold tracking-widest uppercase text-zinc-400 sm:text-base">Skills</Label>
           {onClose && (
@@ -71,7 +71,7 @@ export const SkillCard: React.FC<Props> = ({ className, onClose, skills = [] }) 
   }
 
   return (
-    <section className={cn("flex flex-col w-full md:h-full max-md:h-auto max-md:max-h-[55vh] text-zinc-100 p-3 sm:p-4 md:overflow-hidden max-md:overflow-y-auto min-h-0 modal-bg", className)}>
+    <section className={cn("flex flex-col md:min-w-130 md:min-h-[29vh] max-md:h-auto max-md:max-h-[55vh] text-zinc-100 p-3 sm:p-4 md:overflow-hidden max-md:overflow-y-auto min-h-0 modal-bg", className)}>
       <div className="flex items-center justify-between shrink-0 px-1 mb-3">
         <Label className="text-sm font-semibold tracking-widest uppercase text-zinc-400 sm:text-base">Skills</Label>
         {onClose && (

@@ -25,7 +25,7 @@ export const ExperienceModalWindow: React.FC<Props> = ({
     };
   }, [onClose]);
   return (
-    <div className={cn("md:w-full md:h-full max-md:fixed max-md:inset-0 max-md:z-[9999] max-md:bg-black/50 max-md:backdrop-blur-sm max-md:flex max-md:items-center max-md:justify-center pointer-events-auto", className)}>
+    <div className={cn("w-full h-full max-md:fixed max-md:inset-0 max-md:z-[9999] max-md:bg-black/50 max-md:backdrop-blur-sm max-md:flex max-md:items-center max-md:justify-center pointer-events-auto", className)}>
       <ExperienceCard
         className="max-md:w-[95%] max-md:h-auto max-md:max-h-[50vh] max-md:overflow-y-auto"
         onClose={onClose}

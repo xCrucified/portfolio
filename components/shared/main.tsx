@@ -137,7 +137,7 @@ export const Main: React.FC<Props> = ({ className }) => {
       <div className="flex w-[95%] md:w-[90%] h-full md:h-[83vh] justify-between relative items-center box-border">
         {/* left panel buttons */}
         <div className="flex flex-col gap-10 h-full font-light max-md:hidden z-20">
-          {panels.slice(0, 4).map((item) => (
+          {panels.slice(0, 3).map((item) => (
             <motion.button
               initial={popIn.initial}
               animate={popIn.animate}
@@ -162,7 +162,7 @@ export const Main: React.FC<Props> = ({ className }) => {
         {/* center context */}
         <div className="flex-1 h-full relative flex justify-start box-border">
           {/* left tabs windows */}
-          <div className="absolute h-full z-[1005] md:w-[310px] pointer-events-none">
+          <div className="absolute h-full outline z-[1005] pointer-events-none">
             {openTabs
               .filter((tab) => tab.isLeft)
               .map((tab) => {
@@ -303,7 +303,7 @@ export const Main: React.FC<Props> = ({ className }) => {
           </div>
 
           {/* right tabs windows */}
-          <div className="absolute right-0 h-full z-[1005] max-md:right-0 md:w-[310px] pointer-events-none">
+          <div className="absolute right-0 h-full z-[1005] outline pointer-events-none">
             {openTabs
               .filter((tab) => !tab.isLeft)
               .map((tab) => {
@@ -335,7 +335,7 @@ export const Main: React.FC<Props> = ({ className }) => {
 
         {/* right panel buttons */}
         <div className="flex flex-col gap-10 h-full font-light max-md:hidden z-20">
-          {panels.slice(4, 7).map((item) => (
+          {panels.slice(3, 6).map((item) => (
             <motion.button
               initial={popIn.initial}
               animate={popIn.animate}

@@ -21,7 +21,7 @@ export const ProjectCard: React.FC<Props> = ({
   onClose,
 }) => {
   return (
-    <section className={cn("flex flex-col w-full md:min-w-[155px] max-md:min-w-0 md:h-full max-md:h-auto max-md:max-h-[55vh] md:min-h-[140px] modal-bg text-zinc-100 p-3 sm:p-4 md:overflow-hidden max-md:overflow-y-auto", className)}>
+    <section className={cn("flex flex-col w-full md:min-w-131 md:min-h-120 max-md:min-w-0 md:h-full max-md:h-auto max-md:max-h-[55vh] modal-bg text-zinc-100 p-3 sm:p-4 md:overflow-hidden max-md:overflow-y-auto", className)}>
       <div className="flex w-full justify-between items-center mb-3 shrink-0 px-1">
         <Label className="text-sm font-semibold tracking-widest uppercase text-zinc-400 sm:text-base">
           Projects
