@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     shortcut: "/favicon.ico",
     apple: "/favicon.ico",
   },
-  description: "Portfolio of a software engineer",
+  description: "Portfolio of a Maksym Kononchuk, a passionate web developer and designer.",
 };
 
 export default function RootLayout({
