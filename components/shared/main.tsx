@@ -162,7 +162,7 @@ export const Main: React.FC<Props> = ({ className }) => {
         {/* center context */}
         <div className="flex-1 h-full relative flex justify-start box-border">
           {/* left tabs windows */}
-          <div className="absolute h-full outline z-[1005] pointer-events-none">
+          <div className="absolute w-1/2 h-full z-1005 pointer-events-none">
             {openTabs
               .filter((tab) => tab.isLeft)
               .map((tab) => {
@@ -303,7 +303,7 @@ export const Main: React.FC<Props> = ({ className }) => {
           </div>
 
           {/* right tabs windows */}
-          <div className="absolute right-0 h-full z-[1005] outline pointer-events-none">
+          <div className="absolute right-30 z-1005 pointer-events-none">
             {openTabs
               .filter((tab) => !tab.isLeft)
               .map((tab) => {

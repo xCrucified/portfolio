@@ -18,7 +18,7 @@ export const ExperienceCard: React.FC<Props> = ({
   return (
     <section
       className={cn(
-        "flex flex-col md:min-w-120 md:min-h-[10vh] md:overflow-hidden max-md:h-auto max-md:max-h-[55vh] text-zinc-100 p-3 sm:p-4 max-md:overflow-y-auto min-h-0 modal-bg",
+        "flex flex-col md:min-w-105 md:max-h-[50vh] max-md:h-auto max-md:max-h-[55vh] text-zinc-100 p-3 sm:p-4 max-md:overflow-y-auto modal-bg",
         className
       )}
     >

@@ -11,7 +11,7 @@ export const ResumeCard: React.FC<Props> = ({ className, onClose }) => {
   return (
     <section
       className={cn(
-        "flex flex-col w-full md:h-full max-md:h-auto max-md:max-h-[55vh] text-zinc-100 p-3 sm:p-4 md:overflow-hidden max-md:overflow-y-auto min-h-0 modal-bg",
+        "flex flex-col md:min-w-105 md:h-[34vh] max-md:h-auto max-md:max-h-[55vh] text-zinc-100 p-3 sm:p-4 md:overflow-hidden max-md:overflow-y-auto min-h-0 modal-bg",
         className
       )}
     >

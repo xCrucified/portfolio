@@ -23,7 +23,7 @@ export const ServiceCard: React.FC<Props> = ({
   return (
     <section
       className={cn(
-        "flex flex-col md:min-w-200 md:min-h-[44vh] text-zinc-100 p-3 sm:p-4 overflow-hidden modal-bg select-none",
+        "flex flex-col md:min-w-130 md:min-h-[34vh] text-zinc-100 p-3 sm:p-4 overflow-hidden modal-bg select-none",
         className
       )}
     >
@@ -42,12 +42,12 @@ export const ServiceCard: React.FC<Props> = ({
         )}
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-5 bg-[#110c17]/60 p-3 sm:p-5 rounded-xl border border-white/5 flex-1 min-h-0">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-5 bg-[#110c17]/60 p-3 sm:p-5 rounded-xl border border-white/5 flex-1">
         {displayServices.map((service, idx) => (
           <div
             key={idx}
             className={cn(
-              "flex flex-col justify-start items-start p-3 rounded-lg bg-white/[0.02] border border-white/5 min-h-0", // min-h-0 позволяет контенту сжиматься
+              "flex flex-col justify-start items-start p-3 rounded-lg bg-white/[0.02] border border-white/5",
               !service && "hidden sm:flex opacity-0 pointer-events-none"
             )}
           >
